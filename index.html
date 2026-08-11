@@ -1,6 +1,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>babySensei — pasiruošimo planas</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2224%22%20fill%3D%22%231E4A45%22%2F%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F2F7F5%22%20stroke-width%3D%226.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%3Cpath%20d%3D%22M50%2024%20C61%2024%2068%2032%2068%2041%20C68%2049%2063%2055%2055%2057%22%2F%3E%0A%3Cpath%20d%3D%22M50%2024%20C39%2024%2032%2032%2032%2041%20C32%2049%2036%2055%2044%2057%22%2F%3E%0A%3Cpath%20d%3D%22M44%2057%20C34%2061%2028%2070%2029%2079%22%2F%3E%0A%3Cpath%20d%3D%22M56%2057%20C66%2060%2072%2069%2071%2078%22%2F%3E%0A%3C%2Fg%3E%0A%3Ccircle%20cx%3D%2243%22%20cy%3D%2239%22%20r%3D%223.4%22%20fill%3D%22%23F2F7F5%22%2F%3E%3Ccircle%20cx%3D%2257%22%20cy%3D%2239%22%20r%3D%223.4%22%20fill%3D%22%23F2F7F5%22%2F%3E%0A%3Cpath%20d%3D%22M45%2046%20a5.5%205.5%200%200%200%2010%200%22%20fill%3D%22none%22%20stroke%3D%22%23F2F7F5%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2284%22%20r%3D%226%22%20fill%3D%22%23E39B2E%22%2F%3E%0A%3C%2Fsvg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2224%22%20fill%3D%22%231E4A45%22%2F%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F2F7F5%22%20stroke-width%3D%226.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%3Cpath%20d%3D%22M50%2024%20C61%2024%2068%2032%2068%2041%20C68%2049%2063%2055%2055%2057%22%2F%3E%0A%3Cpath%20d%3D%22M50%2024%20C39%2024%2032%2032%2032%2041%20C32%2049%2036%2055%2044%2057%22%2F%3E%0A%3Cpath%20d%3D%22M44%2057%20C34%2061%2028%2070%2029%2079%22%2F%3E%0A%3Cpath%20d%3D%22M56%2057%20C66%2060%2072%2069%2071%2078%22%2F%3E%0A%3C%2Fg%3E%0A%3Ccircle%20cx%3D%2243%22%20cy%3D%2239%22%20r%3D%223.4%22%20fill%3D%22%23F2F7F5%22%2F%3E%3Ccircle%20cx%3D%2257%22%20cy%3D%2239%22%20r%3D%223.4%22%20fill%3D%22%23F2F7F5%22%2F%3E%0A%3Cpath%20d%3D%22M45%2046%20a5.5%205.5%200%200%200%2010%200%22%20fill%3D%22none%22%20stroke%3D%22%23F2F7F5%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2284%22%20r%3D%226%22%20fill%3D%22%23E39B2E%22%2F%3E%0A%3C%2Fsvg%3E">
+<meta name="theme-color" content="#1E4A45">
+<meta name="description" content="babySensei — bendras pasiruošimo planas laukiantiems kūdikio.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -306,7 +310,30 @@ html.dark .subtab.on{color:#0E1614}
 .dlegend b{margin-left:auto;font-family:var(--data);font-size:.8rem;font-weight:500}
 .ctrsvg{width:100%;height:120px;margin:10px 0 4px}
 .ctrbar{fill:var(--amber)}
-.brand{display:flex;align-items:baseline;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.babycard{grid-column:span 1}
+.babyhead{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.babyhead h3{margin:0}
+.babyhead .btn{margin-left:auto}
+.babyfacts{display:flex;gap:8px 22px;flex-wrap:wrap;margin:6px 0 8px;justify-content:center}
+.babyfacts .fig b{font-size:1.2rem}
+.devnote{text-align:center;min-height:2.5em;margin:0 0 10px}
+.ghostbaby{fill:none;stroke:var(--line);stroke-width:3;stroke-dasharray:5 5}
+.scrub{margin-top:4px}
+#baby-slider{
+  width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;
+  background:linear-gradient(90deg,var(--spruce),var(--amber));outline:none;cursor:pointer
+}
+#baby-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--paper);
+  border:2px solid var(--spruce);cursor:pointer;box-shadow:0 1px 3px rgba(21,34,41,.25)
+}
+#baby-slider::-moz-range-thumb{
+  width:20px;height:20px;border-radius:50%;background:var(--paper);border:2px solid var(--spruce);cursor:pointer
+}
+.scrublabs{display:flex;justify-content:space-between;font-family:var(--data);font-size:.58rem;color:var(--slate);margin-top:4px}
+.tiny{font-size:.8rem}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.favimg{width:32px;height:32px;border-radius:8px;display:block}
 .mark{
   font-family:var(--display);font-size:1.28rem;font-weight:400;letter-spacing:-.03em;color:var(--slate);
   border:1px solid var(--line);border-radius:99px;padding:5px 15px;background:rgba(252,252,250,.7)
@@ -502,7 +529,7 @@ footer.foot{margin-top:40px;font-size:.85rem;color:var(--slate);border-top:1px s
 
 <div class="wrap">
   <div id="banner" class="banner" hidden></div>
-  <div class="brand"><span class="mark">baby<b>Sensei</b></span><span class="tagline">pasiruošimo planas</span></div>
+  <div class="brand"><img class="favimg" alt="" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2224%22%20fill%3D%22%231E4A45%22%2F%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23F2F7F5%22%20stroke-width%3D%226.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%3Cpath%20d%3D%22M50%2024%20C61%2024%2068%2032%2068%2041%20C68%2049%2063%2055%2055%2057%22%2F%3E%0A%3Cpath%20d%3D%22M50%2024%20C39%2024%2032%2032%2032%2041%20C32%2049%2036%2055%2044%2057%22%2F%3E%0A%3Cpath%20d%3D%22M44%2057%20C34%2061%2028%2070%2029%2079%22%2F%3E%0A%3Cpath%20d%3D%22M56%2057%20C66%2060%2072%2069%2071%2078%22%2F%3E%0A%3C%2Fg%3E%0A%3Ccircle%20cx%3D%2243%22%20cy%3D%2239%22%20r%3D%223.4%22%20fill%3D%22%23F2F7F5%22%2F%3E%3Ccircle%20cx%3D%2257%22%20cy%3D%2239%22%20r%3D%223.4%22%20fill%3D%22%23F2F7F5%22%2F%3E%0A%3Cpath%20d%3D%22M45%2046%20a5.5%205.5%200%200%200%2010%200%22%20fill%3D%22none%22%20stroke%3D%22%23F2F7F5%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2284%22%20r%3D%226%22%20fill%3D%22%23E39B2E%22%2F%3E%0A%3C%2Fsvg%3E"><span class="mark">baby<b>Sensei</b></span><span class="tagline">pasiruošimo planas</span></div>
   <p class="eyebrow" id="eyebrow">Numatoma gimimo data</p>
   <div class="masthead">
     <h1 id="bigdate">Sausio 25 <span class="yr">2027</span></h1>
@@ -573,9 +600,9 @@ footer.foot{margin-top:40px;font-size:.85rem;color:var(--slate);border-top:1px s
 </div>
 
 <script>
-const VERSION = "v9";
+const VERSION = "v10";
 const BUILT = "2026-08-11";
-const CHANGES = "pavadinimas babySensei, perpieštas dydžio vaizdas su palyginimo objektu, pirkinių redagavimas ir nuorodos";
+const CHANGES = "interaktyvi kūdikio augimo juosta su svoriu ir vystymusi, ženkliukas, babySensei pavadinimas";
 
 /* ============================ turinys ============================ */
 const PHASES = [
@@ -1754,7 +1781,7 @@ function objShape(kind, w){
   return (k[kind] || k.round)();
 }
 
-function babySvg(week){
+function babySvg(week, ghostWeek){
   const s = SIZES[week];
   const cm = s ? parseFloat(String(s[1]).replace(",", ".")) : 0;
   const maxCm = 52, boxH = 200, base = 214;
@@ -1776,6 +1803,13 @@ function babySvg(week){
   g += '<line x1="18" y1="' + base + '" x2="228" y2="' + base + '" class="rul"/>';
 
   if(cm){
+    /* dabartinės savaitės šešėlis, kai naršoma po kitas */
+    if(ghostWeek && SIZES[ghostWeek]){
+      const gcm = parseFloat(String(SIZES[ghostWeek][1]).replace(",", "."));
+      const gh = Math.max(16, gcm / maxCm * boxH) / 100;
+      g += '<g class="ghostbaby" transform="translate(' + (showObj ? 60 : 118) + ',' + base + ') scale(' + gh.toFixed(3) + ') translate(-50,-100)">' +
+        '<path d="M50 4 C64 4 73 15 73 27 C73 38 66 47 55 49 C68 53 77 64 76 76 C75 88 63 96 50 96 C38 97 26 90 24 78 C22 66 30 54 43 49 C33 46 27 38 27 27 C27 15 36 4 50 4Z"/></g>';
+    }
     /* kūdikis — susirietęs, galva prie kelių */
     const bs = h / 100;
     g += '<g class="babyhit" transform="translate(' + (showObj ? 60 : 118) + ',' + base + ') scale(' + bs.toFixed(3) + ') translate(-50,-100)">' +
@@ -1853,6 +1887,72 @@ function ctrChart(){
   return h + '<line x1="5" y1="100" x2="595" y2="100" class="rul"/></svg>';
 }
 
+/* svoris gramais — vidurkiai */
+const WEIGHT = {8:1,9:2,10:4,11:7,12:14,13:23,14:43,15:70,16:100,17:140,18:190,19:240,20:300,
+  21:360,22:430,23:501,24:600,25:660,26:760,27:875,28:1005,29:1153,30:1319,31:1502,32:1702,
+  33:1918,34:2146,35:2383,36:2622,37:2859,38:3083,39:3288,40:3462,41:3597};
+
+/* kas vyksta tą savaitę */
+const DEV = {
+  8:"Pradeda formuotis pirštai, plaka širdis.",
+  9:"Atsiranda alkūnės, formuojasi vokai.",
+  10:"Baigia formuotis gyvybiškai svarbūs organai.",
+  11:"Pradeda judėti, nors dar nepajusite.",
+  12:"Susiformuoja nagai, inkstai pradeda dirbti.",
+  13:"Atsiranda pirštų raštas — jau unikalus.",
+  14:"Pradeda čiulpti nykštį, mimika juda.",
+  15:"Girdi jūsų balso vibraciją.",
+  16:"Atsiranda klausa, judesiai tampa tikslesni.",
+  17:"Kaupiasi poodinis riebalų sluoksnis.",
+  18:"Pirmieji judesiai, kuriuos galite pajusti.",
+  19:"Odą dengia apsauginis sluoksnis.",
+  20:"Pusiaukelė. Formuojasi miego ritmas.",
+  21:"Ryja vaisiaus vandenis — mokosi ryti.",
+  22:"Atsiranda antakiai, oda raukšlėta.",
+  23:"Pradeda reaguoti į garsus iš išorės.",
+  24:"Plaučiai formuoja pirmuosius oro maišelius.",
+  25:"Atsiranda plaukai, jaučia pusiausvyrą.",
+  26:"Atsimerkia. Reaguoja į šviesą.",
+  27:"Prasideda trečias trimestras. Ritmingai žagsi.",
+  28:"Smegenų vagos gilėja, sapnuoja.",
+  29:"Kaulai kietėja, judesiai stipresni.",
+  30:"Reguliuoja savo kūno temperatūrą.",
+  31:"Sparčiai auga smegenys, mažiau vietos suktis.",
+  32:"Dažniausiai jau apsiverčia galva žemyn.",
+  33:"Imuninė sistema pradeda dirbti savarankiškai.",
+  34:"Nagai pasiekia pirštų galiukus.",
+  35:"Inkstai visiškai išsivystę.",
+  36:"Nusileidžia žemyn, kvėpuoti tampa lengviau.",
+  37:"Pilnas terminas. Plaučiai baigia bręsti.",
+  38:"Susiformuoja tvirtas čiulpimo refleksas.",
+  39:"Oda tampa lygi, kaupiasi paskutiniai riebalai.",
+  40:"Viskas paruošta. Belieka laukti.",
+  41:"Po termino — stebėjimas dažnėja."
+};
+
+function fmtW(g){
+  return g >= 1000 ? (Math.round(g/10)/100).toString().replace(".", ",") + " kg" : g + " g";
+}
+function babyPanel(){
+  const cur = dueInfo().week;
+  const view = ME.babyWeek || 0;             // 0 = dabartinė savaitė
+  const wk = Math.min(41, Math.max(8, view || cur));
+  const s = SIZES[wk];
+  const away = view && view !== cur;
+  let h = '<div class="babyhead"><h3>Kūdikio dydis</h3>' +
+    (away ? '<button class="btn ghost small" id="baby-now">Grįžti į ' + cur + ' sav.</button>' : "") + "</div>";
+  h += babySvg(wk, away ? cur : 0);
+  h += '<div class="babyfacts">' +
+    "<span class='fig'><b>" + (s ? s[1] : "—") + "</b><span>ilgis</span></span>" +
+    "<span class='fig'><b>" + (WEIGHT[wk] ? fmtW(WEIGHT[wk]) : "—") + "</b><span>svoris</span></span>" +
+    "<span class='fig'><b>" + wk + "</b><span>savaitė</span></span></div>";
+  h += "<p class='sumnote devnote'>" + esc(DEV[wk] || "") + "</p>";
+  h += '<div class="scrub"><input type="range" id="baby-slider" min="8" max="41" step="1" value="' + wk + '" aria-label="Savaitė">' +
+       '<div class="scrublabs"><span>8</span><span>20</span><span>30</span><span>41</span></div></div>';
+  h += "<p class='sumnote tiny'>Skaičiai apytiksliai — kiekvienas kūdikis auga savaip. Braukykite juostą, kad pamatytumėte, kas buvo ir kas laukia.</p>";
+  return h;
+}
+
 /* ============================ Šiandien ============================ */
 function phaseNow(){
   const { week } = dueInfo();
@@ -1900,7 +2000,7 @@ function renderToday(){
     "<p class='sumnote'>Pažymėta " + done + " iš " + total + " punktų.</p></div></div></div>";
 
   /* kūdikio dydis */
-  h += '<div class="card"><h3>Kūdikio dydis</h3>' + babySvg(week) + "</div>";
+  h += '<div class="card babycard">' + babyPanel() + "</div>";
 
   /* pradelsta */
   if(t.late.length){
@@ -2215,8 +2315,16 @@ document.addEventListener("click", e=>{
     location.replace(u.toString());
     return;
   }
+  if(e.target.id === "baby-now"){
+    ME.babyWeek = 0; queueSaveMe();
+    const card = e.target.closest(".babycard");
+    if(card) card.innerHTML = babyPanel();
+    return;
+  }
   if(e.target.closest(".babyhit") || e.target.closest(".objshape")){
-    ME.showObj = !ME.showObj; queueSaveMe(); renderToday();
+    ME.showObj = !ME.showObj; queueSaveMe();
+    const card = e.target.closest(".babycard");
+    if(card) card.innerHTML = babyPanel(); else renderToday();
     return;
   }
   const ed = e.target.closest("[data-edit]");
@@ -2456,6 +2564,19 @@ document.addEventListener("input", e=>{
     btn.classList.toggle("has", !!v.trim());
     btn.textContent = v.trim() ? "užrašas ●" : "užrašas";
     queueSave();
+  }
+  if(ta.id === "baby-slider"){
+    const v = Number(ta.value);
+    ME.babyWeek = (v === dueInfo().week) ? 0 : v;
+    queueSaveMe();
+    const card = ta.closest(".babycard");
+    if(card){
+      const pos = ta.value;
+      card.innerHTML = babyPanel();
+      const sl = card.querySelector("#baby-slider");
+      if(sl){ sl.value = pos; sl.focus(); }
+    }
+    return;
   }
   if(ta.id === "q"){ renderSearch(ta.value); return; }
   if(ta.dataset.pad){ S.pad[ta.dataset.pad] = ta.value; queueSave(); }
