@@ -1,0 +1,1291 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keturiasdešimt savaičių — pasiruošimo planas</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --frost:#EAEFF2;
+  --paper:#FCFCFA;
+  --ink:#152229;
+  --slate:#5D707A;
+  --spruce:#1E4A45;
+  --amber:#E39B2E;
+  --line:#D6DEE2;
+  --display:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --body:"Newsreader", Georgia, serif;
+  --data:"IBM Plex Mono", ui-monospace, monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:linear-gradient(178deg,#F4F7F8 0%, var(--frost) 55%, #E3EAEE 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:940px;margin:0 auto;padding:34px 20px 90px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:2px}
+
+/* ---------- header ---------- */
+.eyebrow{
+  font-family:var(--data);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--slate);margin:0 0 14px
+}
+.masthead{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 26px;margin:0 0 4px}
+h1{
+  font-family:var(--display);font-weight:600;font-size:clamp(2.5rem,8vw,4.1rem);
+  letter-spacing:-.035em;line-height:.95;margin:0
+}
+h1 .yr{color:var(--slate);font-weight:400}
+.datebtn{
+  background:none;border:1px dashed var(--line);border-radius:3px;color:var(--slate);
+  font-family:var(--data);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 9px;cursor:pointer;margin-bottom:8px
+}
+.datebtn:hover{color:var(--ink);border-color:var(--slate)}
+.lede{max-width:52ch;color:var(--slate);margin:14px 0 0;font-size:1.02rem}
+
+/* ---------- the tape ---------- */
+.tape{margin:38px 0 6px;position:relative}
+.tape-body{
+  position:relative;height:76px;background:var(--paper);
+  border:1px solid var(--line);border-radius:3px;overflow:hidden
+}
+.band{position:absolute;top:0;bottom:0;border-right:1px solid var(--line)}
+.band:last-of-type{border-right:0}
+.band.t2{background:rgba(30,74,69,.035)}
+.band.t3{background:rgba(30,74,69,.075)}
+.band span{
+  position:absolute;bottom:7px;left:9px;font-family:var(--data);font-size:.6rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--slate);opacity:.85;white-space:nowrap
+}
+.fill{
+  position:absolute;left:0;top:0;bottom:0;width:0;
+  background:linear-gradient(90deg,rgba(227,155,46,.08),rgba(227,155,46,.24));
+  border-right:2px solid var(--amber);
+  transition:width 1100ms cubic-bezier(.2,.75,.25,1)
+}
+.ticks{position:absolute;left:0;right:0;top:0;height:34px}
+.tick{position:absolute;top:0;width:1px;background:var(--line);height:9px}
+.tick.major{height:17px;background:var(--slate)}
+.tick b{
+  position:absolute;top:20px;left:50%;transform:translateX(-50%);
+  font-family:var(--data);font-size:.62rem;font-weight:400;color:var(--slate)
+}
+.marker{
+  position:absolute;top:0;bottom:0;left:0;width:0;
+  transition:left 1100ms cubic-bezier(.2,.75,.25,1)
+}
+.dot{
+  position:absolute;top:40px;left:0;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;
+  background:var(--amber);box-shadow:0 0 0 4px rgba(227,155,46,.22)
+}
+.mlabel{
+  position:absolute;top:56px;left:0;transform:translateX(-50%);white-space:nowrap;
+  font-family:var(--data);font-size:.66rem;color:var(--ink);background:var(--paper);padding:0 4px
+}
+.tape-foot{
+  display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:12px;
+  font-family:var(--data);font-size:.7rem;letter-spacing:.06em;color:var(--slate)
+}
+.tape-foot b{color:var(--ink);font-weight:500}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex;gap:2px;margin:34px 0 0;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex:0 0 auto;background:none;border:0;border-bottom:2px solid transparent;
+  font-family:var(--display);font-size:.95rem;font-weight:500;color:var(--slate);
+  padding:10px 14px;cursor:pointer;white-space:nowrap
+}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--amber)}
+.tab .n{font-family:var(--data);font-size:.66rem;color:var(--slate);margin-left:6px}
+
+.panel{margin-top:30px}
+.panel[hidden]{display:none}
+
+/* ---------- shared blocks ---------- */
+.section{background:var(--paper);border:1px solid var(--line);border-radius:3px;margin-bottom:16px}
+.section > header{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;
+  padding:15px 18px;border-bottom:1px solid var(--line)
+}
+.section h2{
+  font-family:var(--display);font-weight:600;font-size:1.15rem;letter-spacing:-.02em;margin:0
+}
+.section .weeks{font-family:var(--data);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
+.section .count{margin-left:auto;font-family:var(--data);font-size:.7rem;color:var(--slate)}
+.section.here{border-color:var(--amber);box-shadow:0 0 0 3px rgba(227,155,46,.12)}
+.nowtag{
+  font-family:var(--data);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--amber);color:#2A1B02;padding:3px 7px;border-radius:2px
+}
+.items{list-style:none;margin:0;padding:4px 0}
+.item{display:flex;flex-wrap:wrap;align-items:flex-start;gap:11px;padding:9px 18px;position:relative}
+.item + .item{border-top:1px solid rgba(214,222,226,.6)}
+.hide-done .item.done{display:none}
+.item label{flex:1;cursor:pointer;line-height:1.45}
+.item.done label{color:var(--slate);text-decoration:line-through;text-decoration-color:rgba(93,112,122,.45)}
+.item .why{display:block;font-size:.86rem;color:var(--slate);margin-top:2px;line-height:1.45}
+.item.done .why{text-decoration:none}
+input[type=checkbox]{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;
+  width:17px;height:17px;margin:4px 0 0;border:1.5px solid var(--slate);border-radius:2px;
+  background:transparent;cursor:pointer;position:relative
+}
+input[type=checkbox]:checked{background:var(--spruce);border-color:var(--spruce)}
+input[type=checkbox]:checked::after{
+  content:"";position:absolute;left:5px;top:1.5px;width:4px;height:9px;
+  border:solid #F7FAF9;border-width:0 1.8px 1.8px 0;transform:rotate(43deg)
+}
+.notebtn{
+  flex:0 0 auto;background:none;border:1px solid transparent;border-radius:2px;cursor:pointer;
+  font-family:var(--data);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate);padding:3px 6px;margin-top:2px
+}
+.notebtn:hover{border-color:var(--line);color:var(--ink)}
+.notebtn.has{color:var(--spruce)}
+.noteline{width:100%;flex-basis:100%;padding:0 0 4px 28px}
+.noteline[hidden]{display:none}
+textarea{
+  width:100%;font-family:var(--body);font-size:.95rem;color:var(--ink);
+  background:#F6F8F8;border:1px solid var(--line);border-radius:3px;padding:9px 11px;resize:vertical
+}
+textarea::placeholder{color:#9AAAB2}
+.tier{
+  flex:0 0 auto;font-family:var(--data);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate);border:1px solid var(--line);border-radius:2px;padding:2px 5px;margin-top:3px
+}
+.tier.core{color:var(--spruce);border-color:rgba(30,74,69,.4)}
+.skip{
+  display:flex;gap:11px;padding:11px 18px;border-left:3px solid var(--amber);
+  margin:6px 18px 10px;background:rgba(227,155,46,.07);border-radius:0 3px 3px 0
+}
+.skip .k{font-family:var(--data);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#8A6414;flex:0 0 auto;margin-top:4px}
+.skip p{margin:0;font-size:.94rem}
+
+/* ---------- know-how ---------- */
+.note-strip{
+  border:1px solid var(--line);border-left:3px solid var(--spruce);background:var(--paper);
+  padding:13px 16px;border-radius:0 3px 3px 0;margin-bottom:18px;font-size:.95rem;color:var(--slate)
+}
+details.kb{background:var(--paper);border:1px solid var(--line);border-radius:3px;margin-bottom:8px}
+details.kb summary{
+  list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:baseline;gap:12px;
+  font-family:var(--display);font-weight:500;font-size:1.02rem
+}
+details.kb summary::-webkit-details-marker{display:none}
+details.kb summary .tagk{
+  font-family:var(--data);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--slate);flex:0 0 auto;width:78px
+}
+details.kb summary::after{content:"+";margin-left:auto;color:var(--slate);font-family:var(--data)}
+details.kb[open] summary::after{content:"–"}
+details.kb[open] summary{border-bottom:1px solid var(--line)}
+.kb-body{padding:14px 18px 18px 18px}
+.kb-body p{margin:0 0 10px}
+.kb-body ul{margin:0 0 10px;padding-left:20px}
+.kb-body li{margin-bottom:5px}
+.kb-body .flag{color:#8A3A1A;font-weight:500}
+@media(min-width:700px){.kb-body{padding-left:108px}}
+
+/* ---------- tips ---------- */
+.tips{columns:2;column-gap:16px}
+@media(max-width:700px){.tips{columns:1}}
+.tip{
+  break-inside:avoid;background:var(--paper);border:1px solid var(--line);border-radius:3px;
+  padding:13px 15px;margin:0 0 12px;font-size:.97rem;line-height:1.5
+}
+.tip b{display:block;font-family:var(--display);font-weight:600;font-size:.95rem;margin-bottom:3px}
+
+/* ---------- pads + comments ---------- */
+.pad{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:16px 18px;margin-bottom:16px}
+.pad h2{font-family:var(--display);font-size:1.05rem;font-weight:600;margin:0 0 3px}
+.pad p.hint{margin:0 0 10px;font-size:.88rem;color:var(--slate)}
+.pad textarea{min-height:150px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+input[type=text]{
+  font-family:var(--body);font-size:.95rem;padding:9px 11px;border:1px solid var(--line);
+  border-radius:3px;background:#F6F8F8;color:var(--ink)
+}
+.btn{
+  font-family:var(--display);font-weight:500;font-size:.9rem;cursor:pointer;
+  background:var(--spruce);color:#F4F8F7;border:0;border-radius:3px;padding:9px 16px
+}
+.btn:hover{background:#173B37}
+.btn.ghost{background:none;color:var(--slate);border:1px solid var(--line)}
+.btn.ghost:hover{background:#F1F4F5;color:var(--ink)}
+.cmt{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:13px 16px;margin-bottom:10px}
+.cmt .meta{display:flex;align-items:baseline;gap:10px;margin-bottom:5px}
+.cmt .who{font-family:var(--display);font-weight:600;font-size:.95rem}
+.cmt .when{font-family:var(--data);font-size:.63rem;color:var(--slate);letter-spacing:.06em}
+.cmt .del{margin-left:auto;background:none;border:0;cursor:pointer;color:var(--slate);font-family:var(--data);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
+.cmt .del:hover{color:#8A3A1A}
+.cmt p{margin:0;white-space:pre-wrap}
+.empty{color:var(--slate);font-style:italic}
+.toolbar{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.switch{display:inline-flex;align-items:center;gap:7px;font-family:var(--data);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);cursor:pointer}
+.saved{font-family:var(--data);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--spruce);opacity:0;transition:opacity .3s}
+.saved.on{opacity:1}
+footer.foot{margin-top:40px;font-size:.85rem;color:var(--slate);border-top:1px solid var(--line);padding-top:16px}
+/* ---------- calendar ---------- */
+.calbar{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.calbar h2{font-family:var(--display);font-size:1.15rem;font-weight:600;letter-spacing:-.02em;margin:0}
+.nav{background:var(--paper);border:1px solid var(--line);border-radius:3px;width:32px;height:32px;cursor:pointer;font-family:var(--data);color:var(--slate);font-size:.85rem}
+.nav:hover{color:var(--ink);border-color:var(--slate)}
+.legend{margin-left:auto;display:flex;gap:14px;font-family:var(--data);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+.legend i{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:5px;background:var(--amber)}
+.legend i.own{background:var(--spruce)}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.dow{background:var(--frost);font-family:var(--data);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);text-align:center;padding:7px 0}
+.day{background:var(--paper);border:0;min-height:66px;padding:6px;text-align:left;cursor:pointer;font-family:var(--data);font-size:.76rem;color:var(--ink);display:flex;flex-direction:column;gap:3px}
+.day.out{color:#AEBBC1;background:#F7F9F9}
+.day:hover{background:#F0F4F5}
+.day.today{box-shadow:inset 0 0 0 1.5px var(--spruce)}
+.day.sel{background:rgba(227,155,46,.14)}
+.day.duedate{background:rgba(227,155,46,.26)}
+.dots{display:flex;gap:3px}
+.dots i{width:5px;height:5px;border-radius:50%;background:var(--amber)}
+.dots i.own{background:var(--spruce)}
+.daylab{font-size:.55rem;letter-spacing:.05em;text-transform:uppercase;color:var(--slate);line-height:1.2}
+.daypanel{margin-top:16px;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:16px 18px}
+.daypanel h3{font-family:var(--display);font-size:1.02rem;font-weight:600;margin:0 0 10px}
+.evrow{display:flex;gap:10px;align-items:baseline;padding:5px 0;font-size:.95rem}
+.evrow .p{flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:var(--amber);position:relative;top:-2px}
+.evrow .p.own{background:var(--spruce)}
+.evrow .x{margin-left:auto;background:none;border:0;cursor:pointer;color:var(--slate);font-family:var(--data);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase}
+.evrow .x:hover{color:#8A3A1A}
+.up{list-style:none;margin:16px 0 0;padding:0}
+.up li{display:flex;gap:14px;align-items:baseline;padding:9px 0;border-top:1px solid var(--line);font-size:.95rem}
+.up time{flex:0 0 96px;font-family:var(--data);font-size:.68rem;letter-spacing:.05em;color:var(--slate)}
+.banner{background:rgba(227,155,46,.14);border:1px solid var(--amber);border-left:3px solid var(--amber);border-radius:3px;padding:12px 15px;margin:0 0 20px;font-size:.93rem;line-height:1.5}
+.banner[hidden]{display:none}
+.sync{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-family:var(--data);font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:var(--slate)}
+.sync .nav{width:27px;height:27px;line-height:1}
+.datefield{font-family:var(--data);font-size:.72rem;letter-spacing:.05em;color:var(--slate);background:transparent;border:1px dashed var(--line);border-radius:3px;padding:6px 8px;margin-bottom:8px}
+.datefield:hover{color:var(--ink);border-color:var(--slate)}
+@media(max-width:620px){.day{min-height:54px;font-size:.68rem}.daylab{display:none}.up time{flex-basis:74px}}
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
+</style>
+
+<div class="wrap">
+  <div id="banner" class="banner" hidden></div>
+  <p class="eyebrow" id="eyebrow">Numatoma gimimo data</p>
+  <div class="masthead">
+    <h1 id="bigdate">Sausio 25 <span class="yr">2027</span></h1>
+    <input type="date" class="datefield" id="dueinput" aria-label="Numatoma gimimo data">
+    <span class="sync">
+      <button class="nav" id="refresh" aria-label="Tikrinti, ar yra pakeitimų" title="Tikrinti, ar yra pakeitimų">⟳</button>
+      <span id="syncnote">bendras planas</span>
+    </span>
+  </div>
+  <p class="lede">Viskas vienoje vietoje: ką ir kada padaryti, ką iš tikrųjų verta pirkti, ką žinoti anksčiau, nei to prireiks, ir vieta užsirašyti.</p>
+
+  <div class="tape">
+    <div class="tape-body">
+      <div class="band t1" style="left:0;width:32.5%"><span>Pirmas trimestras</span></div>
+      <div class="band t2" style="left:32.5%;width:35%"><span>Antras</span></div>
+      <div class="band t3" style="left:67.5%;width:32.5%"><span>Trečias</span></div>
+      <div class="fill" id="fill"></div>
+      <div class="ticks" id="ticks"></div>
+      <div class="marker" id="marker">
+        <div class="dot"></div>
+        <div class="mlabel" id="mlabel">— sav.</div>
+      </div>
+    </div>
+    <div class="tape-foot">
+      <span id="stat-week">—</span>
+      <span id="stat-left">—</span>
+      <span id="stat-done">—</span>
+      <span>Terminas — tik apytikslė data. Dauguma kūdikių gimsta tarp 37 ir 42 savaitės.</span>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" data-tab="do" aria-selected="true">Ką padaryti<span class="n" id="n-do"></span></button>
+    <button class="tab" role="tab" data-tab="cal" aria-selected="false">Kalendorius</button>
+    <button class="tab" role="tab" data-tab="buy" aria-selected="false">Ką nupirkti<span class="n" id="n-buy"></span></button>
+    <button class="tab" role="tab" data-tab="kb" aria-selected="false">Ką žinoti</button>
+    <button class="tab" role="tab" data-tab="tips" aria-selected="false">Patarimai</button>
+    <button class="tab" role="tab" data-tab="pad" aria-selected="false">Užrašinė</button>
+    <button class="tab" role="tab" data-tab="cmt" aria-selected="false">Komentarai<span class="n" id="n-cmt"></span></button>
+  </div>
+
+  <section class="panel" id="p-do"></section>
+  <section class="panel" id="p-cal" hidden></section>
+  <section class="panel" id="p-buy" hidden></section>
+  <section class="panel" id="p-kb" hidden></section>
+  <section class="panel" id="p-tips" hidden></section>
+  <section class="panel" id="p-pad" hidden></section>
+  <section class="panel" id="p-cmt" hidden></section>
+
+  <footer class="foot">
+    Įjungus sinchronizavimą, varnelės, užrašai, kalendoriaus įrašai ir komentarai vienodi abiem, o puslapis kas pusę minutės pasitikrina, ar kitas nieko nepakeitė. Vardas ir „slėpti“ jungiklis lieka jūsų įrenginyje. Paskyros nereikia niekam.
+    Tai nėra medicininė konsultacija — čia tik tam, kad greičiau pastebėtumėte ir tiksliau paklaustumėte.
+  </footer>
+</div>
+
+<script>
+/* ============================ turinys ============================ */
+const PHASES = [
+  { id:"a", title:"Ramusis tarpsnis", weeks:"13–27 savaitės", from:13, to:27, items:[
+    ["Nuspręskite, kur gimdysite, ir užsiregistruokite", "Kai kur vietų trūksta arba dokumentus reikia sutvarkyti gerokai iš anksto."],
+    ["Susitarkite dėl 20 savaitės echoskopijos", ""],
+    ["Praneškite darbdaviui ir pradėkite tvarkyti atostogų dokumentus", "Terminus išsiaiškinkite anksčiau, nei jų prireiks."],
+    ["Užsirašykite į gimdymo kursus", "Geri kursai išperkami sezonu į priekį."],
+    ["Nueikite pas odontologą", "Nėštumo metu dantenos jautresnės, o laiko dabar dar yra."],
+    ["Gliukozės tolerancijos testas, paprastai 24–28 savaitę", ""],
+    ["Perskaičiuokite mėnesio biudžetą su mažesnėmis pajamomis", "Įtraukite visus atostogų mėnesius, ne tik pirmą."],
+    ["Pasitikslinkite, ką draudimas dengia gimdymo metu ir pirmaisiais metais", ""],
+    ["Pradėkite vardų sąrašą, kurį galite pildyti abu", "Tam yra vieta Užrašinėje."],
+    ["Išmatuokite kambarį", "Kur stovės lovytė, kur vystysite, kur prie durų tilps vežimėlis."],
+    ["Nusipirkite drabužių žiemos pilvui", "Didžiausia būsite gruodį ir sausį."],
+    ["Pasakykite artimiesiems, ko norėtumėte — kol jie nenupirko netinkamo vežimėlio", ""],
+    ["Pradėkite ligoninės krepšio sąrašą", "Krauti dar nereikia. Tiesiog surašykite."]
+  ]},
+  { id:"b", title:"Ruošos metas", weeks:"28–34 savaitės", from:28, to:34, items:[
+    ["Parašykite gimdymo plano juodraštį", "Vienas lapas. Pageidavimai, o ne pažadai — surašykite, kas svarbiausia, jei viskas pakryptų kitaip."],
+    ["Apžiūrėkite gimdymo skyrių", "Sužinokite, pro kurias duris įeiti trečią nakties ir kur pastatyti automobilį."],
+    ["Pasiteiraukite dėl kokliušo vakcinos nėštumo metu", "Apsauga persiduoda kūdikiui pirmosioms savaitėms."],
+    ["Nusipirkite automobilinę kėdutę ir ją įtvirtinkite", "Paprašykite, kad tvirtinimą patikrintų tas modelis išmanantis žmogus."],
+    ["Surinkite lovytę, vežimėlį ir visa kita su keturiasdešimt varžtų", ""],
+    ["Išskalbkite viską, ką kūdikis vilkės ar ant ko miegos", "Skalbikliu be kvapiklių."],
+    ["Pasirinkite vaikų gydytoją ir pasitikslinkite, ar sausį priima naujagimius", ""],
+    ["Nueikite į maitinimo krūtimi mokymus", "Kaip atrodo teisingas prisidėjimas, geriau išmokti ne ketvirtą nakties."],
+    ["Nuspręskite, kur kūdikis miegos pirmuosius mėnesius", "Atskiras lygus paviršius, jūsų kambaryje."],
+    ["Išvirkite ir sušaldykite 10–15 patiekalų", "Plokšti maišeliai greičiau atšyla ir gražiai susideda."],
+    ["Sudėkite drabužius pagal dydžius į pažymėtas dėžes", "Naujagimio dydis viršuje, visa kita — toliau."],
+    ["Susitarkite su abiem šeimomis dėl svečių", "Dabar tai pasakyti kur kas lengviau nei antrą dieną."],
+    ["Aptarkite, kaip pasidalysite atostogas ir pinigus", "Balsu, ne mintyse."]
+  ]},
+  { id:"c", title:"Krepšys prie durų", weeks:"35–40 savaitės", from:35, to:40, items:[
+    ["Susikraukite ligoninės krepšį", "Laikykite jį prieškambaryje, ne sandėliuke."],
+    ["Susikraukite mažą krepšį partneriui", "Ilgas įkroviklio laidas, užkandžiai, atsarginiai drabužiai."],
+    ["B grupės streptokoko tyrimas, paprastai apie 36 savaitę", ""],
+    ["Surašykite gimdymo dienos planą", "Kas vairuoja, kas atsarginis vairuotojas, pas ką raktai."],
+    ["Susitarkite dėl gyvūnų, vyresnių vaikų, gėlių priežiūros", ""],
+    ["Įdėkite naujagimio įdėklą ir pasitreniruokite su diržais", "Tinka ir meškiukas. Kartą padarykite tamsoje."],
+    ["Įsirenkite naktinę stotelę", "Sauskelnės, servetėlės, marlytės, vanduo, užkandžiai, viena blausi lempa."],
+    ["Pasirūpinkite atsigavimo priemonėmis", "Sąrašas skiltyje „Ką nupirkti“."],
+    ["Grynųjų piniginėje, kuro bake, įkrautas telefonas", ""],
+    ["Pasižymėkite kelią į ligoninę ir atsarginį variantą per sniegą", "Sausio keliai ir planas, jei automobilis neužsives."],
+    ["Nuo 36 savaitės vizitai kas savaitę", ""],
+    ["Sutarkite dėl vardo. Arba dviejų", "Dokumentai atkeliauja greičiau, nei atrodo."],
+    ["Ilsėkitės. Žiūrėkite filmus. Nueikite vakarienės", "Tai paskutinis ramus tarpsnis ilgam."]
+  ]},
+  { id:"d", title:"Ketvirtasis trimestras — po gimdymo", weeks:"nuo 40 savaitės", from:41, to:60, items:[
+    ["Įregistruokite gimimą", "Pasitikslinkite terminą — paprastai jis skaičiuojamas savaitėmis, ne mėnesiais."],
+    ["Pirmas vizitas pas vaikų gydytoją pirmosiomis dienomis", "Svoris, maitinimas, gelta."],
+    ["Naujagimių patikra ir klausos tyrimas", ""],
+    ["Įtraukite kūdikį į sveikatos draudimą", ""],
+    ["Pateikite prašymus dėl išmokų ir pašalpų", ""],
+    ["Užsirašykite gimdžiusiajai šešių savaičių patikrą", ""],
+    ["Priimkite kiekvieną pasiūlymą atnešti maisto", ""],
+    ["Kas dieną kas nors suaugęs pasitikrina, kaip laikosi gimdžiusioji", "Ne kūdikis. Mama."],
+    ["Rimtai pasikalbėkite antrą ir šeštą savaitę", "Abu. Nuotaika, miegas, ar visa tai pakeliama."],
+    ["Fotografuokite po kadrą kasdien", "Parašų nereikia."]
+  ]}
+];
+
+const BUY = [
+  { id:"sleep", title:"Miegas", items:[
+    ["Lovytė arba pristatoma lovelė su kietu lygiu čiužiniu","core",""],
+    ["Paklodės su guma tam pačiam čiužiniui, 4","core","Klokite sluoksniais: apsauga, paklodė, apsauga, paklodė. Naktinis keitimas — vienas patraukimas."],
+    ["Neperšlampamos čiužinio apsaugos, 2","core",""],
+    ["Miegmaišiai 0–3 mėn., 2","core","Žiemai — apie 2,5 tog vėsesniam kambariui."],
+    ["Baltojo triukšmo aparatas","nice","Telefono programėlė daro tą patį."],
+    ["Auklė","nice","Nedideliame bute vis tiek viską girdėsite."],
+    ["Karuselė virš lovytės","later",""]
+  ], skip:"Pagalvės, antklodės, apsaugos aplink lovytę, pleištai ir miego pozicionieriai. Lovytėje — tik kūdikis ir paklodė." },
+  { id:"feed", title:"Maitinimas", items:[
+    ["Marlytės ir servetėlės atsiraugėjimui, 10","core","Niekada neatrodys, kad jų per daug."],
+    ["Maitinimo liemenėlės, 3","core","Pirkite apie 36 savaitę — dydis keičiasi vėlai."],
+    ["Spenelių kremas","core",""],
+    ["Įklotai liemenėlei","core",""],
+    ["Buteliukai, 2 pradžiai","nice","Neprisiriškite prie prekės ženklo, kol kūdikis neturi savo nuomonės."],
+    ["Viena pakuotė mišinio spintelėje","nice","Net jei planuojate maitinti krūtimi. Tai nuperka ramią naktį."],
+    ["Maitinimo pagalvė","nice",""],
+    ["Pientraukis","later","Dažnai skolina ligoninė arba dengia draudimas. Palaukite, kol sužinosite, ar jo reikia."],
+    ["Sterilizatorius","later","Didelis puodas verdančio vandens tinka."]
+  ], skip:"Buteliukų šildytuvai ir pilnas vieno prekės ženklo komplektas dar prieš gimimą." },
+  { id:"nappy", title:"Sauskelnės ir vystymas", items:[
+    ["Naujagimių sauskelnės, tik viena pakuotė","core","Daugelis šį dydį peraugsta per porą savaičių."],
+    ["1 dydžio sauskelnės, viena pakuotė","core",""],
+    ["Drėgnos servetėlės arba vata ir vanduo","core",""],
+    ["Apsauginis kremas","core",""],
+    ["Nuvalomas vystymo kilimėlis","core","Ant komodos, lovos ar tiesiog ant grindų."],
+    ["Sauskelnių kibiras","nice",""]
+  ], skip:"Atskiras vystymo staliukas. Tai baldas, kurį naudosite devynis mėnesius." },
+  { id:"clothes", title:"Drabužiai žiemos naujagimiui", items:[
+    ["Bodžiai su užlenkiama iškirpte, 8","core","Pečiai nusivynioja žemyn — per pečius, o ne per galvą."],
+    ["Slepetukai su užtrauktukais, 8","core","Užtrauktukai, o ne dvidešimt spaudžių ketvirtą nakties."],
+    ["Šilta kepurė, 1, ir plonos medvilninės, 2","core",""],
+    ["Kojinės, 5 poros, ir pirštinaitės nuo braižymosi, 2","core",""],
+    ["Kailiuku pamuštas maišas vežimėliui","core",""],
+    ["Megztinis arba flisas, 2","core","Sluoksniai geriau nei vienas storas paltas."],
+    ["Apranga važiuoti namo","nice","Kuo paprasčiau. Nuotraukų vis tiek bus."]
+  ], skip:"Storas kombinezonas automobilinėje kėdutėje. Dėl jo diržai lieka pavojingai laisvi — prisekite kūdikį, o antklodę užklokite ant diržų." },
+  { id:"out", title:"Išeinant iš namų", items:[
+    ["Automobilinė kėdutė naujagimiui","core","Pirkite naują, nebent žinote visą jos istoriją — po avarijos kėdutė nebetinka."],
+    ["Vežimėlis su lopšiu arba gulima padėtimi","core","Prieš gimdymą tris kartus sulankstykite viena ranka tamsoje."],
+    ["Apsauga nuo lietaus","core",""],
+    ["Nešioklė arba tampri skara","nice","Toms savaitėms, kai niekas kitas nepadeda."],
+    ["Krepšys vystymo reikmenims","nice","Tinka bet kuri kuprinė. Įdėkite atsarginius marškinėlius ir sau."]
+  ], skip:"Vežimėlių komplektai, perkami dėl priedų. Naudosite lopšį, rėmą ir kėdutę." },
+  { id:"care", title:"Priežiūra ir maudymas", items:[
+    ["Skaitmeninis termometras","core","Išmokite juo naudotis anksčiau, nei prireiks skaičiaus vidurnaktį."],
+    ["Rankšluosčiai su gobtuvu, 2","core",""],
+    ["Nagų dildė arba bukos žirklutės","core",""],
+    ["Fiziologinis tirpalas ir nosies aspiratorius","core","Žiemos naujagimiams užgula nosis, o išsipūsti jie nemoka."],
+    ["Vonelė arba atrama voniai","nice","Virtuvės kriauklė — visiškai tinkama vonia."],
+    ["Prausiklis be kvapiklių","later","Pirmosiomis savaitėmis pakanka vandens."]
+  ], skip:"Iš anksto prikrauta vaistinėlė. Paklauskite vaikų gydytojo, ką laikyti namuose ir kokia doze pagal amžių." },
+  { id:"recover", title:"Gimdžiusiajai", items:[
+    ["Įklotai po gimdymo, 2 pakuotės","core",""],
+    ["Aukšto juosmens arba vienkartinės kelnaitės, tamsios","core",""],
+    ["Buteliukas apsiplauti","core",""],
+    ["Šaldantys įklotai arba kompresai","core",""],
+    ["Skausmą malšinantys vaistai, kaip nurodė akušerė","core","Per paskutinį vizitą paklauskite, ką turėti namuose."],
+    ["Tamsūs drabužiai, prasisegantys priekyje","core",""],
+    ["Du buteliai su šiaudeliu","core","Vienas prie lovos, kitas prie sofos."],
+    ["Užkandžiai vienai rankai","core","Riešutai, batonėliai, džiovinti vaisiai — viskas, ką galima valgyti su kūdikiu ant rankų."]
+  ], skip:"" },
+  { id:"home", title:"Namuose", items:[
+    ["Blausus naktinis šviestuvas","core",""],
+    ["Skalbiklis be kvapiklių","core",""],
+    ["Kambario termometras","nice","Miegui paprastai rekomenduojama 18–20 °C."],
+    ["Oro drėkintuvas","nice","Jei radiatoriai išsausina butą."],
+    ["Tamsūs rankšluosčiai ir patalynė","nice","Pirmoms dviem savaitėms."],
+    ["Šiukšlių maišų, popierinių rankšluosčių, baterijų","nice","Nuobodu, bet apsidžiaugsite."]
+  ], skip:"" }
+];
+
+const KB = [
+  { tag:"Gimdymas", q:"Kada važiuoti į ligoninę", a:`<ul>
+    <li><b>5–1–1</b> pirmam vaikui: sąrėmiai maždaug kas penkios minutės, trunkantys minutę, ištisą valandą.</li>
+    <li>Nubėgo vandenys — įsidėmėkite laiką ir spalvą ir skambinkite.</li>
+    <li>Bet koks kraujavimas, karščiavimas arba sąrėmiai, per kuriuos nebegalite kalbėti.</li></ul>
+    <p>Važiuokite bet kuriuo paros metu. Trečią nakties niekas nesupyks, o tai, kad jus pasiųs namo, yra normali baigtis, o ne veltui sugaišta kelionė.</p>` },
+  { tag:"Nėštumas", q:"Skambinkite tą pačią dieną, ne rytoj", a:`<p class="flag">Šitų neatidėkite:</p><ul>
+    <li>Bet koks judesių pokytis — mažiau, silpniau ar kitaip nei įprastai. Nelaukite ryto.</li>
+    <li>Stiprus galvos skausmas, neryškus matymas ar žybsniai, staigus veido ar rankų tinimas, skausmas po dešiniuoju šonkauliu.</li>
+    <li>Karščiavimas, kraujavimas arba žali, rudi ar nemaloniai kvepiantys vandenys.</li></ul>
+    <p>Sutrukdyti jūs negalite. Patikrinti — visas jų darbas.</p>` },
+  { tag:"Gimdymas", q:"Kaip iš tikrųjų jaučiasi kiekvienas tarpsnis", a:`<ul>
+    <li><b>Ankstyvasis</b> — nuo kelių valandų iki kelių parų. Netaisyklingi sąrėmiai. Valgykite, vaikščiokite, miegokite, jei pavyksta. Važiuoti dar ne laikas.</li>
+    <li><b>Aktyvusis</b> — sąrėmiai reguliarūs, stiprūs, reikalaujantys viso dėmesio. Štai dabar važiuojate.</li>
+    <li><b>Perėjimas</b> — trumpas ir intensyvus, dažnai tas momentas, kai sakoma „nebegaliu“. Paprastai tai reiškia, kad jau beveik.</li>
+    <li><b>Stūmimas</b> — nuo kelių minučių iki poros valandų.</li>
+    <li><b>Placenta</b> — po kūdikio, paprastai greitai ir sklandžiai.</li></ul>` },
+  { tag:"Maitinimas", q:"Kiek valgo naujagimis ir kaip suprasti, kad viskas gerai", a:`<ul>
+    <li>Aštuoni–dvylika maitinimų per parą, dieną ir naktį, yra normalu.</li>
+    <li>Vakariniai maitinimai vienas po kito, beveik ištisą valandą, yra normalu ir nereiškia, kad pieno trūksta.</li>
+    <li>Rodiklis yra tai, kas išeina: nuo penktos dienos šešios ar daugiau šlapių sauskelnių per parą, o išmatos iš juodų virsta žaliomis ir geltonomis.</li>
+    <li>Dauguma kūdikių netenka iki 7–10 % gimimo svorio ir jį atgauna maždaug per dvi savaites.</li></ul>
+    <p>Skausmas, kuris nepraeina per pirmas maitinimo sekundes, yra prisidėjimo problema, kurią verta parodyti specialistui, o ne kęsti.</p>` },
+  { tag:"Miegas", q:"Saugus miegas, trumpai", a:`<ul>
+    <li><b>Vienas</b> savo paviršiuje, <b>ant nugaros</b>, <b>lovytėje</b> — kietoje ir lygioje.</li>
+    <li>Daugiau nieko: jokių pagalvių, antklodžių, apsaugų, žaislų ar pozicionierių.</li>
+    <li>Pirmuosius šešis mėnesius — tame pačiame kambaryje kaip jūs.</li>
+    <li>Kambaryje 18–20 °C, kojos prie lovytės galo, patalpoje be kepurės.</li>
+    <li>Niekada nemiegokite su kūdikiu ant sofos ar fotelio — tai rizikingiausia vieta.</li></ul>` },
+  { tag:"Naujagimis", q:"Skambinkite gydytojui nedelsdami", a:`<p class="flag">Jaunesniam nei trijų mėnesių kūdikiui 38 °C ar aukštesnė temperatūra yra skubus atvejis — visada, net jei atrodo, kad viskas gerai.</p><ul>
+    <li>Sunkus kvėpavimas, dejavimas, įtraukiami šonkauliai, pamėlusios ar pilkos lūpos.</li>
+    <li>Neprabunda valgyti arba šlapių sauskelnių mažiau nei vakar.</li>
+    <li>Plintanti odos ar akių gelta, ypač jei kūdikis mieguistas.</li>
+    <li>Nenuraminamas verksmas valandų valandas arba verksmas, kuris jums skamba ne taip.</li>
+    <li>Išsipūtęs momenėlis, bėrimas, kuris nedingsta paspaudus, arba žalias vėmimas.</li></ul>
+    <p>Jūsų pačių nuojauta, kad kažkas negerai, yra pakankama priežastis skambinti.</p>` },
+  { tag:"Naujagimis", q:"Normalūs naujagimių keistumai", a:`<p>Visa tai gąsdina, bet dažniausiai yra normalu:</p><ul>
+    <li>Čiaudulys, žagsulys, knarkimas ir netolygus kvėpavimas su kelių sekundžių pauzėmis.</li>
+    <li>Besilupanti oda, spuogeliai, patinę lytiniai organai ar krūtinės liaukos.</li>
+    <li>Oranžinės dulkės sauskelnėje pirmosiomis dienomis — uratų kristalai.</li>
+    <li>Žvairavimas, krūpčiojimas be priežasties, silpnas kaklas.</li>
+    <li>„Raganų valanda“: nepaaiškinamas nervingumas vakarop, stipriausias apie šeštą savaitę.</li></ul>` },
+  { tag:"Naujagimis", q:"Gelta ir bambos likutis", a:`<p><b>Gelta</b> yra dažna ir paprastai nepavojinga. Ji plinta nuo veido prie krūtinės, tada prie rankų ir kojų — jei plinta žemyn, atsirado per pirmas 24 valandas arba kūdikis mieguistas ir prastai valgo, kreipkitės. Dažnas maitinimas padeda ją šalinti.</p>
+    <p><b>Bambos likutis</b> laikomas sausas ir ne po sauskelne, nukrenta per vieną–tris savaites. Paraudimas, plintantis ant pilvo, patinimas, pūliai ar kvapas — skambinkite.</p>` },
+  { tag:"Verksmas", q:"Kaip raminti ir ką daryti, kai nepadeda", a:`<p>Peržiūrėkite sąrašą: alkanas, šlapias, per karšta, per šalta, pilvukas, pervargęs, per daug įspūdžių arba tiesiog nori būti ant rankų. Tada — suvystyti, laikyti ant šono, garsiai šnypšti, sūpuoti ir leisti čiulpti.</p>
+    <p class="flag">Jei jaučiate, kad nebeištveriate: paguldykite kūdikį saugioje vietoje, uždarykite duris ir dvi minutes pastovėkite lauke. Tai teisingas ir atsakingas sprendimas. Niekada nepurtykite kūdikio — žala atsiranda per kelias sekundes.</p>` },
+  { tag:"Atsigavimas", q:"Pavojaus ženklai gimdžiusiajai", a:`<p class="flag">Bet kuris iš jų reiškia skubią pagalbą, o ne laukimą:</p><ul>
+    <li>Įklotas permirksta per valandą arba krešuliai didesni nei slyva.</li>
+    <li>Karščiavimas arba žaizda, kuri karšta, plinta paraudimu ar drėksta.</li>
+    <li>Skausmas, paraudimas ar tinimas vienoje blauzdoje.</li>
+    <li>Krūtinės skausmas arba dusulys ramybėje.</li>
+    <li>Stiprus galvos skausmas, regos pokyčiai arba staiga pakilęs kraujospūdis.</li>
+    <li>Mintys pakenkti sau ar kūdikiui.</li></ul>
+    <p>Rimtos komplikacijos ištinka ir po gimdymo, kartais po kelių savaičių. Skambindami iš karto pasakykite, kad neseniai gimdėte.</p>` },
+  { tag:"Atsigavimas", q:"Kada tai jau daugiau nei nuotaikų kaita", a:`<p>Ašarojimas, stipriausias trečią–penktą dieną ir atlėgstantis per dvi savaites, yra įprastas.</p>
+    <p>Jei prislėgta nuotaika, nerimas, pyktis, tuštuma ar gąsdinančios įkyrios mintys trunka ilgiau nei dvi savaites, stiprėja arba trukdo gyventi — tai pogimdyminė depresija ar nerimas. Tai dažna ir gydoma. Pasakykite akušerei ar šeimos gydytojui tiesiai. Tai ištinka ir partnerius, maždaug vieną iš dešimties.</p>` },
+  { tag:"Automobilis", q:"Kėdutė be ginčų", a:`<ul>
+    <li>Prieš važiavimo kryptį ir niekada priešais aktyvią oro pagalvę.</li>
+    <li>Diržai ties pečiais arba šiek tiek žemiau.</li>
+    <li>Krūtinės sagtis pažastų lygyje.</li>
+    <li>Ne daugiau kaip du pirštai laisvumo ties raktikauliu.</li>
+    <li>Jokių paltų ar kombinezonų po diržais — antklodė ant viršaus.</li>
+    <li>Naujagimiui nedera kėdutėje sėdėti valandų valandas; ilgesnėse kelionėse darykite pertraukas.</li></ul>` },
+  { tag:"Svečiai", q:"Jūsų namai, jūsų taisyklės", a:`<ul>
+    <li>Kas kosti, sloguoja ar karščiuoja, lieka namuose. Naujagimiui paprasta sloga nėra paprasta.</li>
+    <li>Paklauskite svečių apie kokliušo ir gripo skiepus — dabar tai normalus klausimas.</li>
+    <li>Nusiplautos rankos, jokių bučinių į veidą.</li>
+    <li>Trumpi ir naudingi vizitai: geras svečias atneša maisto ir išneša šiukšles.</li>
+    <li>Vizitą galite baigti bet kada, ir tai turėtų pasakyti ne gimdžiusioji.</li></ul>` },
+  { tag:"Dokumentai", q:"Ką paprastai reikia sutvarkyti", a:`<p>Tikslią tvarką pasitikslinkite dar prieš gimdymą, nes beveik viskas turi terminus:</p><ul>
+    <li>Gimimo ir vardo registracija.</li>
+    <li>Vaiko asmens kodas.</li>
+    <li>Kūdikio įtraukimas į sveikatos draudimą.</li>
+    <li>Vaiko priežiūros išmoka ir pašalpos.</li>
+    <li>Tėvystės pripažinimas, jei tai atskiras žingsnis.</li></ul>
+    <p>Išsiaiškinkite, kuriems reikia dokumentų originalų, ir susirinkite juos iki sausio.</p>` }
+];
+
+const TIPS = [
+  ["Pirkite vieną pakuotę naujagimių sauskelnių","Tik vieną. Kai kurie kūdikiai šio dydžio niekada nedėvi."],
+  ["Užtrauktukai geriau už spaudes","Ketvirtą nakties dvidešimt spaudžių yra charakterio išbandymas."],
+  ["Kloikite čiužinį dviem sluoksniais","Apsauga, paklodė, apsauga, paklodė. Naktį tereikia nutraukti viršutinį sluoksnį."],
+  ["Kėdutę įtvirtinkite 35 savaitę","Ne gimdymo dieną. Ir kol dar turite kantrybės patikrinti."],
+  ["Šaldykite maistą plokščiuose maišeliuose","Jie gražiai susideda, greičiau atšyla ir juos galima paimti viena ranka."],
+  ["Ilgas įkroviklio laidas į ligoninės krepšį","Lizdai niekada nebūna prie lovos."],
+  ["Nufotografuokite automobilio aikštelės aukštą","Ir skyriaus telefono numerį. Neprisiminsite nei vieno, nei kito."],
+  ["Atsarginiai marškinėliai suaugusiam","Netvarka retai apsiriboja kūdikiu."],
+  ["Po du visko, ko reikia naktį","Po komplektą abiejuose buto galuose. Ėjimas per butą trečią nakties turi savo kainą."],
+  ["Taisyklę dėl svečių pasakykite anksti","Abiem šeimoms, kol niekas dar nenusipirko bilietų."],
+  ["Užsirašykite, kas ir kada įvyko","Maitinimai, vaistai, tas keistas dalykas antrą nakties. Atmintimi pirmomis savaitėmis pasitikėti negalima."],
+  ["Maitinkite tą, kuris maitina kūdikį","Vanduo ir užkandžiai ranka pasiekiami ten, kur ji sėdi."],
+  ["Prisidėjimo mokykitės iš žmogaus","Ne iš vaizdo įrašo trečią nakties su verkiančiu kūdikiu."],
+  ["Tamsūs rankšluosčiai ir patalynė","Pirmoms dviem savaitėms. Viskas išsiskalbia, bet ne iš karto."],
+  ["Vežimėlį sulankstykite tamsoje","Viena ranka, su paltu. Prieš tai, kai to prireiks aikštelėje."],
+  ["Pagalbos prašykite konkrečiai","„Atnešk sriubos ketvirtadienį“ veikia. „Sakykit, jei ko reikės“ neveikia niekada."],
+  ["Skubios pagalbos numeriai ant šaldytuvo","Ne tik telefone, kuris kaip tik kraunasi kitame kambaryje."],
+  ["Neatplėškite visų drabužių pakuočių","Didesnius nei 0–3 mėn. palikite pakuotėse, kol jų prireiks. Kūdikiai peršoka dydžius."],
+  ["Naktinę stotelę įsirenkite iki 36 savaitės","Sauskelnės, servetėlės, marlytės, vanduo, užkandžiai, blausi lempa ir viena kėdė, kurioje patogu ketvirtą nakties."],
+  ["Pirmos dvi savaitės yra sunkiausios","Tai ne posakis. Jos baigiasi."]
+];
+
+const MILESTONES = [
+  {w:13, s:"II trimestras",  t:"Prasideda antras trimestras"},
+  {w:20, s:"Echoskopija",    t:"Maždaug čia paprastai atliekama 20 savaitės echoskopija — registruokitės gerokai anksčiau"},
+  {w:24, s:"Gliukozė",       t:"Prasideda gliukozės tolerancijos testo langas, 24–28 savaitė"},
+  {w:28, s:"III trimestras", t:"Prasideda trečias trimestras. Pasiteiraukite dėl kokliušo vakcinos"},
+  {w:30, s:"Gimdymo planas", t:"Gimdymo plano juodraštis ir apsilankymas gimdymo skyriuje"},
+  {w:32, s:"Kėdutė",         t:"Automobilinė kėdutė ir tvirtinimo patikra"},
+  {w:34, s:"Skalbti, rūšiuoti", t:"Viską išskalbti, drabužius sudėti pagal dydžius, baldus surinkti"},
+  {w:36, s:"Krepšys",        t:"B grupės streptokoko tyrimas, krepšys prie durų, vizitai kas savaitę"},
+  {w:37, s:"Pilnas terminas",t:"Pilnas terminas — nuo dabar kūdikis gali gimti bet kada"},
+  {w:40, s:"Terminas",       t:"Pati numatyta data. Tiksliai ją pataiko maždaug vienas kūdikis iš dvidešimties"},
+  {w:41, s:"Po termino",     t:"Terminas praėjo — laukite papildomo stebėjimo ir pokalbio apie sukėlimą"},
+  {w:42, s:"42 savaitė",     t:"Toliau nei čia nėštumo paprastai nebetęsia"}
+];
+
+/* ============================ būsena ir sinchronizavimas ============================ */
+/* S  — bendras planas, laikomas duomenų bazėje ir šios naršyklės atmintyje.
+   ME — tik šis įrenginys: jūsų vardas ir rodymo nustatymai.               */
+const DEFAULTS = { dueDate:"2027-01-25", done:{}, notes:{}, pad:{names:"",questions:"",general:""}, events:{} };
+let S = JSON.parse(JSON.stringify(DEFAULTS));
+let ME = { who:"", hideDone:false };
+let COMMENTS = [];
+let saveTimer = null, pending = false, failed = false;
+let lastRemote = "", lastCmt = "";
+let cfg = { db:"", room:"" };
+
+function stamp(t){
+  const el = document.getElementById("syncnote");
+  if(el) el.textContent = t + " · " + new Date().toTimeString().slice(0,5);
+}
+function online(){ return !!(cfg.db && cfg.room); }
+function tidy(u){ return String(u).trim().replace(/\/+$/,""); }
+function dbUrl(part){ return cfg.db + "/babyplan/" + encodeURIComponent(cfg.room) + "/" + part + ".json"; }
+function shareLink(){
+  return location.origin + location.pathname +
+    "?db=" + encodeURIComponent(cfg.db) + "&room=" + encodeURIComponent(cfg.room);
+}
+function banner(){
+  const b = document.getElementById("banner");
+  if(!b) return;
+  if(failed){
+    b.hidden = false;
+    b.innerHTML = "<b>Nepavyksta pasiekti duomenų bazės.</b> Pakeitimai išsaugoti šioje naršyklėje ir bus nusiųsti, kai ryšys atsistatys. " +
+      "Adresą galite pasitikrinti Užrašinės apačioje, skiltyje „Sinchronizavimas“.";
+  } else if(!online()){
+    b.hidden = false;
+    b.innerHTML = "<b>Sinchronizavimas neįjungtas.</b> Kol kas planas saugomas tik šioje naršyklėje ir kitam žmogui nematomas. " +
+      "Įjungiama Užrašinės apačioje, skiltyje „Sinchronizavimas“.";
+  } else {
+    b.hidden = true;
+  }
+}
+
+/* --- nustatymai keliauja pačioje nuorodoje --- */
+function loadCfg(){
+  const q = new URLSearchParams(location.search);
+  const db = q.get("db"), room = q.get("room");
+  if(db && room){
+    cfg = { db: tidy(db), room: room.trim() };
+    try{ localStorage.setItem("baby:cfg", JSON.stringify(cfg)); }catch(e){}
+    return;
+  }
+  try{ const raw = localStorage.getItem("baby:cfg"); if(raw) cfg = Object.assign(cfg, JSON.parse(raw)); }catch(e){}
+}
+
+/* --- vietinė atmintis: visada, kad niekada neprarastume darbo --- */
+function saveLocal(){
+  try{
+    localStorage.setItem("baby:plan", JSON.stringify(S));
+    localStorage.setItem("baby:me", JSON.stringify(ME));
+    localStorage.setItem("baby:comments", JSON.stringify(COMMENTS));
+  }catch(e){}
+}
+function loadLocal(){
+  try{ const r = localStorage.getItem("baby:plan"); if(r) S = Object.assign(S, JSON.parse(r)); }catch(e){}
+  try{ const r = localStorage.getItem("baby:me"); if(r) ME = Object.assign(ME, JSON.parse(r)); }catch(e){}
+  try{ const r = localStorage.getItem("baby:comments"); if(r) COMMENTS = JSON.parse(r); }catch(e){}
+}
+
+/* --- duomenų bazė --- */
+async function remoteGet(part){
+  const r = await fetch(dbUrl(part), { cache:"no-store" });
+  if(!r.ok) throw new Error("HTTP " + r.status);
+  return await r.json();
+}
+async function remoteSend(part, data, method){
+  const r = await fetch(dbUrl(part), {
+    method: method || "PUT", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(data)
+  });
+  if(!r.ok) throw new Error("HTTP " + r.status);
+  return true;
+}
+function asList(v){ return Array.isArray(v) ? v.filter(Boolean) : (v && typeof v === "object" ? Object.values(v).filter(Boolean) : []); }
+
+/* Firebase išmeta tuščius objektus, todėl vietinę ir nuotolinę kopiją
+   lyginame tik pagal tai, kas iš tikrųjų turi reikšmę. */
+function normalize(o){
+  const out = {};
+  Object.keys(o).sort().forEach(k=>{
+    const v = o[k];
+    if(v === null || v === undefined || v === "") return;
+    if(typeof v === "object" && !Array.isArray(v)){
+      const inner = normalize(v);
+      if(Object.keys(inner).length) out[k] = inner;
+    } else out[k] = v;
+  });
+  return out;
+}
+function sig(o){ return JSON.stringify(normalize(o || {})); }
+
+/* Suplokštiname planą į „kelias → reikšmė“, kad galėtume siųsti tik pokyčius.
+   Taip du žmonės, žymintys skirtingus punktus tuo pačiu metu, vienas kito
+   darbo nebeištrina — susilieja abu. */
+function flatten(o, prefix, out){
+  out = out || {}; prefix = prefix || "";
+  Object.keys(o).forEach(k=>{
+    const v = o[k], path = prefix ? prefix + "/" + k : k;
+    if(v && typeof v === "object" && !Array.isArray(v)) flatten(v, path, out);
+    else if(v !== undefined && v !== null && v !== "") out[path] = v;
+  });
+  return out;
+}
+function diffPaths(now, before){
+  const a = flatten(normalize(now)), b = flatten(normalize(before || {}));
+  const patch = {};
+  Object.keys(a).forEach(p=>{ if(JSON.stringify(a[p]) !== JSON.stringify(b[p])) patch[p] = a[p]; });
+  Object.keys(b).forEach(p=>{ if(!(p in a)) patch[p] = null; });   // null = ištrinti
+  return patch;
+}
+
+let lastPlan = {};            // paskutinė žinoma serverio būsena
+async function persist(){
+  saveLocal();
+  if(!online()){ failed = false; stamp("tik šiame įrenginyje"); banner(); return; }
+  const patch = diffPaths(S, lastPlan);
+  if(!Object.keys(patch).length){ failed = false; stamp("išsaugota"); banner(); return; }
+  let wait = 600;
+  for(let attempt = 0; attempt < 3; attempt++){
+    try{
+      await remoteSend("plan", patch, "PATCH");
+      lastPlan = JSON.parse(JSON.stringify(normalize(S)));
+      lastRemote = sig(S); failed = false;
+      stamp("išsaugota"); flash(); banner(); return;
+    }catch(e){
+      console.error("PATCH plan", e);
+      if(attempt < 2){ stamp("kartojama"); await new Promise(r=> setTimeout(r, wait)); wait *= 3; }
+    }
+  }
+  failed = true; stamp("duomenų bazė nepasiekiama"); banner();
+}
+function queueSave(){
+  pending = true;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{ await persist(); pending = false; }, 900);
+}
+function queueSaveMe(){ saveLocal(); }
+function flash(){
+  document.querySelectorAll(".saved").forEach(el=>{
+    el.classList.add("on"); setTimeout(()=> el.classList.remove("on"), 1200);
+  });
+}
+
+/* Komentarai laikomi ne sąrašu, o po vieną pagal ID. Jei abu parašo
+   tuo pačiu metu, abu komentarai išlieka. */
+function cmtMap(){
+  const m = {};
+  COMMENTS.forEach(c=> m[c.id] = c);
+  return m;
+}
+function sortCmts(){ COMMENTS.sort((a,b)=> (b.ts||0) - (a.ts||0)); }
+async function pushComment(c){
+  saveLocal();
+  if(!online()) return;
+  const patch = {}; patch[c.id] = c;
+  try{ await remoteSend("comments", patch, "PATCH"); lastCmt = sig(cmtMap()); failed = false; stamp("išsaugota"); }
+  catch(e){ failed = true; stamp("komentaro nusiųsti nepavyko"); banner(); }
+}
+async function dropComment(id){
+  saveLocal();
+  if(!online()) return;
+  const patch = {}; patch[id] = null;
+  try{ await remoteSend("comments", patch, "PATCH"); lastCmt = sig(cmtMap()); failed = false; }
+  catch(e){ failed = true; stamp("nepavyko ištrinti"); banner(); }
+}
+async function saveComments(){ lastCmt = sig(cmtMap()); saveLocal(); }
+
+async function loadAll(){
+  loadCfg();
+  loadLocal();
+  if(!online()) return;
+  try{
+    const plan = await remoteGet("plan");
+    if(plan && typeof plan === "object"){
+      S = Object.assign(JSON.parse(JSON.stringify(DEFAULTS)), plan);
+      lastPlan = JSON.parse(JSON.stringify(normalize(plan)));
+      lastRemote = sig(plan);
+    }
+    const cm = asList(await remoteGet("comments"));
+    COMMENTS = cm; sortCmts(); lastCmt = sig(cmtMap());
+    saveLocal(); failed = false;
+  }catch(e){ console.error("loadAll", e); failed = true; }
+}
+function typing(){
+  const a = document.activeElement;
+  return !!a && (a.tagName === "TEXTAREA" || a.tagName === "INPUT");
+}
+function redrawAll(){
+  const di = document.getElementById("dueinput"); if(di) di.value = S.dueDate;
+  renderHeader(); renderDo(); renderCal(); renderBuy(); renderPad(); renderCmt(); updateCounts();
+}
+async function pull(manual){
+  if(pending) return;
+  if(!manual && typing()) return;
+  if(!online()){ if(manual){ stamp("sinchronizavimas neįjungtas"); banner(); } return; }
+  let changed = false;
+  try{
+    const plan = await remoteGet("plan");
+    if(plan && typeof plan === "object"){
+      const j = sig(plan);
+      if(j !== lastRemote){
+        lastRemote = j;
+        lastPlan = JSON.parse(JSON.stringify(normalize(plan)));
+        S = Object.assign(JSON.parse(JSON.stringify(DEFAULTS)), plan);
+        changed = true;
+      }
+    }
+    const cm = asList(await remoteGet("comments"));
+    const map = {}; cm.forEach(c=> map[c.id] = c);
+    const j2 = sig(map);
+    if(j2 !== lastCmt){ lastCmt = j2; COMMENTS = cm; sortCmts(); changed = true; }
+    failed = false;
+  }catch(e){
+    console.error("pull", e);
+    failed = true; stamp("duomenų bazė nepasiekiama"); banner(); return;
+  }
+  if(changed){ saveLocal(); redrawAll(); }
+  banner();
+  stamp(changed ? "atsirado pakeitimų" : (manual ? "viskas naujausia" : "sinchronizuota"));
+}
+
+/* ============================ dates ============================ */
+const MONTHS = ["sausio","vasario","kovo","balandžio","gegužės","birželio","liepos","rugpjūčio","rugsėjo","spalio","lapkričio","gruodžio"];
+const MONTHS_NOM = ["Sausis","Vasaris","Kovas","Balandis","Gegužė","Birželis","Liepa","Rugpjūtis","Rugsėjis","Spalis","Lapkritis","Gruodis"];
+const SHORT = ["saus.","vas.","kov.","bal.","geg.","birž.","liep.","rugp.","rugs.","spal.","lapkr.","gruod."];
+function capital(w){ return w.charAt(0).toUpperCase() + w.slice(1); }
+function dueInfo(){
+  const due = new Date(S.dueDate + "T00:00:00");
+  const today = new Date(); today.setHours(0,0,0,0);
+  const daysLeft = Math.round((due - today)/86400000);
+  const gaDays = 280 - daysLeft;
+  return { due, daysLeft, gaDays, week: Math.floor(gaDays/7), day: ((gaDays%7)+7)%7 };
+}
+function renderHeader(){
+  const {due, daysLeft, week, day, gaDays} = dueInfo();
+  document.getElementById("bigdate").innerHTML =
+    capital(MONTHS[due.getMonth()]) + " " + due.getDate() + ' <span class="yr">' + due.getFullYear() + "</span>";
+
+  const pct = Math.max(0, Math.min(1, gaDays/280));
+  requestAnimationFrame(()=>{
+    document.getElementById("fill").style.width = (pct*100).toFixed(2) + "%";
+    document.getElementById("marker").style.left = (pct*100).toFixed(2) + "%";
+  });
+
+  const ml = document.getElementById("mlabel");
+  const w = document.getElementById("stat-week");
+  const l = document.getElementById("stat-left");
+  if(daysLeft > 0 && gaDays > 0){
+    ml.textContent = week + " sav.";
+    w.innerHTML = "<b>" + week + " sav. + " + day + " d.</b>";
+    l.innerHTML = "liko <b>" + daysLeft + "</b> d.";
+    document.getElementById("eyebrow").textContent = "Numatoma gimimo data";
+  } else if (daysLeft <= 0) {
+    ml.textContent = "jau čia";
+    w.innerHTML = "<b>Terminas praėjo</b>";
+    l.innerHTML = "<b>" + Math.abs(daysLeft) + "</b> d. po termino";
+    document.getElementById("eyebrow").textContent = "Bet kurią dieną";
+  } else {
+    ml.textContent = "pradžia";
+    w.innerHTML = "<b>Pati pradžia</b>";
+    l.innerHTML = "liko <b>" + daysLeft + "</b> d.";
+  }
+}
+function buildTicks(){
+  const t = document.getElementById("ticks");
+  let h = "";
+  for(let i=1;i<=40;i++){
+    const left = (i/40*100).toFixed(3);
+    const major = i%4===0;
+    h += '<div class="tick' + (major?" major":"") + '" style="left:' + left + '%">' +
+         (major ? "<b>" + i + "</b>" : "") + "</div>";
+  }
+  t.innerHTML = h;
+}
+
+/* ============================ helpers ============================ */
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function itemRow(id, text, why, extra){
+  const done = !!S.done[id];
+  const note = S.notes[id] || "";
+  return '<li class="item' + (done?" done":"") + '" data-id="' + id + '">' +
+      '<input type="checkbox" id="cb-' + id + '"' + (done?" checked":"") + '>' +
+      (extra || "") +
+      '<label for="cb-' + id + '">' + esc(text) + (why ? '<span class="why">' + esc(why) + "</span>" : "") + "</label>" +
+      '<button class="notebtn' + (note?" has":"") + '" data-note="' + id + '">' + (note?"užrašas ●":"užrašas") + "</button>" +
+      '<div class="noteline" ' + (note?"":"hidden") + '><textarea rows="2" data-noteid="' + id + '" placeholder="Ką verta atsiminti apie šį punktą">' + esc(note) + "</textarea></div>" +
+    "</li>";
+}
+function allIds(){
+  const ids = [];
+  PHASES.forEach(p => p.items.forEach((it,i)=> ids.push("do-"+p.id+"-"+i)));
+  BUY.forEach(c => c.items.forEach((it,i)=> ids.push("buy-"+c.id+"-"+i)));
+  return ids;
+}
+function counts(prefix){
+  let total=0, done=0;
+  allIds().forEach(id=>{ if(id.indexOf(prefix)===0){ total++; if(S.done[id]) done++; } });
+  return {total, done};
+}
+function updateCounts(){
+  const d = counts("do-"), b = counts("buy-");
+  document.getElementById("n-do").textContent = d.done + "/" + d.total;
+  document.getElementById("n-buy").textContent = b.done + "/" + b.total;
+  document.getElementById("n-cmt").textContent = COMMENTS.length ? String(COMMENTS.length) : "";
+  document.getElementById("stat-done").innerHTML = "pažymėta <b>" + (d.done+b.done) + "</b> iš " + (d.total+b.total);
+  document.querySelectorAll("[data-countfor]").forEach(el=>{
+    const {total, done} = counts(el.dataset.countfor);
+    el.textContent = done + " / " + total;
+  });
+}
+
+/* ============================ calendar ============================ */
+const DOW = ["Pr","An","Tr","Kt","Pn","Št","Sk"];
+let calCursor = null;   // first day of the visible month
+let calSel = null;      // selected day key
+
+function addDays(d,n){ const x = new Date(d.getTime()); x.setDate(x.getDate()+n); return x; }
+function keyOf(d){ return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
+function fromKey(k){ return new Date(k + "T00:00:00"); }
+function prettyDate(d){ return d.getFullYear() + " m. " + MONTHS[d.getMonth()] + " " + d.getDate() + " d."; }
+function milestoneMap(){
+  const {due} = dueInfo(); const map = {};
+  MILESTONES.forEach(m=>{
+    const k = keyOf(addDays(due, (m.w-40)*7));
+    (map[k] = map[k] || []).push(m);
+  });
+  return map;
+}
+function renderCal(){
+  const {due} = dueInfo();
+  const today = new Date(); today.setHours(0,0,0,0);
+  if(!calCursor) calCursor = new Date(today.getFullYear(), today.getMonth(), 1);
+  if(!calSel) calSel = keyOf(today);
+  const ms = milestoneMap();
+  const dueKey = keyOf(due);
+
+  let h = '<div class="calbar">' +
+    '<button class="nav" data-cal="-1" aria-label="Ankstesnis mėnuo">‹</button>' +
+    '<button class="nav" data-cal="1" aria-label="Kitas mėnuo">›</button>' +
+    "<h2>" + MONTHS_NOM[calCursor.getMonth()] + " " + calCursor.getFullYear() + "</h2>" +
+    '<button class="btn ghost" data-cal="today">Šiandien</button>' +
+    '<button class="btn ghost" data-cal="due">Termino mėnuo</button>' +
+    '<span class="legend"><span><i></i>Etapas</span><span><i class="own"></i>Jūsų</span></span>' +
+    "</div>";
+
+  h += '<div class="grid">' + DOW.map(d=>'<div class="dow">'+d+"</div>").join("");
+  const first = new Date(calCursor.getFullYear(), calCursor.getMonth(), 1);
+  const offset = (first.getDay() + 6) % 7;           // Monday-first
+  const start = addDays(first, -offset);
+  for(let i=0;i<42;i++){
+    const d = addDays(start, i);
+    const k = keyOf(d);
+    const out = d.getMonth() !== calCursor.getMonth();
+    const evs = S.events[k] || [];
+    const mils = ms[k] || [];
+    let cls = "day" + (out?" out":"") + (k===keyOf(today)?" today":"") + (k===calSel?" sel":"") + (k===dueKey?" duedate":"");
+    let dots = "";
+    if(mils.length) dots += "<i></i>";
+    if(evs.length)  dots += '<i class="own"></i>';
+    h += '<button class="' + cls + '" data-day="' + k + '">' +
+         "<span>" + d.getDate() + "</span>" +
+         (dots ? '<span class="dots">' + dots + "</span>" : "") +
+         (mils.length ? '<span class="daylab">' + esc(mils[0].s) + "</span>"
+                      : (evs.length ? '<span class="daylab">' + esc(evs[0].text.slice(0,14)) + "</span>" : "")) +
+         "</button>";
+  }
+  h += "</div>";
+
+  // selected day
+  const sd = fromKey(calSel);
+  const selMs = ms[calSel] || [];
+  const selEv = S.events[calSel] || [];
+  const gaAtSel = 280 - Math.round((due - sd)/86400000);
+  const wk = gaAtSel > 0 && gaAtSel <= 300 ? " · " + Math.floor(gaAtSel/7) + " sav. + " + (((gaAtSel%7)+7)%7) + " d." : "";
+  h += '<div class="daypanel"><h3>' + prettyDate(sd) + wk + "</h3>";
+  selMs.forEach(m=> h += '<div class="evrow"><span class="p"></span><span>' + esc(m.t) + "</span></div>");
+  selEv.forEach(e=> h += '<div class="evrow"><span class="p own"></span><span>' + esc(e.text) +
+      '</span><button class="x" data-evdel="' + e.id + '">šalinti</button></div>');
+  if(!selMs.length && !selEv.length) h += '<p class="empty">Šią dieną kol kas nieko nėra.</p>';
+  h += '<div class="row"><input type="text" id="ev-text" placeholder="Vizitas, tyrimas, kursai, svečiai" style="flex:1;min-width:200px">' +
+       '<button class="btn" id="ev-add">Pridėti šią dieną</button><span class="saved">išsaugota</span></div></div>';
+
+  // what is coming
+  const upcoming = [];
+  Object.keys(ms).forEach(k=> ms[k].forEach(m=> upcoming.push({k, text:m.t, own:false})));
+  Object.keys(S.events).forEach(k=> S.events[k].forEach(e=> upcoming.push({k, text:e.text, own:true})));
+  const tKey = keyOf(today);
+  const next = upcoming.filter(u=> u.k >= tKey).sort((a,b)=> a.k < b.k ? -1 : 1).slice(0,7);
+  if(next.length){
+    h += '<div class="daypanel" style="margin-top:16px"><h3>Artimiausi dalykai</h3><ul class="up">';
+    next.forEach(u=>{
+      const d = fromKey(u.k);
+      const days = Math.round((d - today)/86400000);
+      h += "<li><time>" + d.getDate() + " " + SHORT[d.getMonth()] +
+           " · " + (days === 0 ? "šiandien" : "po " + days + " d.") + "</time><span>" + esc(u.text) + "</span></li>";
+    });
+    h += "</ul></div>";
+  }
+  document.getElementById("p-cal").innerHTML = h;
+}
+
+/* ============================ panels ============================ */
+function renderDo(){
+  const {week} = dueInfo();
+  let h = '<div class="toolbar"><label class="switch"><input type="checkbox" id="hd-do"' + (ME.hideDone?" checked":"") + '> Slėpti tai, kas padaryta</label><span class="saved">išsaugota</span></div>';
+  h += '<div class="' + (ME.hideDone?"hide-done":"") + '" id="do-list">';
+  PHASES.forEach(p=>{
+    const here = week >= p.from && week <= p.to;
+    h += '<section class="section' + (here?" here":"") + '"><header>' +
+         "<h2>" + p.title + "</h2><span class='weeks'>" + p.weeks + "</span>" +
+         (here ? "<span class='nowtag'>dabar čia</span>" : "") +
+         "<span class='count' data-countfor='do-" + p.id + "-'></span></header><ul class='items'>";
+    p.items.forEach((it,i)=> h += itemRow("do-"+p.id+"-"+i, it[0], it[1]));
+    h += "</ul></section>";
+  });
+  h += "</div>";
+  document.getElementById("p-do").innerHTML = h;
+}
+function renderBuy(){
+  let h = '<div class="toolbar"><label class="switch"><input type="checkbox" id="hd-buy"' + (ME.hideDone?" checked":"") + '> Slėpti tai, kas nupirkta</label><span class="saved">išsaugota</span></div>';
+  h += '<div class="' + (ME.hideDone?"hide-done":"") + '" id="buy-list">';
+  BUY.forEach(c=>{
+    h += '<section class="section"><header><h2>' + c.title + "</h2>" +
+         "<span class='count' data-countfor='buy-" + c.id + "-'></span></header><ul class='items'>";
+    c.items.forEach((it,i)=>{
+      const tier = it[1]==="core" ? '<span class="tier core">būtina</span>'
+                 : it[1]==="nice" ? '<span class="tier">praverstų</span>'
+                 : '<span class="tier">palaukti</span>';
+      h += itemRow("buy-"+c.id+"-"+i, it[0], it[2], tier);
+    });
+    h += "</ul>";
+    if(c.skip) h += '<div class="skip"><span class="k">nepirkti</span><p>' + esc(c.skip) + "</p></div>";
+    h += "</section>";
+  });
+  h += "</div>";
+  document.getElementById("p-buy").innerHTML = h;
+}
+function renderKb(){
+  let h = '<p class="note-strip">Parašyta tam, kad greičiau atpažintumėte ir tiksliau paklaustumėte. Tai nėra medicininė konsultacija — jūsų akušerė, gydytojas ir vaikų gydytojas pažįsta jus ir šį nėštumą. Kilus abejonei, skambinkite jiems.</p>';
+  KB.forEach((k,i)=>{
+    h += '<details class="kb"><summary><span class="tagk">' + esc(k.tag) + "</span>" + esc(k.q) + "</summary>" +
+         '<div class="kb-body">' + k.a + "</div></details>";
+  });
+  document.getElementById("p-kb").innerHTML = h;
+}
+function renderTips(){
+  let h = '<div class="tips">';
+  TIPS.forEach(t=> h += '<div class="tip"><b>' + esc(t[0]) + "</b>" + esc(t[1]) + "</div>");
+  h += "</div>";
+  document.getElementById("p-tips").innerHTML = h;
+}
+function renderPad(){
+  const pads = [
+    ["names","Vardų sąrašas","Rašykite laisvai, ginčytis galėsite vėliau."],
+    ["questions","Klausimai kitam vizitui","Užsirašykite iškart, kai ateina į galvą — kabinete jie išgaruoja."],
+    ["general","Visa kita","Matmenys, dydžiai, kas ką atneša, ką norėjote pasitikslinti."]
+  ];
+  let h = '<div class="toolbar"><span class="saved">išsaugota</span></div>';
+  pads.forEach(p=>{
+    h += '<div class="pad"><h2>' + p[1] + '</h2><p class="hint">' + p[2] + "</p>" +
+         '<textarea data-pad="' + p[0] + '" placeholder="Rašykite — išsisaugo automatiškai">' + esc(S.pad[p[0]]||"") + "</textarea></div>";
+  });
+  h += '<div class="pad"><h2>Sinchronizavimas</h2>' +
+       '<p class="hint">' + (online()
+         ? 'Įjungta. Kambarys: <b>' + esc(cfg.room) + '</b>. Nuoroda žmonai turi būti su nustatymais — pasiimkite ją mygtuku žemiau.'
+         : 'Kol kas planas saugomas tik šioje naršyklėje. Įveskite duomenų bazės adresą, kad matytumėte tą patį planą abu.') + '</p>' +
+       '<div class="row"><input type="text" id="cfg-db" placeholder="https://xxx-default-rtdb.europe-west1.firebasedatabase.app" value="' + esc(cfg.db) + '" style="flex:1;min-width:260px"></div>' +
+       '<div class="row"><input type="text" id="cfg-room" placeholder="kambario pavadinimas" value="' + esc(cfg.room) + '" style="flex:1;min-width:160px">' +
+       '<button class="btn ghost" id="cfg-gen">Sugalvoti atsitiktinį</button>' +
+       '<button class="btn" id="cfg-save">Įjungti</button><span class="saved" id="cfg-note">gerai</span></div>' +
+       (online() ? '<div class="row"><button class="btn ghost" id="cfg-link">Nuoroda žmonai</button>' +
+         '<input type="text" id="cfg-linkbox" readonly value="" style="flex:1;min-width:240px"></div>' : '') +
+       '<details class="kb" style="margin-top:12px"><summary><span class="tagk">Pasiruošimas</span>Kaip susikurti duomenų bazę</summary><div class="kb-body">' +
+       '<ol><li>Eikite į <b>console.firebase.google.com</b> ir sukurkite projektą (analitikos galima atsisakyti).</li>' +
+       '<li>Kairėje <b>Build → Realtime Database → Create database</b>. Regionas — Europa. Pasirinkite <b>Start in locked mode</b>.</li>' +
+       '<li>Skiltyje <b>Rules</b> įklijuokite ir paskelbkite:<br><code>{ "rules": { "babyplan": { "$room": { ".read": "$room.length > 12", ".write": "$room.length > 12 &amp;&amp; newData.val() != null" } } } }</code><br>Taip pasiekti duomenis galima tik žinant tikslų kambario pavadinimą, o ne spėliojant trumpus.</li>' +
+       '<li>Nusikopijuokite duomenų bazės adresą iš viršaus ir įklijuokite jį į laukelį aukščiau.</li>' +
+       '<li>Spauskite „Sugalvoti atsitiktinį“, tada „Įjungti“, tada „Nuoroda žmonai“.</li></ol>' +
+       '<p>Kas žino kambario pavadinimą, tas gali skaityti ir keisti planą — todėl jis ir turi būti atsitiktinis, o nuoroda lieka tarp jūsų dviejų.</p>' +
+       '</div></details></div>';
+  h += '<div class="pad"><h2>Atsarginė kopija</h2><p class="hint">Jei saugykla nustotų veikti, čia galite pasiimti visą planą tekstu ir vėliau jį atkurti. Verta pasidaryti kartą per mėnesį.</p>' +
+       '<textarea id="backup-box" rows="3" placeholder="Spauskite „Sukurti kopiją“ arba įklijuokite anksčiau išsaugotą tekstą"></textarea>' +
+       '<div class="row"><button class="btn ghost" id="backup-copy">Sukurti kopiją</button>' +
+       '<button class="btn ghost" id="backup-load">Atkurti iš kopijos</button>' +
+       '<span class="saved" id="backup-note">gerai</span></div></div>';
+  document.getElementById("p-pad").innerHTML = h;
+}
+function renderCmt(){
+  let h = '<div class="pad"><h2>Palikti komentarą</h2><p class="hint">Tam, kas netelpa į sąrašą. Šią giją mato visi, turintys nuorodą.</p>' +
+    '<textarea id="cmt-text" rows="3" placeholder="Paklauskite, pridėkite mintį, pasiimkite darbą"></textarea>' +
+    '<div class="row"><input type="text" id="cmt-who" placeholder="Jūsų vardas" value="' + esc(ME.who||"") + '">' +
+    '<button class="btn" id="cmt-post">Skelbti</button><span class="saved">paskelbta</span></div></div>';
+  if(!COMMENTS.length){
+    h += '<p class="empty">Komentarų kol kas nėra. Palikite ką nors tam, kas atsidarys kitas.</p>';
+  } else {
+    COMMENTS.forEach(c=>{
+      const d = new Date(c.ts);
+      const when = d.getDate() + " " + SHORT[d.getMonth()] + " " +
+        String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
+      h += '<div class="cmt"><div class="meta"><span class="who">' + esc(c.name||"Kažkas") + '</span>' +
+           '<span class="when">' + when + '</span>' +
+           '<button class="del" data-del="' + c.id + '">šalinti</button></div><p>' + esc(c.text) + "</p></div>";
+    });
+  }
+  document.getElementById("p-cmt").innerHTML = h;
+}
+
+/* ============================ events ============================ */
+document.querySelectorAll(".tab").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll(".tab").forEach(b=> b.setAttribute("aria-selected", String(b===btn)));
+    ["do","cal","buy","kb","tips","pad","cmt"].forEach(id=>{
+      document.getElementById("p-"+id).hidden = (id !== btn.dataset.tab);
+    });
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+});
+
+document.addEventListener("change", e=>{
+  const cb = e.target;
+  if(cb.matches('.item input[type=checkbox]')){
+    const li = cb.closest(".item");
+    const id = li.dataset.id;
+    if(cb.checked) S.done[id] = 1; else delete S.done[id];
+    li.classList.toggle("done", cb.checked);
+    updateCounts(); queueSave();
+  }
+  if(cb.id === "dueinput"){
+    if(cb.value && /^\d{4}-\d{2}-\d{2}$/.test(cb.value)){
+      S.dueDate = cb.value; queueSave();
+      renderHeader(); renderDo(); calCursor = null; calSel = null; renderCal(); updateCounts();
+    }
+    return;
+  }
+  if(cb.id === "hd-do" || cb.id === "hd-buy"){
+    ME.hideDone = cb.checked;
+    document.getElementById("do-list") && document.getElementById("do-list").classList.toggle("hide-done", ME.hideDone);
+    document.getElementById("buy-list") && document.getElementById("buy-list").classList.toggle("hide-done", ME.hideDone);
+    const other = document.getElementById(cb.id === "hd-do" ? "hd-buy" : "hd-do");
+    if(other) other.checked = ME.hideDone;
+    queueSaveMe();
+  }
+});
+
+document.addEventListener("click", e=>{
+  const nb = e.target.closest("[data-note]");
+  if(nb){
+    const line = nb.closest(".item").querySelector(".noteline");
+    line.hidden = !line.hidden;
+    if(!line.hidden) line.querySelector("textarea").focus();
+    return;
+  }
+  const del = e.target.closest("[data-del]");
+  if(del){
+    if(del.dataset.armed){
+      const gone = del.dataset.del;
+      COMMENTS = COMMENTS.filter(c=> c.id !== gone);
+      dropComment(gone); renderCmt(); updateCounts();
+    } else {
+      document.querySelectorAll("[data-del]").forEach(b=>{ delete b.dataset.armed; b.textContent = "šalinti"; });
+      del.dataset.armed = "1"; del.textContent = "dar kartą — ištrinsiu";
+      setTimeout(()=>{ if(del.isConnected){ delete del.dataset.armed; del.textContent = "šalinti"; } }, 4000);
+    }
+    return;
+  }
+  const nav = e.target.closest("[data-cal]");
+  if(nav){
+    const v = nav.dataset.cal;
+    const today = new Date(); today.setHours(0,0,0,0);
+    if(v === "today"){ calCursor = new Date(today.getFullYear(), today.getMonth(), 1); calSel = keyOf(today); }
+    else if(v === "due"){ const {due} = dueInfo(); calCursor = new Date(due.getFullYear(), due.getMonth(), 1); calSel = keyOf(due); }
+    else calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth() + Number(v), 1);
+    renderCal();
+    return;
+  }
+  const day = e.target.closest("[data-day]");
+  if(day){
+    calSel = day.dataset.day;
+    const d = fromKey(calSel);
+    if(d.getMonth() !== calCursor.getMonth()) calCursor = new Date(d.getFullYear(), d.getMonth(), 1);
+    renderCal();
+    return;
+  }
+  const evdel = e.target.closest("[data-evdel]");
+  if(evdel){
+    const list = (S.events[calSel] || []).filter(x=> x.id !== evdel.dataset.evdel);
+    if(list.length) S.events[calSel] = list; else delete S.events[calSel];
+    queueSave(); renderCal();
+    return;
+  }
+  if(e.target.id === "refresh" || e.target.closest("#refresh")){ stamp("tikrinama"); pull(true); return; }
+  if(e.target.id === "ev-add"){ addEvent(); return; }
+  if(e.target.id === "cfg-gen"){
+    const r = Math.random().toString(36).slice(2,8) + Math.random().toString(36).slice(2,6);
+    document.getElementById("cfg-room").value = "planas-" + r;
+    return;
+  }
+  if(e.target.id === "cfg-save"){
+    const db = tidy(document.getElementById("cfg-db").value);
+    const room = document.getElementById("cfg-room").value.trim();
+    const note = document.getElementById("cfg-note");
+    note.classList.add("on");
+    if(!/^https:\/\/.+/.test(db) || !room){ note.textContent = "reikia adreso ir kambario"; return; }
+    cfg = { db: db, room: room };
+    try{ localStorage.setItem("baby:cfg", JSON.stringify(cfg)); }catch(err){}
+    history.replaceState(null, "", shareLink());
+    note.textContent = "įjungta";
+    (async ()=>{
+      try{
+        const existing = await remoteGet("plan");
+        if(existing && typeof existing === "object"){ await pull(true); }   // kambaryje jau kažkas yra
+        else { await persist(); await saveComments(); }                    // tuščias — nusiunčiame savo planą
+      }catch(err){ failed = true; stamp("duomenų bazė nepasiekiama"); }
+      banner(); redrawAll();
+    })();
+    return;
+  }
+  if(e.target.id === "cfg-link"){
+    const box = document.getElementById("cfg-linkbox");
+    box.value = shareLink();
+    box.focus(); box.select();
+    try{ navigator.clipboard.writeText(box.value); }catch(err){}
+    flash();
+    return;
+  }
+  if(e.target.id === "backup-copy"){
+    const box = document.getElementById("backup-box");
+    box.value = JSON.stringify(S);
+    box.focus(); box.select();
+    try{ navigator.clipboard.writeText(box.value); }catch(err){}
+    flash();
+    return;
+  }
+  if(e.target.id === "backup-load"){
+    const box = document.getElementById("backup-box");
+    try{
+      const parsed = JSON.parse(box.value);
+      if(!parsed || typeof parsed !== "object" || !parsed.dueDate) throw new Error("ne tas tekstas");
+      S = Object.assign(JSON.parse(JSON.stringify(DEFAULTS)), parsed);
+      queueSave(); redrawAll();
+      document.getElementById("backup-note").textContent = "atkurta";
+      flash();
+    }catch(err){
+      document.getElementById("backup-note").textContent = "netinkamas tekstas";
+      document.getElementById("backup-note").classList.add("on");
+    }
+    return;
+  }
+  if(e.target.id === "cmt-post"){
+    const t = document.getElementById("cmt-text").value.trim();
+    const who = document.getElementById("cmt-who").value.trim();
+    if(!t){ document.getElementById("cmt-text").focus(); return; }
+    ME.who = who; queueSaveMe();
+    const c = { id: "c" + String(Date.now()) + Math.random().toString(36).slice(2,6), name: who || "Kažkas", text: t, ts: Date.now() };
+    COMMENTS.unshift(c); sortCmts();
+    pushComment(c); renderCmt(); updateCounts();
+    return;
+  }
+});
+
+function addEvent(){
+  const input = document.getElementById("ev-text");
+  const t = input.value.trim();
+  if(!t){ input.focus(); return; }
+  (S.events[calSel] = S.events[calSel] || []).push({ id: String(Date.now()) + Math.random().toString(36).slice(2,5), text: t });
+  queueSave(); renderCal();
+  const again = document.getElementById("ev-text");
+  if(again) again.focus();
+}
+document.addEventListener("keydown", e=>{
+  if(e.key === "Enter" && e.target.id === "ev-text"){ e.preventDefault(); addEvent(); }
+});
+
+document.addEventListener("input", e=>{
+  const ta = e.target;
+  if(ta.dataset.noteid){
+    const id = ta.dataset.noteid;
+    const v = ta.value;
+    if(v.trim()) S.notes[id] = v; else delete S.notes[id];
+    const btn = ta.closest(".item").querySelector("[data-note]");
+    btn.classList.toggle("has", !!v.trim());
+    btn.textContent = v.trim() ? "užrašas ●" : "užrašas";
+    queueSave();
+  }
+  if(ta.dataset.pad){ S.pad[ta.dataset.pad] = ta.value; queueSave(); }
+});
+
+
+/* ============================ boot ============================ */
+(async function init(){
+  buildTicks();
+  await loadAll();
+  document.getElementById("dueinput").value = S.dueDate;
+  renderHeader(); renderDo(); renderCal(); renderBuy(); renderKb(); renderTips(); renderPad(); renderCmt();
+  updateCounts();
+  banner();
+  stamp(online() ? "sinchronizuota" : "tik šiame įrenginyje");
+  setInterval(()=> pull(false), 30000);
+  document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) pull(false); });
+})();
+</script>
