@@ -24,13 +24,20 @@ html,body{margin:0}
 body{
   background:linear-gradient(178deg,#F4F7F8 0%, var(--frost) 55%, #E3EAEE 100%);
   background-attachment:fixed;
+  position:relative;
   color:var(--ink);
   font-family:var(--body);
   font-size:17px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:940px;margin:0 auto;padding:34px 20px 90px}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22440%22%20height%3D%22440%22%20viewBox%3D%220%200%20440%20440%22%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%231E4A45%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%3Cg%20transform%3D%22translate%2846%2C58%29%20rotate%28-14%29%22%3E%0A%3Cpath%20d%3D%22M0%208%20C-4%20-1%202%20-7%207%20-5%20C12%20-3%2012%204%209%209%20C7%2012%202%2012%200%208Z%22%2F%3E%0A%3Ccircle%20cx%3D%221%22%20cy%3D%22-8%22%20r%3D%221.8%22%2F%3E%3Ccircle%20cx%3D%225.5%22%20cy%3D%22-10.5%22%20r%3D%221.8%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%22-9%22%20r%3D%221.6%22%2F%3E%3C%2Fg%3E%0A%3Cg%20transform%3D%22translate%2870%2C78%29%20rotate%28-14%29%22%3E%0A%3Cpath%20d%3D%22M0%208%20C-4%20-1%202%20-7%207%20-5%20C12%20-3%2012%204%209%209%20C7%2012%202%2012%200%208Z%22%2F%3E%0A%3Ccircle%20cx%3D%221%22%20cy%3D%22-8%22%20r%3D%221.8%22%2F%3E%3Ccircle%20cx%3D%225.5%22%20cy%3D%22-10.5%22%20r%3D%221.8%22%2F%3E%3Ccircle%20cx%3D%2210%22%20cy%3D%22-9%22%20r%3D%221.6%22%2F%3E%3C%2Fg%3E%0A%3Cpath%20d%3D%22M232%2044%20A15%2015%200%201%200%20251%2063%20A11.5%2011.5%200%201%201%20232%2044Z%22%2F%3E%0A%3Cpath%20d%3D%22M366%2066%20l2.8%206%206.5%20.9%20-4.7%204.6%201.1%206.6%20-5.7-3.1%20-5.7%203.1%201.1-6.6%20-4.7-4.6%206.5-.9Z%22%2F%3E%0A%3Cg%20transform%3D%22translate%28120%2C206%29%22%3E%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%2211.5%22%2F%3E%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%223.8%22%2F%3E%0A%3Cpath%20d%3D%22M0%2011.5%20v11.5%22%2F%3E%3Cpath%20d%3D%22M-5%2025%20h10%22%2F%3E%3C%2Fg%3E%0A%3Cg%20transform%3D%22translate%28310%2C196%29%22%3E%3Cpath%20d%3D%22M0%200%20h6.2%20l4.2%206.3%20l4.2-6.3%20h6.2%20l7.4%207.4%20l-5.3%206.3%20l-3.2-3.2%20v16.9%20a4.2%204.2%200%200%201%20-4.2%204.2%20h-10.5%20a4.2%204.2%200%200%201%20-4.2-4.2%20v-16.9%20l-3.2%203.2%20l-5.3-6.3Z%22%2F%3E%3C%2Fg%3E%0A%3Cpath%20d%3D%22M58%20336%20c-6-7-16-2-16%206%20c0%207%209%2012%2016%2018%20c7-6%2016-11%2016-18%20c0-8-10-13-16-6Z%22%2F%3E%0A%3Cg%20transform%3D%22translate%28246%2C352%29%22%3E%3Cpath%20d%3D%22M-14.5%200%20a14.5%2014.5%200%200%201%2029%200Z%22%2F%3E%3Cpath%20d%3D%22M-14.5%200%20h29%22%2F%3E%3Cpath%20d%3D%22M14.5%200%20l7.2%209.2%22%2F%3E%0A%3Ccircle%20cx%3D%22-7.2%22%20cy%3D%229.2%22%20r%3D%224.2%22%2F%3E%3Ccircle%20cx%3D%229.2%22%20cy%3D%229.2%22%20r%3D%224.2%22%2F%3E%3C%2Fg%3E%0A%3Cpath%20d%3D%22M378%20310%20a9.5%209.5%200%200%201%2018-3.2%20a7.5%207.5%200%200%201%209.5%208.5%20h-25.5%20a5.2%205.2%200%200%201%20-2-5.3Z%22%2F%3E%0A%3C%2Fg%3E%3C%2Fsvg%3E");
+  background-repeat:repeat;background-size:440px 440px;
+  opacity:.075;
+}
+.wrap{max-width:940px;margin:0 auto;padding:34px 20px 90px;position:relative;z-index:1}
 :focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:2px}
 
 /* ---------- header ---------- */
@@ -113,7 +120,7 @@ h1 .yr{color:var(--slate);font-weight:400}
 .panel[hidden]{display:none}
 
 /* ---------- shared blocks ---------- */
-.section{background:var(--paper);border:1px solid var(--line);border-radius:3px;margin-bottom:16px}
+.section{background:rgba(252,252,250,.985);border:1px solid var(--line);border-radius:3px;margin-bottom:16px}
 .section > header{
   display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;
   padding:15px 18px;border-bottom:1px solid var(--line)
@@ -165,6 +172,97 @@ textarea::placeholder{color:#9AAAB2}
   color:var(--slate);border:1px solid var(--line);border-radius:2px;padding:2px 5px;margin-top:3px
 }
 .tier.core{color:var(--spruce);border-color:rgba(30,74,69,.4)}
+.price{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:3px;margin-top:1px;
+  font-family:var(--data);font-size:.72rem;color:var(--slate)
+}
+.price input{
+  width:58px;text-align:right;font-family:var(--data);font-size:.72rem;padding:3px 5px;
+  border:1px solid transparent;border-radius:2px;background:transparent;color:var(--slate);
+  -moz-appearance:textfield
+}
+.price input::-webkit-outer-spin-button,.price input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.price input:hover{border-color:var(--line);background:#F6F8F8}
+.price input:focus{border-color:var(--slate);background:#fff;color:var(--ink)}
+.price input.set{color:var(--ink);font-weight:500}
+.price .eur{opacity:.6}
+.sum{
+  background:rgba(252,252,250,.985);border:1px solid var(--line);border-radius:3px;
+  padding:16px 18px;margin-bottom:16px
+}
+.sum h2{font-family:var(--display);font-size:1.05rem;font-weight:600;margin:0 0 12px}
+.figs{display:flex;flex-wrap:wrap;gap:8px 30px;margin-bottom:14px}
+.fig{display:flex;flex-direction:column;gap:2px}
+.fig b{font-family:var(--display);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1}
+.fig span{font-family:var(--data);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
+.fig.spent b{color:var(--spruce)}
+.fig.over b{color:#8A3A1A}
+.bar{height:7px;background:#E7ECEE;border-radius:4px;overflow:hidden;margin-bottom:7px;display:flex}
+.bar i{display:block;height:100%;transition:width .5s ease}
+.bar i.done{background:var(--spruce)}
+.bar i.plan{background:rgba(30,74,69,.28)}
+.bar i.over{background:#B5502A}
+.sumnote{font-size:.88rem;color:var(--slate);margin:0}
+.catsum{font-family:var(--data);font-size:.7rem;color:var(--slate);margin-left:10px}
+.catsum b{color:var(--ink);font-weight:500}
+.verline{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.vbadge{
+  font-family:var(--data);font-size:.68rem;letter-spacing:.1em;color:var(--ink);
+  background:rgba(30,74,69,.08);border:1px solid var(--line);border-radius:2px;padding:5px 9px;white-space:nowrap
+}
+.vwhat{font-family:var(--data);font-size:.62rem;letter-spacing:.06em;color:var(--slate);flex:1;min-width:180px}
+.finlist{list-style:none;margin:12px 0 0;padding:0}
+.finrow{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid var(--line)}
+.finrow:first-child{border-top:0}
+.finlab{flex:1;display:flex;flex-direction:column;gap:1px;font-size:.97rem}
+.finhint{font-family:var(--data);font-size:.62rem;letter-spacing:.04em;color:var(--slate)}
+.finrow .price input{width:86px;border-color:var(--line);background:#F6F8F8;font-size:.85rem}
+.finrow .x{background:none;border:0;cursor:pointer;color:var(--slate);font-family:var(--data);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase}
+.finrow .x:hover{color:#8A3A1A}
+.sizeline{color:var(--slate)}
+.sizeline b{color:var(--ink);font-weight:500}
+.timerwrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px}
+.bigbtn{
+  flex:0 0 auto;width:132px;height:132px;border-radius:50%;border:0;cursor:pointer;
+  background:var(--spruce);color:#F4F8F7;font-family:var(--display);font-weight:600;font-size:1.15rem;
+  box-shadow:0 2px 0 rgba(21,34,41,.18);transition:transform .12s ease, background .2s ease
+}
+.bigbtn:hover{background:#173B37}
+.bigbtn:active{transform:scale(.96)}
+.bigbtn.stop{background:var(--amber);color:#2A1B02;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 2px 0 rgba(21,34,41,.18),0 0 0 0 rgba(227,155,46,.5)}50%{box-shadow:0 2px 0 rgba(21,34,41,.18),0 0 0 14px rgba(227,155,46,0)}}
+.timerread{display:flex;flex-direction:column;gap:3px}
+.timerread b{font-family:var(--data);font-size:2.5rem;font-weight:400;letter-spacing:-.02em;line-height:1}
+.timerread span{font-family:var(--data);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
+.clabel{flex:0 0 auto;width:170px;font-size:.95rem}
+.cphone{
+  flex:1;min-width:110px;font-family:var(--data);font-size:.88rem;padding:6px 9px;
+  border:1px solid var(--line);border-radius:2px;background:#F6F8F8;color:var(--ink)
+}
+.callbtn{
+  flex:0 0 auto;font-family:var(--data);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--spruce);border:1px solid rgba(30,74,69,.35);border-radius:2px;padding:5px 8px;text-decoration:none
+}
+.callbtn:hover{background:rgba(30,74,69,.08)}
+.namelist{list-style:none;margin:14px 0 0;padding:0}
+.nameitem{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 0;border-top:1px solid var(--line)}
+.nametext{font-family:var(--display);font-size:1.05rem;font-weight:500;min-width:90px}
+.nameitem.agreed .nametext{color:var(--spruce)}
+.nameitem.agreed .nametext::after{content:" ✓";font-size:.85rem}
+.nameitem.nope .nametext{color:var(--slate);text-decoration:line-through}
+.votes{display:inline-flex;gap:3px}
+.vote{
+  font-family:var(--data);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+  border:1px solid var(--line);background:transparent;color:var(--slate);border-radius:2px;padding:4px 8px
+}
+.vote:hover{border-color:var(--slate);color:var(--ink)}
+.vote.on.yes{background:var(--spruce);border-color:var(--spruce);color:#F4F8F7}
+.vote.on.maybe{background:var(--amber);border-color:var(--amber);color:#2A1B02}
+.vote.on.no{background:#B5502A;border-color:#B5502A;color:#FDF3EE}
+.who2{font-family:var(--data);font-size:.66rem;color:var(--slate)}
+.nameitem .x{margin-left:auto;background:none;border:0;cursor:pointer;color:var(--slate);font-family:var(--data);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase}
+.nameitem .x:hover{color:#8A3A1A}
+@media(max-width:560px){.clabel{width:100%}.bigbtn{width:110px;height:110px;font-size:1rem}.timerread b{font-size:2rem}}
 .skip{
   display:flex;gap:11px;padding:11px 18px;border-left:3px solid var(--amber);
   margin:6px 18px 10px;background:rgba(227,155,46,.07);border-radius:0 3px 3px 0
@@ -177,7 +275,7 @@ textarea::placeholder{color:#9AAAB2}
   border:1px solid var(--line);border-left:3px solid var(--spruce);background:var(--paper);
   padding:13px 16px;border-radius:0 3px 3px 0;margin-bottom:18px;font-size:.95rem;color:var(--slate)
 }
-details.kb{background:var(--paper);border:1px solid var(--line);border-radius:3px;margin-bottom:8px}
+details.kb{background:rgba(252,252,250,.985);border:1px solid var(--line);border-radius:3px;margin-bottom:8px}
 details.kb summary{
   list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:baseline;gap:12px;
   font-family:var(--display);font-weight:500;font-size:1.02rem
@@ -201,13 +299,13 @@ details.kb[open] summary{border-bottom:1px solid var(--line)}
 .tips{columns:2;column-gap:16px}
 @media(max-width:700px){.tips{columns:1}}
 .tip{
-  break-inside:avoid;background:var(--paper);border:1px solid var(--line);border-radius:3px;
+  break-inside:avoid;background:rgba(252,252,250,.985);border:1px solid var(--line);border-radius:3px;
   padding:13px 15px;margin:0 0 12px;font-size:.97rem;line-height:1.5
 }
 .tip b{display:block;font-family:var(--display);font-weight:600;font-size:.95rem;margin-bottom:3px}
 
 /* ---------- pads + comments ---------- */
-.pad{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:16px 18px;margin-bottom:16px}
+.pad{background:rgba(252,252,250,.985);border:1px solid var(--line);border-radius:3px;padding:16px 18px;margin-bottom:16px}
 .pad h2{font-family:var(--display);font-size:1.05rem;font-weight:600;margin:0 0 3px}
 .pad p.hint{margin:0 0 10px;font-size:.88rem;color:var(--slate)}
 .pad textarea{min-height:150px}
@@ -223,7 +321,7 @@ input[type=text]{
 .btn:hover{background:#173B37}
 .btn.ghost{background:none;color:var(--slate);border:1px solid var(--line)}
 .btn.ghost:hover{background:#F1F4F5;color:var(--ink)}
-.cmt{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:13px 16px;margin-bottom:10px}
+.cmt{background:rgba(252,252,250,.985);border:1px solid var(--line);border-radius:3px;padding:13px 16px;margin-bottom:10px}
 .cmt .meta{display:flex;align-items:baseline;gap:10px;margin-bottom:5px}
 .cmt .who{font-family:var(--display);font-weight:600;font-size:.95rem}
 .cmt .when{font-family:var(--data);font-size:.63rem;color:var(--slate);letter-spacing:.06em}
@@ -305,6 +403,7 @@ footer.foot{margin-top:40px;font-size:.85rem;color:var(--slate);border-top:1px s
       <span id="stat-week">—</span>
       <span id="stat-left">—</span>
       <span id="stat-done">—</span>
+      <span id="sizeline" class="sizeline"></span>
       <span>Terminas — tik apytikslė data. Dauguma kūdikių gimsta tarp 37 ir 42 savaitės.</span>
     </div>
   </div>
@@ -313,6 +412,8 @@ footer.foot{margin-top:40px;font-size:.85rem;color:var(--slate);border-top:1px s
     <button class="tab" role="tab" data-tab="do" aria-selected="true">Ką padaryti<span class="n" id="n-do"></span></button>
     <button class="tab" role="tab" data-tab="cal" aria-selected="false">Kalendorius</button>
     <button class="tab" role="tab" data-tab="buy" aria-selected="false">Ką nupirkti<span class="n" id="n-buy"></span></button>
+    <button class="tab" role="tab" data-tab="fin" aria-selected="false">Finansai</button>
+    <button class="tab" role="tab" data-tab="birth" aria-selected="false">Gimdymui</button>
     <button class="tab" role="tab" data-tab="kb" aria-selected="false">Ką žinoti</button>
     <button class="tab" role="tab" data-tab="tips" aria-selected="false">Patarimai</button>
     <button class="tab" role="tab" data-tab="pad" aria-selected="false">Užrašinė</button>
@@ -322,18 +423,29 @@ footer.foot{margin-top:40px;font-size:.85rem;color:var(--slate);border-top:1px s
   <section class="panel" id="p-do"></section>
   <section class="panel" id="p-cal" hidden></section>
   <section class="panel" id="p-buy" hidden></section>
+  <section class="panel" id="p-fin" hidden></section>
+  <section class="panel" id="p-birth" hidden></section>
   <section class="panel" id="p-kb" hidden></section>
   <section class="panel" id="p-tips" hidden></section>
   <section class="panel" id="p-pad" hidden></section>
   <section class="panel" id="p-cmt" hidden></section>
 
   <footer class="foot">
+    <div class="verline">
+      <span class="vbadge" id="vbadge">—</span>
+      <button class="btn ghost" id="hardreload">Tikrinti, ar yra nauja versija</button>
+      <span class="vwhat" id="vwhat"></span>
+    </div>
     Įjungus sinchronizavimą, varnelės, užrašai, kalendoriaus įrašai ir komentarai vienodi abiem, o puslapis kas pusę minutės pasitikrina, ar kitas nieko nepakeitė. Vardas ir „slėpti“ jungiklis lieka jūsų įrenginyje. Paskyros nereikia niekam.
     Tai nėra medicininė konsultacija — čia tik tam, kad greičiau pastebėtumėte ir tiksliau paklaustumėte.
   </footer>
 </div>
 
 <script>
+const VERSION = "v6";
+const BUILT = "2026-08-11";
+const CHANGES = "finansų skiltis, blankesnis fonas, kainos ir biudžetas, sąrėmių skaitiklis, telefonai, krepšys, vardų balsavimas";
+
 /* ============================ turinys ============================ */
 const PHASES = [
   { id:"a", title:"Ramusis tarpsnis", weeks:"13–27 savaitės", from:13, to:27, items:[
@@ -587,7 +699,7 @@ const MILESTONES = [
 /* ============================ būsena ir sinchronizavimas ============================ */
 /* S  — bendras planas, laikomas duomenų bazėje ir šios naršyklės atmintyje.
    ME — tik šis įrenginys: jūsų vardas ir rodymo nustatymai.               */
-const DEFAULTS = { dueDate:"2027-01-25", done:{}, notes:{}, pad:{names:"",questions:"",general:""}, events:{} };
+const DEFAULTS = { dueDate:"2027-01-25", done:{}, notes:{}, pad:{names:"",questions:"",general:""}, events:{}, prices:{}, budget:0, contractions:[], contacts:[], names:[], fin:{} };
 let S = JSON.parse(JSON.stringify(DEFAULTS));
 let ME = { who:"", hideDone:false };
 let COMMENTS = [];
@@ -777,7 +889,7 @@ function typing(){
 }
 function redrawAll(){
   const di = document.getElementById("dueinput"); if(di) di.value = S.dueDate;
-  renderHeader(); renderDo(); renderCal(); renderBuy(); renderPad(); renderCmt(); updateCounts();
+  renderHeader(); renderDo(); renderCal(); renderBuy(); renderFin(); renderBirth(); renderPad(); renderCmt(); updateCounts();
 }
 async function pull(manual){
   if(pending) return;
@@ -865,13 +977,20 @@ function buildTicks(){
 
 /* ============================ helpers ============================ */
 function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
-function itemRow(id, text, why, extra){
+function priceBox(id){
+  const v = S.prices[id];
+  return '<span class="price"><input type="text" inputmode="decimal" maxlength="9" ' +
+         'data-price="' + id + '" placeholder="—" aria-label="Kaina" ' +
+         'value="' + (v ? v : "") + '" class="' + (v ? "set" : "") + '"><span class="eur">€</span></span>';
+}
+function itemRow(id, text, why, extra, price){
   const done = !!S.done[id];
   const note = S.notes[id] || "";
   return '<li class="item' + (done?" done":"") + '" data-id="' + id + '">' +
       '<input type="checkbox" id="cb-' + id + '"' + (done?" checked":"") + '>' +
       (extra || "") +
       '<label for="cb-' + id + '">' + esc(text) + (why ? '<span class="why">' + esc(why) + "</span>" : "") + "</label>" +
+      (price ? priceBox(id) : "") +
       '<button class="notebtn' + (note?" has":"") + '" data-note="' + id + '">' + (note?"užrašas ●":"užrašas") + "</button>" +
       '<div class="noteline" ' + (note?"":"hidden") + '><textarea rows="2" data-noteid="' + id + '" placeholder="Ką verta atsiminti apie šį punktą">' + esc(note) + "</textarea></div>" +
     "</li>";
@@ -880,7 +999,66 @@ function allIds(){
   const ids = [];
   PHASES.forEach(p => p.items.forEach((it,i)=> ids.push("do-"+p.id+"-"+i)));
   BUY.forEach(c => c.items.forEach((it,i)=> ids.push("buy-"+c.id+"-"+i)));
+  BAGS.forEach(b => b.items.forEach((it,i)=> ids.push("bag-"+b.id+"-"+i)));
+  BENEFITS.forEach((x,i)=> ids.push("fin-"+i));
   return ids;
+}
+function money(n){
+  return (Math.round(n*100)/100).toLocaleString("lt-LT", {minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits:2});
+}
+function budgetSums(){
+  let planned = 0, spent = 0, filled = 0, missing = 0;
+  BUY.forEach(c=> c.items.forEach((it,i)=>{
+    const id = "buy-"+c.id+"-"+i;
+    const v = Number(S.prices[id]) || 0;
+    if(v > 0){ planned += v; filled++; if(S.done[id]) spent += v; }
+    else if(!S.done[id]) missing++;
+  }));
+  return { planned, spent, left: planned - spent, filled, missing };
+}
+function catSum(cid){
+  let planned = 0, spent = 0;
+  const c = BUY.find(x=> x.id === cid);
+  c.items.forEach((it,i)=>{
+    const id = "buy-"+cid+"-"+i;
+    const v = Number(S.prices[id]) || 0;
+    if(v > 0){ planned += v; if(S.done[id]) spent += v; }
+  });
+  return { planned, spent };
+}
+function renderSums(){
+  const b = budgetSums();
+  const budget = Number(S.budget) || 0;
+  const box = document.getElementById("sumbox");
+  if(!box) return;
+  const over = budget > 0 && b.planned > budget;
+  let h = "<h2>Pirkinių biudžetas</h2><div class='figs'>" +
+    "<span class='fig spent'><b>" + money(b.spent) + " €</b><span>jau išleista</span></span>" +
+    "<span class='fig'><b>" + money(b.left) + " €</b><span>dar laukia</span></span>" +
+    "<span class='fig" + (over?" over":"") + "'><b>" + money(b.planned) + " €</b><span>iš viso suplanuota</span></span>" +
+    "</div>";
+  if(budget > 0){
+    const sp = Math.min(100, b.spent / budget * 100);
+    const pl = Math.min(100 - sp, Math.max(0, (b.planned - b.spent) / budget * 100));
+    const ov = over ? Math.min(100, (b.planned - budget) / budget * 100) : 0;
+    h += "<div class='bar'><i class='done' style='width:" + sp.toFixed(1) + "%'></i>" +
+         "<i class='plan' style='width:" + pl.toFixed(1) + "%'></i>" +
+         (ov ? "<i class='over' style='width:" + ov.toFixed(1) + "%'></i>" : "") + "</div>";
+  }
+  h += "<p class='sumnote'>" +
+    (budget > 0
+      ? (over ? "Suplanuota <b>" + money(b.planned - budget) + " €</b> daugiau nei numatyta (" + money(budget) + " €)."
+              : "Neperžengta: numatyta " + money(budget) + " €, telpa dar " + money(budget - b.planned) + " €.")
+      : "Įrašykite biudžetą, jei norite matyti, kiek dar telpa.") +
+    (b.missing ? " Kainos dar neįrašytos ties <b>" + b.missing + "</b> nenupirktais dalykais, tad tikroji suma bus didesnė." : "") +
+    "</p>" +
+    "<div class='row'><span class='price' style='font-size:.8rem'>Biudžetas <input type='text' inputmode='decimal' maxlength='9' id='budget-in' value='" + (budget || "") + "' placeholder='—' style='width:80px'><span class='eur'>€</span></span>" +
+    "<button class='btn ghost' id='price-clear'>Išvalyti visas kainas</button><span class='saved'>išsaugota</span></div>";
+  box.innerHTML = h;
+  document.querySelectorAll("[data-catsum]").forEach(el=>{
+    const c = catSum(el.dataset.catsum);
+    el.innerHTML = c.planned ? "<b>" + money(c.spent) + " €</b> / " + money(c.planned) + " €" : "";
+  });
 }
 function counts(prefix){
   let total=0, done=0;
@@ -888,15 +1066,17 @@ function counts(prefix){
   return {total, done};
 }
 function updateCounts(){
-  const d = counts("do-"), b = counts("buy-");
+  const d = counts("do-"), b = counts("buy-"), g = counts("bag-"), f = counts("fin-");
   document.getElementById("n-do").textContent = d.done + "/" + d.total;
   document.getElementById("n-buy").textContent = b.done + "/" + b.total;
   document.getElementById("n-cmt").textContent = COMMENTS.length ? String(COMMENTS.length) : "";
-  document.getElementById("stat-done").innerHTML = "pažymėta <b>" + (d.done+b.done) + "</b> iš " + (d.total+b.total);
+  document.getElementById("stat-done").innerHTML = "pažymėta <b>" + (d.done+b.done+g.done+f.done) + "</b> iš " + (d.total+b.total+g.total+f.total);
+  renderSize();
   document.querySelectorAll("[data-countfor]").forEach(el=>{
     const {total, done} = counts(el.dataset.countfor);
     el.textContent = done + " / " + total;
   });
+  renderSums();
 }
 
 /* ============================ calendar ============================ */
@@ -989,6 +1169,304 @@ function renderCal(){
   document.getElementById("p-cal").innerHTML = h;
 }
 
+/* ============================ gimdymo įrankiai ============================ */
+const BAGS = [
+  { id:"mama", title:"Gimdymui — mamai", items:[
+    "Asmens dokumentas ir nėštumo kortelė","Gimdymo planas, 2 kopijos","Chalatas ir šlepetės","Du dryžuoti marškinėliai, kuriuos nebus gaila",
+    "Guminė gumelė plaukams, 2","Higieninė lūpų priemonė","Vandens buteliukas su šiaudeliu","Užkandžiai, kuriuos galima valgyti viena ranka",
+    "Kojinės (kojos šąla net vasarą)","Ausinės ir muzika","Telefono įkroviklis ilgu laidu"
+  ]},
+  { id:"po", title:"Po gimdymo — mamai", items:[
+    "Prasisegantys naktiniai, 2","Maitinimo liemenėlė, 2","Įklotai po gimdymo, 1 pakuotė","Tamsios vienkartinės kelnaitės",
+    "Spenelių kremas","Buteliukas apsiplauti","Šlepetės dušui","Higienos reikmenys ir plaukų šepetys",
+    "Drabužiai važiuoti namo (tokie, kaip 6 nėštumo mėnesį)","Rankšluostis"
+  ]},
+  { id:"kudikis", title:"Kūdikiui", items:[
+    "Slepetukai, 3","Bodžiai, 3","Kepurytė, 2","Kojinytės ir pirštinaitės",
+    "Sauskelnės naujagimiui, 1 pakuotė","Drėgnos servetėlės","Vystyklas arba antklodėlė","Apranga važiuoti namo pagal orą",
+    "Automobilinė kėdutė (palikite automobilyje, ne krepšyje)","Maišas su kailiuku, jei šalta"
+  ]},
+  { id:"tetis", title:"Partneriui", items:[
+    "Užkandžiai ir vanduo dviem paroms","Grynųjų smulkiais ir kortelė","Atsarginiai marškinėliai","Įkroviklis",
+    "Automobilio raktai ir žinojimas, kur statyti","Sąrašas, kam pranešti","Pagalvė ar pledas — laukti tenka ilgai"
+  ]}
+];
+
+const CONTACT_SEED = [
+  ["Gimdymo skyrius",""],["Akušerė",""],["Vaikų gydytojas",""],["Šeimos gydytojas",""],
+  ["Greitoji — 112","112"],["Taksi",""],["Kaimynas su raktais",""]
+];
+
+/* Apytiksliai dydžiai. Skaičiai — vidurkiai, kiekvienas kūdikis savas. */
+const SIZES = {
+  8:["aviečių uoga","1,6 cm"],9:["vynuogę","2,3 cm"],10:["braškę","3,1 cm"],11:["žaliąją figą","4,1 cm"],
+  12:["kiaušinį","5,4 cm"],13:["citriną","7,4 cm"],14:["persiką","8,7 cm"],15:["obuolį","10,1 cm"],
+  16:["avokadą","11,6 cm"],17:["kriaušę","13 cm"],18:["papriką","14,2 cm"],19:["pomidorą","15,3 cm"],
+  20:["bananą","16,4 cm"],21:["morką","26,7 cm"],22:["cukiniją","27,8 cm"],23:["greipfrutą","28,9 cm"],
+  24:["burokėlį","30 cm"],25:["žiedinį kopūstą","34,6 cm"],26:["salotų galvą","35,6 cm"],27:["kalafiorą","36,6 cm"],
+  28:["baklažaną","37,6 cm"],29:["moliūgėlį","38,6 cm"],30:["kopūstą","39,9 cm"],31:["kokosą","41,1 cm"],
+  32:["salieros šaknį","42,4 cm"],33:["ananasą","43,7 cm"],34:["melioną","45 cm"],35:["medaus melioną","46,2 cm"],
+  36:["salotų romaine","47,4 cm"],37:["mangoldą","48,6 cm"],38:["porų puokštę","49,8 cm"],39:["arbūzėlį","50,7 cm"],
+  40:["nedidelį moliūgą","51,2 cm"],41:["arbūzą","51,5 cm"]
+};
+
+/* --- sąrėmių skaitiklis --- */
+function fmtDur(ms){
+  const s = Math.max(0, Math.round(ms/1000));
+  return String(Math.floor(s/60)).padStart(2,"0") + ":" + String(s%60).padStart(2,"0");
+}
+function fmtClock(ts){
+  const d = new Date(ts);
+  return String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
+}
+function contractionStats(){
+  const list = (S.contractions || []).filter(c=> c.end);
+  const cutoff = Date.now() - 3600000;
+  const hour = list.filter(c=> c.start >= cutoff);
+  if(hour.length < 2) return { n: hour.length, avgLen: 0, avgGap: 0, rule: false };
+  let len = 0, gap = 0;
+  hour.forEach(c=> len += c.end - c.start);
+  const sorted = hour.slice().sort((a,b)=> a.start - b.start);
+  for(let i = 1; i < sorted.length; i++) gap += sorted[i].start - sorted[i-1].start;
+  const avgLen = len / hour.length, avgGap = gap / (sorted.length - 1);
+  const span = sorted[sorted.length-1].start - sorted[0].start;
+  return { n: hour.length, avgLen, avgGap, rule: avgGap <= 5.5*60000 && avgLen >= 45000 && span >= 55*60000 };
+}
+let tickTimer = null;
+function renderBirth(){
+  const open = (S.contractions || []).find(c=> !c.end);
+  const st = contractionStats();
+  let h = "";
+
+  /* --- skaitiklis --- */
+  h += '<div class="pad"><h2>Sąrėmių skaitiklis</h2>' +
+    '<p class="hint">Spauskite, kai sąrėmis prasideda, ir dar kartą, kai baigiasi. Skaičiuoklė pati suras vidurkius ir pasakys, kada pasiekta 5–1–1 taisyklė.</p>' +
+    '<div class="timerwrap">' +
+      '<button class="bigbtn' + (open ? " stop" : "") + '" id="ctr-btn">' +
+        (open ? "Baigėsi" : "Prasidėjo") + "</button>" +
+      '<div class="timerread"><b id="ctr-live">' + (open ? fmtDur(Date.now() - open.start) : "00:00") + "</b>" +
+      "<span>" + (open ? "vyksta dabar" : "paspauskite, kai prasidės") + "</span></div>" +
+    "</div>";
+  if(st.n >= 2){
+    h += "<div class='figs' style='margin-top:14px'>" +
+      "<span class='fig'><b>" + fmtDur(st.avgLen) + "</b><span>vidutinė trukmė</span></span>" +
+      "<span class='fig'><b>" + fmtDur(st.avgGap) + "</b><span>tarpas tarp pradžių</span></span>" +
+      "<span class='fig'><b>" + st.n + "</b><span>per pastarąją valandą</span></span></div>";
+  }
+  h += "<p class='sumnote'" + (st.rule ? " style='color:#8A3A1A;font-weight:500'" : "") + ">" +
+    (st.rule
+      ? "Pasiekta 5–1–1: sąrėmiai kas penkias minutes, po minutę, jau valandą. Metas skambinti į gimdymo skyrių."
+      : "Skambinkite ir anksčiau, jei nubėgo vandenys, prasidėjo kraujavimas, pakilo temperatūra arba nebegalite prakalbėti per sąrėmį. Nelaukite skaičiaus.") + "</p>";
+  const list = (S.contractions || []).slice().sort((a,b)=> b.start - a.start).slice(0,12);
+  if(list.length){
+    h += "<ul class='up' style='margin-top:6px'>";
+    list.forEach((c,i)=>{
+      h += "<li><time>" + fmtClock(c.start) + "</time><span>" +
+           (c.end ? "truko " + fmtDur(c.end - c.start) : "vyksta…") + "</span>" +
+           "<button class='x' data-ctrdel='" + c.start + "' style='margin-left:auto'>šalinti</button></li>";
+    });
+    h += "</ul><div class='row'><button class='btn ghost' id='ctr-clear'>Išvalyti sąrašą</button></div>";
+  }
+  h += "</div>";
+
+  /* --- telefonai --- */
+  h += '<div class="pad"><h2>Telefonai</h2><p class="hint">Užpildykite iš anksto. Trečią nakties nieko ieškoti nereikės.</p><ul class="items" style="padding:0">';
+  const cts = S.contacts && S.contacts.length ? S.contacts : CONTACT_SEED.map((c,i)=>({ id:"k"+i, label:c[0], phone:c[1] }));
+  cts.forEach(c=>{
+    h += '<li class="item" style="padding:8px 0"><span class="clabel">' + esc(c.label) + "</span>" +
+         '<input type="text" inputmode="tel" class="cphone" data-contact="' + c.id + '" value="' + esc(c.phone||"") + '" placeholder="numeris">' +
+         (c.phone ? '<a class="callbtn" href="tel:' + esc(String(c.phone).replace(/\s/g,"")) + '">skambinti</a>' : "") +
+         "</li>";
+  });
+  h += "</ul></div>";
+
+  /* --- krepšys --- */
+  h += '<div class="note-strip">Krepšį verta susikrauti iki 36 savaitės ir laikyti prieškambaryje. Automobilinė kėdutė lieka automobilyje.</div>';
+  BAGS.forEach(b=>{
+    h += '<section class="section"><header><h2>' + b.title + "</h2>" +
+         "<span class='count' data-countfor='bag-" + b.id + "-'></span></header><ul class='items'>";
+    b.items.forEach((t,i)=> h += itemRow("bag-"+b.id+"-"+i, t, ""));
+    h += "</ul></section>";
+  });
+  document.getElementById("p-birth").innerHTML = h;
+
+  clearInterval(tickTimer);
+  if(open){
+    tickTimer = setInterval(()=>{
+      const el = document.getElementById("ctr-live");
+      const cur = (S.contractions || []).find(c=> !c.end);
+      if(el && cur) el.textContent = fmtDur(Date.now() - cur.start);
+      else clearInterval(tickTimer);
+    }, 1000);
+  }
+}
+
+/* --- vardų balsavimas --- */
+function renderNames(){
+  const box = document.getElementById("namebox");
+  if(!box) return;
+  const me = (ME.who || "").trim() || "Aš";
+  const list = S.names || [];
+  const named = !!(ME.who || "").trim();
+  let h = '<p class="hint">Įrašykite vardą ir abu pažymėkite. Kai abiem „taip“, vardas pakyla į viršų ir pažaliuoja.</p>' +
+    (named ? '<p class="hint">Balsuojate kaip <b>' + esc(me) + '</b>.</p>'
+           : '<div class="row"><input type="text" id="me-in" placeholder="Kuo jus vadinti?" style="flex:1;min-width:150px">' +
+             '<button class="btn ghost" id="me-save">Prisistatyti</button></div>' +
+             '<p class="hint">Kol neprisistatėte, jūsų ir žmonos balsai susimaišytų.</p>') +
+    '<div class="row"><input type="text" id="name-in" placeholder="Vardas" style="flex:1;min-width:160px">' +
+    '<button class="btn" id="name-add">Pridėti</button><span class="saved">išsaugota</span></div>';
+  if(!list.length){ h += '<p class="empty">Kol kas tuščia. Pradėkite nuo bet kurio vardo — atmesti visada galima.</p>'; }
+  else {
+    const score = n=>{
+      const v = Object.values(n.votes || {});
+      if(v.length >= 2 && v.every(x=> x === "yes")) return 3;
+      if(v.includes("no")) return 0;
+      if(v.includes("yes")) return 2;
+      return 1;
+    };
+    const sorted = list.slice().sort((a,b)=> score(b) - score(a) || a.text.localeCompare(b.text, "lt"));
+    h += "<ul class='namelist'>";
+    sorted.forEach(n=>{
+      const mine = (n.votes || {})[me] || "";
+      const others = Object.keys(n.votes || {}).filter(k=> k !== me);
+      const agreed = score(n) === 3;
+      h += "<li class='nameitem" + (agreed ? " agreed" : "") + (score(n) === 0 ? " nope" : "") + "'>" +
+        "<span class='nametext'>" + esc(n.text) + "</span>" +
+        "<span class='votes'>" +
+          ["yes","maybe","no"].map(v=>
+            "<button class='vote " + v + (mine === v ? " on" : "") + "' data-vote='" + n.id + "|" + v + "'>" +
+            (v === "yes" ? "taip" : v === "maybe" ? "gal" : "ne") + "</button>").join("") +
+        "</span>" +
+        (others.length ? "<span class='who2'>" + others.map(o=> esc(o) + ": " +
+            ({yes:"taip",maybe:"gal",no:"ne"}[n.votes[o]] || "—")).join(", ") + "</span>" : "") +
+        "<button class='x' data-namedel='" + n.id + "'>šalinti</button></li>";
+    });
+    h += "</ul>";
+  }
+  box.innerHTML = h;
+}
+
+/* --- savaitinis dydis --- */
+function renderSize(){
+  const el = document.getElementById("sizeline");
+  if(!el) return;
+  const { week, daysLeft } = dueInfo();
+  const s = SIZES[week];
+  if(daysLeft <= 0){ el.textContent = "Terminas praėjo — dabar jau ne apie dydį."; return; }
+  if(!s){ el.textContent = ""; return; }
+  el.innerHTML = "Šią savaitę kūdikis primena <b>" + s[0] + "</b> · apie " + s[1];
+}
+
+/* ============================ finansai ============================ */
+const BENEFITS = [
+  ["Išmoka nėščiajai","Skiriama nedirbančioms ir nedraustoms. Pasitikslinkite, ar jums priklauso."],
+  ["Motinystės išmoka (nėštumo ir gimdymo atostogos)","Teikiama „Sodrai“ prieš atostogas. Priklauso nuo ankstesnių pajamų."],
+  ["Tėvystės išmoka","Trumpos atostogos iškart po gimimo. Pateikti reikia atskirai."],
+  ["Vaiko priežiūros išmoka","Pasirinkite trukmę — iki vaikui sueis vieni ar dveji metai. Pasirinkimas nekeičiamas, tad suskaičiuokite abu variantus."],
+  ["Vienkartinė išmoka gimus vaikui","Kreipiamasi į savivaldybę."],
+  ["Vaiko pinigai (mėnesinė išmoka)","Mokama kas mėnesį iki pilnametystės."],
+  ["Neapmokestinamojo dydžio pakeitimas darbovietėje","Pranešti buhalterijai."],
+  ["Vaiko įtraukimas į sveikatos draudimą",""]
+];
+
+function num(v){ const n = parseFloat(String(v == null ? "" : v).replace(/\s/g,"").replace(",", ".")); return isFinite(n) ? n : 0; }
+function fin(){ S.fin = S.fin || {}; return S.fin; }
+function finRow(key, label, hint){
+  return '<li class="finrow"><span class="finlab">' + esc(label) +
+    (hint ? '<span class="finhint">' + esc(hint) + "</span>" : "") + "</span>" +
+    '<span class="price"><input type="text" inputmode="decimal" maxlength="10" data-fin="' + key +
+    '" value="' + (fin()[key] ? fin()[key] : "") + '" placeholder="—" style="width:86px"><span class="eur">€</span></span></li>';
+}
+function renderFin(){
+  const f = fin();
+  const inNow = num(f.incomeNow), inLeave = num(f.incomeLeave);
+  const exNow = num(f.expensesNow), exBaby = num(f.extraBaby);
+  const savings = num(f.savings);
+  const balNow = inNow - exNow;
+  const balLater = inLeave - exNow - exBaby;
+  const drop = inNow - inLeave;
+  const b = budgetSums();
+  const oneoffs = (f.oneoffs || []).reduce((a,x)=> a + num(x.amount), 0);
+  const totalOneoff = b.planned + oneoffs;
+  const months = balLater < 0 && savings > 0 ? savings / Math.abs(balLater) : 0;
+
+  let h = '<div class="note-strip">Skaičiuoklė, ne konsultacija. Sumas įrašote patys — išmokų dydžiai keičiasi kasmet, tad tikslius skaičius pasitikrinkite <b>sodra.lt</b> ir savo savivaldybėje. Aš finansų patarėjas nesu.</div>';
+
+  /* mėnesio vaizdas */
+  h += '<div class="pad"><h2>Mėnesio vaizdas</h2><p class="hint">Įrašykite tai, ką žinote. Tuščius laukelius skaičiuoklė laiko nuliais.</p><ul class="finlist">' +
+    finRow("incomeNow","Pajamos dabar","abiejų kartu, į rankas") +
+    finRow("incomeLeave","Pajamos per atostogas","išmokos ir dirbančiojo alga") +
+    finRow("expensesNow","Dabartinės mėnesio išlaidos","būstas, maistas, paskolos, viskas") +
+    finRow("extraBaby","Papildomos kūdikio išlaidos","sauskelnės, mišinys, vaistinė, priežiūra") +
+    "</ul>";
+  h += "<div class='figs' style='margin-top:14px'>" +
+    "<span class='fig'><b>" + money(balNow) + " €</b><span>lieka dabar per mėnesį</span></span>" +
+    "<span class='fig" + (balLater < 0 ? " over" : " spent") + "'><b>" + money(balLater) + " €</b><span>liks po gimimo</span></span>" +
+    "<span class='fig'><b>" + money(drop) + " €</b><span>pajamų kritimas</span></span></div>";
+  h += "<p class='sumnote'>" +
+    (inNow === 0 && inLeave === 0 ? "Įrašykite pajamas, kad pamatytumėte prognozę."
+     : balLater < 0 ? "Kas mėnesį trūktų <b>" + money(Math.abs(balLater)) + " €</b>. Tai normali padėtis pirmaisiais metais — svarbu iš anksto žinoti, iš kur tie pinigai ateis."
+     : "Prognozė teigiama: kas mėnesį liktų " + money(balLater) + " €.") + "</p></div>";
+
+  /* rezervas */
+  h += '<div class="pad"><h2>Rezervas</h2><ul class="finlist">' +
+    finRow("savings","Santaupos šiandien","tai, ką galėtumėte panaudoti") +
+    "</ul>";
+  if(savings > 0 && balLater < 0){
+    h += "<div class='figs' style='margin-top:12px'>" +
+      "<span class='fig" + (months < 6 ? " over" : " spent") + "'><b>" + (Math.round(months*10)/10).toString().replace(".",",") + " mėn.</b><span>tiek padengtų trūkumą</span></span>" +
+      "<span class='fig'><b>" + money(Math.abs(balLater) * 12) + " €</b><span>reikėtų metams</span></span></div>" +
+      "<p class='sumnote'>" + (months < 6
+        ? "Trumpiau nei pusmetis. Verta arba padidinti rezervą, arba iš anksto nuspręsti, kurias išlaidas mažinsite."
+        : "Rezervo pakanka ilgesniam laikui — tai reta ir gera pozicija.") + "</p>";
+  } else if(savings > 0){
+    h += "<p class='sumnote'>Prognozė teigiama, tad rezervas lieka nepaliestas. Vis tiek verta turėti bent trijų mėnesių išlaidų atsargą netikėtumams.</p>";
+  } else {
+    h += "<p class='sumnote'>Įrašykite santaupas, kad pamatytumėte, kiek laiko jos padengtų trūkumą.</p>";
+  }
+  h += "</div>";
+
+  /* vienkartinės */
+  h += '<div class="pad"><h2>Vienkartinės išlaidos</h2>' +
+    "<p class='hint'>Pirkinių suma atkeliauja iš skilties „Ką nupirkti“ ir atsinaujina pati. Žemiau pridėkite tai, ko ten nėra.</p>" +
+    "<ul class='finlist'><li class='finrow'><span class='finlab'>Pirkinių sąrašas<span class='finhint'>" +
+    b.filled + " kainų įrašyta, " + b.missing + " dar ne</span></span>" +
+    "<span class='price'><b style='font-family:var(--data);font-size:.85rem'>" + money(b.planned) + " €</b></span></li>";
+  (f.oneoffs || []).forEach(o=>{
+    h += "<li class='finrow'><span class='finlab'>" + esc(o.label) + "</span>" +
+      "<span class='price'><input type='text' inputmode='decimal' maxlength='10' data-oneoff='" + o.id + "' value='" +
+      (o.amount || "") + "' placeholder='—' style='width:86px'><span class='eur'>€</span></span>" +
+      "<button class='x' data-oneoffdel='" + o.id + "'>šalinti</button></li>";
+  });
+  h += "</ul><div class='row'><input type='text' id='oneoff-in' placeholder='Pvz. gimdymo kursai, kėdutės montavimas' style='flex:1;min-width:200px'>" +
+    "<button class='btn ghost' id='oneoff-add'>Pridėti eilutę</button></div>" +
+    "<div class='figs' style='margin-top:14px'><span class='fig'><b>" + money(totalOneoff) +
+    " €</b><span>iš viso vienkartinių</span></span></div></div>";
+
+  /* išmokos */
+  h += '<div class="pad"><h2>Ką pateikti</h2><p class="hint">Sąrašas, ko nepamiršti. Sumas ir terminus pasitikrinkite oficialiuose šaltiniuose — jie kasmet keičiasi.</p></div>';
+  h += '<section class="section"><header><h2>Išmokos ir dokumentai</h2>' +
+    "<span class='count' data-countfor='fin-'></span></header><ul class='items'>";
+  BENEFITS.forEach((x,i)=> h += itemRow("fin-" + i, x[0], x[1]));
+  h += "</ul></section>";
+
+  document.getElementById("p-fin").innerHTML = h;
+  document.querySelectorAll("[data-countfor='fin-']").forEach(el=>{
+    const c = counts("fin-"); el.textContent = c.done + " / " + c.total;
+  });
+}
+function addOneoff(){
+  const input = document.getElementById("oneoff-in");
+  const t = (input.value || "").trim();
+  if(!t){ input.focus(); return; }
+  const f = fin();
+  f.oneoffs = f.oneoffs || [];
+  f.oneoffs.push({ id: "o" + Date.now() + Math.random().toString(36).slice(2,5), label: t, amount: "" });
+  queueSave(); renderFin();
+  const again = document.getElementById("oneoff-in");
+  if(again){ again.value = ""; again.focus(); }
+}
+
 /* ============================ panels ============================ */
 function renderDo(){
   const {week} = dueInfo();
@@ -1008,15 +1486,17 @@ function renderDo(){
 }
 function renderBuy(){
   let h = '<div class="toolbar"><label class="switch"><input type="checkbox" id="hd-buy"' + (ME.hideDone?" checked":"") + '> Slėpti tai, kas nupirkta</label><span class="saved">išsaugota</span></div>';
+  h += '<div class="sum" id="sumbox"></div>';
   h += '<div class="' + (ME.hideDone?"hide-done":"") + '" id="buy-list">';
   BUY.forEach(c=>{
     h += '<section class="section"><header><h2>' + c.title + "</h2>" +
+         "<span class='catsum' data-catsum='" + c.id + "'></span>" +
          "<span class='count' data-countfor='buy-" + c.id + "-'></span></header><ul class='items'>";
     c.items.forEach((it,i)=>{
       const tier = it[1]==="core" ? '<span class="tier core">būtina</span>'
                  : it[1]==="nice" ? '<span class="tier">praverstų</span>'
                  : '<span class="tier">palaukti</span>';
-      h += itemRow("buy-"+c.id+"-"+i, it[0], it[2], tier);
+      h += itemRow("buy-"+c.id+"-"+i, it[0], it[2], tier, true);
     });
     h += "</ul>";
     if(c.skip) h += '<div class="skip"><span class="k">nepirkti</span><p>' + esc(c.skip) + "</p></div>";
@@ -1050,6 +1530,7 @@ function renderPad(){
     h += '<div class="pad"><h2>' + p[1] + '</h2><p class="hint">' + p[2] + "</p>" +
          '<textarea data-pad="' + p[0] + '" placeholder="Rašykite — išsisaugo automatiškai">' + esc(S.pad[p[0]]||"") + "</textarea></div>";
   });
+  h = '<div class="pad"><h2>Vardai</h2><div id="namebox"></div></div>' + h;
   h += '<div class="pad"><h2>Sinchronizavimas</h2>' +
        '<p class="hint">' + (online()
          ? 'Įjungta. Kambarys: <b>' + esc(cfg.room) + '</b>. Nuoroda žmonai turi būti su nustatymais — pasiimkite ją mygtuku žemiau.'
@@ -1074,6 +1555,7 @@ function renderPad(){
        '<button class="btn ghost" id="backup-load">Atkurti iš kopijos</button>' +
        '<span class="saved" id="backup-note">gerai</span></div></div>';
   document.getElementById("p-pad").innerHTML = h;
+  renderNames();
 }
 function renderCmt(){
   let h = '<div class="pad"><h2>Palikti komentarą</h2><p class="hint">Tam, kas netelpa į sąrašą. Šią giją mato visi, turintys nuorodą.</p>' +
@@ -1099,7 +1581,7 @@ function renderCmt(){
 document.querySelectorAll(".tab").forEach(btn=>{
   btn.addEventListener("click", ()=>{
     document.querySelectorAll(".tab").forEach(b=> b.setAttribute("aria-selected", String(b===btn)));
-    ["do","cal","buy","kb","tips","pad","cmt"].forEach(id=>{
+    ["do","cal","buy","fin","birth","kb","tips","pad","cmt"].forEach(id=>{
       document.getElementById("p-"+id).hidden = (id !== btn.dataset.tab);
     });
     window.scrollTo({top:0, behavior:"smooth"});
@@ -1180,6 +1662,79 @@ document.addEventListener("click", e=>{
   }
   if(e.target.id === "refresh" || e.target.closest("#refresh")){ stamp("tikrinama"); pull(true); return; }
   if(e.target.id === "ev-add"){ addEvent(); return; }
+  if(e.target.id === "oneoff-add"){ addOneoff(); return; }
+  const odel = e.target.closest("[data-oneoffdel]");
+  if(odel){
+    const f = fin();
+    f.oneoffs = (f.oneoffs || []).filter(x=> x.id !== odel.dataset.oneoffdel);
+    queueSave(); renderFin();
+    return;
+  }
+  if(e.target.id === "hardreload"){
+    const u = new URL(location.href);
+    u.searchParams.set("v", String(Date.now()));
+    location.replace(u.toString());
+    return;
+  }
+  if(e.target.id === "ctr-btn"){
+    S.contractions = S.contractions || [];
+    const open = S.contractions.find(c=> !c.end);
+    if(open) open.end = Date.now();
+    else S.contractions.push({ start: Date.now(), end: 0 });
+    if(S.contractions.length > 80) S.contractions = S.contractions.slice(-80);
+    queueSave(); renderBirth(); updateCounts();
+    return;
+  }
+  const cdel = e.target.closest("[data-ctrdel]");
+  if(cdel){
+    const st = Number(cdel.dataset.ctrdel);
+    S.contractions = (S.contractions || []).filter(c=> c.start !== st);
+    queueSave(); renderBirth(); updateCounts();
+    return;
+  }
+  if(e.target.id === "ctr-clear"){
+    const btn = e.target;
+    if(btn.dataset.armed){ S.contractions = []; queueSave(); renderBirth(); updateCounts(); }
+    else {
+      btn.dataset.armed = "1"; btn.textContent = "dar kartą — išvalysiu";
+      setTimeout(()=>{ if(btn.isConnected){ delete btn.dataset.armed; btn.textContent = "Išvalyti sąrašą"; } }, 4000);
+    }
+    return;
+  }
+  if(e.target.id === "name-add"){ addName(); return; }
+  if(e.target.id === "me-save"){
+    const v = (document.getElementById("me-in").value || "").trim();
+    if(v){ ME.who = v; queueSaveMe(); renderNames(); renderCmt(); }
+    return;
+  }
+  const vt = e.target.closest("[data-vote]");
+  if(vt){
+    const [nid, val] = vt.dataset.vote.split("|");
+    const me = (ME.who || "").trim() || "Aš";
+    const n = (S.names || []).find(x=> x.id === nid);
+    if(n){
+      n.votes = n.votes || {};
+      if(n.votes[me] === val) delete n.votes[me]; else n.votes[me] = val;
+      queueSave(); renderNames();
+    }
+    return;
+  }
+  const ndel = e.target.closest("[data-namedel]");
+  if(ndel){
+    S.names = (S.names || []).filter(x=> x.id !== ndel.dataset.namedel);
+    queueSave(); renderNames();
+    return;
+  }
+  if(e.target.id === "price-clear"){
+    const btn = e.target;
+    if(btn.dataset.armed){
+      S.prices = {}; queueSave(); renderBuy(); updateCounts();
+    } else {
+      btn.dataset.armed = "1"; btn.textContent = "dar kartą — išvalysiu";
+      setTimeout(()=>{ if(btn.isConnected){ delete btn.dataset.armed; btn.textContent = "Išvalyti visas kainas"; } }, 4000);
+    }
+    return;
+  }
   if(e.target.id === "cfg-gen"){
     const r = Math.random().toString(36).slice(2,8) + Math.random().toString(36).slice(2,6);
     document.getElementById("cfg-room").value = "planas-" + r;
@@ -1248,6 +1803,19 @@ document.addEventListener("click", e=>{
   }
 });
 
+function addName(){
+  const input = document.getElementById("name-in");
+  const t = (input.value || "").trim();
+  if(!t){ input.focus(); return; }
+  S.names = S.names || [];
+  if(S.names.some(n=> n.text.toLowerCase() === t.toLowerCase())){ input.value = ""; return; }
+  const me = (ME.who || "").trim() || "Aš";
+  const votes = {}; votes[me] = "yes";
+  S.names.push({ id: "n" + Date.now() + Math.random().toString(36).slice(2,5), text: t, votes: votes });
+  queueSave(); renderNames();
+  const again = document.getElementById("name-in");
+  if(again){ again.value = ""; again.focus(); }
+}
 function addEvent(){
   const input = document.getElementById("ev-text");
   const t = input.value.trim();
@@ -1259,6 +1827,8 @@ function addEvent(){
 }
 document.addEventListener("keydown", e=>{
   if(e.key === "Enter" && e.target.id === "ev-text"){ e.preventDefault(); addEvent(); }
+  if(e.key === "Enter" && e.target.id === "name-in"){ e.preventDefault(); addName(); }
+  if(e.key === "Enter" && e.target.id === "oneoff-in"){ e.preventDefault(); addOneoff(); }
 });
 
 document.addEventListener("input", e=>{
@@ -1273,6 +1843,65 @@ document.addEventListener("input", e=>{
     queueSave();
   }
   if(ta.dataset.pad){ S.pad[ta.dataset.pad] = ta.value; queueSave(); }
+  if(ta.dataset.price){
+    const id = ta.dataset.price;
+    const v = parseFloat(String(ta.value).replace(/\s/g, "").replace(",", "."));
+    if(isFinite(v) && v > 0) S.prices[id] = Math.round(v*100)/100; else delete S.prices[id];
+    ta.classList.toggle("set", !!S.prices[id]);
+    const b = budgetSums(), budget = Number(S.budget) || 0;
+    document.querySelectorAll("[data-catsum]").forEach(el=>{
+      const c = catSum(el.dataset.catsum);
+      el.innerHTML = c.planned ? "<b>" + money(c.spent) + " €</b> / " + money(c.planned) + " €" : "";
+    });
+    const figs = document.querySelectorAll("#sumbox .fig b");
+    if(figs.length === 3){
+      figs[0].textContent = money(b.spent) + " €";
+      figs[1].textContent = money(b.left) + " €";
+      figs[2].textContent = money(b.planned) + " €";
+      figs[2].parentElement.classList.toggle("over", budget > 0 && b.planned > budget);
+    }
+    queueSave();
+  }
+  if(ta.dataset.fin){
+    fin()[ta.dataset.fin] = ta.value;
+    queueSave();
+    clearTimeout(window.__ft);
+    window.__ft = setTimeout(()=>{ if(document.activeElement !== ta) renderFin(); }, 700);
+    const f = fin();
+    const bl = num(f.incomeLeave) - num(f.expensesNow) - num(f.extraBaby);
+    const figs = document.querySelectorAll("#p-fin .figs .fig b");
+    if(figs.length >= 3){
+      figs[0].textContent = money(num(f.incomeNow) - num(f.expensesNow)) + " €";
+      figs[1].textContent = money(bl) + " €";
+      figs[2].textContent = money(num(f.incomeNow) - num(f.incomeLeave)) + " €";
+      figs[1].parentElement.classList.toggle("over", bl < 0);
+      figs[1].parentElement.classList.toggle("spent", bl >= 0);
+    }
+    return;
+  }
+  if(ta.dataset.oneoff){
+    const f = fin();
+    const o = (f.oneoffs || []).find(x=> x.id === ta.dataset.oneoff);
+    if(o){ o.amount = ta.value; queueSave();
+      clearTimeout(window.__ot);
+      window.__ot = setTimeout(()=>{ if(document.activeElement !== ta) renderFin(); }, 700); }
+    return;
+  }
+  if(ta.dataset.contact){
+    const id = ta.dataset.contact;
+    if(!S.contacts || !S.contacts.length){
+      S.contacts = CONTACT_SEED.map((c,i)=>({ id:"k"+i, label:c[0], phone:c[1] }));
+    }
+    const c = S.contacts.find(x=> x.id === id);
+    if(c){ c.phone = ta.value; queueSave(); }
+  }
+  if(ta.id === "budget-in"){
+    const v = parseFloat(String(ta.value).replace(/\s/g, "").replace(",", "."));
+    S.budget = (isFinite(v) && v > 0) ? Math.round(v*100)/100 : 0;
+    queueSave();
+    clearTimeout(window.__bt);
+    window.__bt = setTimeout(()=>{ if(document.activeElement !== ta) renderSums(); }, 800);
+  }
 });
 
 
@@ -1281,8 +1910,10 @@ document.addEventListener("input", e=>{
   buildTicks();
   await loadAll();
   document.getElementById("dueinput").value = S.dueDate;
-  renderHeader(); renderDo(); renderCal(); renderBuy(); renderKb(); renderTips(); renderPad(); renderCmt();
+  renderHeader(); renderDo(); renderCal(); renderBuy(); renderFin(); renderBirth(); renderKb(); renderTips(); renderPad(); renderCmt();
   updateCounts();
+  document.getElementById("vbadge").textContent = VERSION + " · " + BUILT;
+  document.getElementById("vwhat").textContent = "Šioje versijoje: " + CHANGES;
   banner();
   stamp(online() ? "sinchronizuota" : "tik šiame įrenginyje");
   setInterval(()=> pull(false), 30000);
