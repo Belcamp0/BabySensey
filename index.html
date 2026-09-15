@@ -437,13 +437,46 @@ html.dark .editline input{background:#141A1D}
   border-radius:2px;font-size:.7rem;line-height:1;padding:2px 4px;vertical-align:middle;margin-left:2px
 }
 .lchip:hover{background:rgba(30,74,69,.1)}
-.only-core .item[data-tier="nice"],.only-core .item[data-tier="later"]{display:none}
+/* filtro juosta */
+.tierbar{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}
+.tchip{
+  display:inline-flex;align-items:center;gap:7px;cursor:pointer;border-radius:99px;
+  border:1px solid var(--line);background:transparent;color:var(--slate);
+  font-family:var(--display);font-size:.88rem;font-weight:500;padding:6px 13px
+}
+.tchip span{font-family:var(--data);font-size:.68rem;opacity:.75}
+.tchip:hover{color:var(--ink);border-color:var(--slate)}
+.tchip.on.t-core{background:var(--spruce);border-color:var(--spruce);color:#F4F8F7}
+.tchip.on.t-nice{background:#5E8C7D;border-color:#5E8C7D;color:#F4F8F7}
+.tchip.on.t-later{background:#94A5AC;border-color:#94A5AC;color:#FBFDFD}
+html.dark .tchip.on{color:#0E1614}
+.tchip.reset{border-style:dashed}
+/* prioriteto žyma — spustelima */
+.tier{cursor:pointer;transition:background .15s ease}
+.tier:hover{border-color:var(--slate);color:var(--ink)}
+.tier.core{color:var(--spruce);border-color:rgba(30,74,69,.4)}
+.tier.nice{color:#4C7466;border-color:rgba(76,116,102,.35)}
+.tier.later{color:var(--slate);border-color:var(--line)}
+/* sulankstomos kategorijos */
+.section > header[data-fold]{cursor:pointer;user-select:none}
+.section > header[data-fold]:hover h2{color:var(--spruce)}
+.foldx{font-family:var(--data);font-size:.8rem;color:var(--slate);margin-left:8px}
+.section.folded > header{border-bottom:0}
+.section.folded .secbody{display:none}
 .fig.core b{color:var(--amber)}
 .corenote{
   font-family:var(--data);font-size:.68rem;letter-spacing:.05em;color:var(--slate);
   margin:0 0 10px;padding:8px 11px;background:rgba(227,155,46,.1);border-radius:3px
 }
 .corenote b{color:var(--ink)}
+.delx{
+  flex:0 0 auto;width:24px;height:24px;margin-top:1px;padding:0;cursor:pointer;
+  border:1px solid transparent;border-radius:50%;background:transparent;color:var(--slate);
+  font-family:var(--data);font-size:1rem;line-height:1
+}
+.delx:hover{border-color:rgba(138,58,26,.4);color:#8A3A1A;background:rgba(138,58,26,.07)}
+.delx.arm{background:#B5502A;border-color:#B5502A;color:#FDF3EE;animation:armpulse 1s ease-in-out infinite}
+@keyframes armpulse{0%,100%{box-shadow:0 0 0 0 rgba(181,80,42,.45)}50%{box-shadow:0 0 0 6px rgba(181,80,42,0)}}
 .gonerow{
   display:flex;align-items:center;gap:10px;padding:8px 18px;
   font-family:var(--data);font-size:.68rem;letter-spacing:.06em;color:var(--slate);
@@ -703,9 +736,9 @@ footer.foot{margin-top:40px;font-size:.85rem;color:var(--slate);border-top:1px s
 </div>
 
 <script>
-const VERSION = "v16";
+const VERSION = "v18";
 const BUILT = "2026-08-11";
-const CHANGES = "filtras „tik būtiniausi“ ir atskira jų suma; prekių šalinimas su galimybe grąžinti; matyti, kas ką nupirko, ir kiek išleido kiekvienas; anatominis vaisiaus vaizdas gimdoje, didesnis smulkus tekstas, pritaikymas telefonui; skiltis „Kūdikis“ po gimimo — maitinimai, sauskelnės, miegas, svoris; pradinis nustatymas, skambutis iš skaitiklio, kalendoriaus perkėlimas, spausdinimas, savaitinės kopijos";
+const CHANGES = "pirkinių filtras pagal prioritetą, prioriteto keitimas, sulankstomos kategorijos; šalinimo mygtukas prie kiekvienos prekės; matyti, kas ką nupirko, ir kiek išleido kiekvienas; anatominis vaisiaus vaizdas gimdoje, didesnis smulkus tekstas, pritaikymas telefonui; skiltis „Kūdikis“ po gimimo — maitinimai, sauskelnės, miegas, svoris; pradinis nustatymas, skambutis iš skaitiklio, kalendoriaus perkėlimas, spausdinimas, savaitinės kopijos";
 
 /* ============================ turinys ============================ */
 const PHASES = [
@@ -960,7 +993,7 @@ const MILESTONES = [
 /* ============================ būsena ir sinchronizavimas ============================ */
 /* S  — bendras planas, laikomas duomenų bazėje ir šios naršyklės atmintyje.
    ME — tik šis įrenginys: jūsų vardas ir rodymo nustatymai.               */
-const DEFAULTS = { dueDate:"2027-01-25", done:{}, notes:{}, pad:{names:"",questions:"",general:""}, events:{}, prices:{}, budget:0, contractions:[], contacts:[], names:[], fin:{}, snooze:{}, labels:{}, links:{}, extra:{}, born:"", log:[], weights:[], buyer:{}, people:["Saulius","Dagnė"], hidden:{} };
+const DEFAULTS = { dueDate:"2027-01-25", done:{}, notes:{}, pad:{names:"",questions:"",general:""}, events:{}, prices:{}, budget:0, contractions:[], contacts:[], names:[], fin:{}, snooze:{}, labels:{}, links:{}, extra:{}, born:"", log:[], weights:[], buyer:{}, people:["Saulius","Dagnė"], hidden:{}, tiers:{} };
 let S = JSON.parse(JSON.stringify(DEFAULTS));
 let ME = { who:"", hideDone:false };
 let COMMENTS = [];
@@ -1276,12 +1309,32 @@ function editLine(id, custom){
     '<input type="text" class="ename" data-label="' + id + '" placeholder="Prekės pavadinimas">' +
     '<input type="text" class="elink" inputmode="url" data-link="' + id + '" value="' + esc(url) + '" placeholder="https://parduotuve.lt/preke">' +
     '<button class="btn ghost small" data-editdone="' + id + '">Gerai</button>' +
-    '<button class="btn ghost small danger" data-itemdel="' + id + '">Šalinti</button>' +
+
     "</div>";
 }
 function linkChip(id){
   const u = safeUrl((S.links && S.links[id]) || "");
   return u ? ' <a class="lchip" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer" title="Atidaryti parduotuvėje">↗</a>' : "";
+}
+const TIERS = [["core","būtina"],["nice","praverstų"],["later","palaukti"]];
+function tierOf(id, def){ return (S.tiers || {})[id] || def || "core"; }
+function tierName(t){ const x = TIERS.find(y=> y[0] === t); return x ? x[1] : t; }
+function tierShow(){
+  const t = ME.tierShow || {};
+  return { core: t.core !== 0, nice: t.nice !== 0, later: t.later !== 0 };
+}
+function buyRows(){
+  const out = [];
+  BUY.forEach(c=>{
+    c.items.forEach((it,i)=>{
+      const id = "buy-" + c.id + "-" + i;
+      if(!(S.hidden || {})[id]) out.push({ id, cat: c.id, text: label(id, it[0]), why: it[2], tier: tierOf(id, it[1]), own: false });
+    });
+    ((S.extra && S.extra[c.id]) || []).forEach(x=>{
+      if(!(S.hidden || {})[x.id]) out.push({ id: x.id, cat: c.id, text: label(x.id, x.text), why: "", tier: tierOf(x.id, "core"), own: true });
+    });
+  });
+  return out;
 }
 function people(){
   const p = (S.people && S.people.length) ? S.people : ["Saulius", "Dagnė"];
@@ -1312,6 +1365,7 @@ function itemRow(id, text, why, extra, price, tier){
       (price ? priceBox(id) : "") +
       (price ? buyerChip(id) : "") +
       (price ? '<button class="notebtn" data-edit="' + id + '">keisti</button>' : "") +
+      (price ? '<button class="delx" data-itemdel="' + id + '" title="Pašalinti iš sąrašo" aria-label="Pašalinti">×</button>' : "") +
       '<button class="notebtn' + (note?" has":"") + '" data-note="' + id + '">' + (note?"užrašas ●":"užrašas") + "</button>" +
       '<div class="noteline" ' + (note?"":"hidden") + '><textarea rows="2" data-noteid="' + id + '" placeholder="Ką verta atsiminti apie šį punktą">' + esc(note) + "</textarea></div>" +
       (price ? editLine(id, String(id).indexOf("-x") > 0) : "") +
@@ -1342,13 +1396,12 @@ function budgetSums(){
     ((S.extra && S.extra[c.id]) || []).forEach(x=> walk(x.id));
   });
   let coreP = 0, coreLeft = 0, coreN = 0;
-  BUY.forEach(c=> c.items.forEach((it,i)=>{
-    const id = "buy-"+c.id+"-"+i;
-    if((S.hidden || {})[id] || it[1] !== "core") return;
+  buyRows().forEach(r=>{
+    if(r.tier !== "core") return;
     coreN++;
-    const v = Number(S.prices[id]) || 0;
-    if(v > 0){ coreP += v; if(!S.done[id]) coreLeft += v; }
-  }));
+    const v = Number(S.prices[r.id]) || 0;
+    if(v > 0){ coreP += v; if(!S.done[r.id]) coreLeft += v; }
+  });
   const byWho = {};
   people().forEach(n=> byWho[n] = 0);
   Object.keys(S.buyer || {}).forEach(id=>{
@@ -1381,7 +1434,12 @@ function renderSums(){
     "<span class='fig" + (over?" over":"") + "'><b>" + money(b.planned) + " €</b><span>iš viso suplanuota</span></span>" +
     (b.coreP ? "<span class='fig core'><b>" + money(b.coreLeft) + " €</b><span>būtiniausiems dar reikia</span></span>" : "") +
     "</div>" +
-    (ME.onlyCore ? "<p class='corenote'>Rodomi tik būtiniausi — <b>" + b.coreN + "</b> prekės. Kitos paslėptos, bet sumos skaičiuojamos nuo visų.</p>" : "");
+    (function(){
+      const sh = tierShow();
+      const off = TIERS.filter(t=> !sh[t[0]]).map(t=> t[1]);
+      return off.length ? "<p class='corenote'>Sąraše paslėpta: <b>" + off.join(", ") +
+        "</b>. Sumos skaičiuojamos nuo visų prekių.</p>" : "";
+    })();
   if(budget > 0){
     const sp = Math.min(100, b.spent / budget * 100);
     const pl = Math.min(100 - sp, Math.max(0, (b.planned - b.spent) / budget * 100));
@@ -1405,7 +1463,7 @@ function renderSums(){
     (b.missing ? " Kainos dar neįrašytos ties <b>" + b.missing + "</b> nenupirktais dalykais, tad tikroji suma bus didesnė." : "") +
     "</p>" +
     "<div class='row'><span class='price' style='font-size:.8rem'>Biudžetas <input type='text' inputmode='decimal' maxlength='9' id='budget-in' value='" + (budget || "") + "' placeholder='—' style='width:80px'><span class='eur'>€</span></span>" +
-    "<button class='btn ghost' id='price-clear'>Išvalyti visas kainas</button><span class='saved'>išsaugota</span></div>";
+    "<span class='saved'>išsaugota</span></div>";
   box.innerHTML = h;
   document.querySelectorAll("[data-catsum]").forEach(el=>{
     const c = catSum(el.dataset.catsum);
@@ -2552,39 +2610,55 @@ function renderDo(){
   document.getElementById("p-do").innerHTML = h;
 }
 function renderBuy(){
-  let h = '<div class="toolbar"><label class="switch"><input type="checkbox" id="hd-buy"' + (ME.hideDone?" checked":"") + '> Slėpti tai, kas nupirkta</label>' +
-    '<label class="switch"><input type="checkbox" id="oc-buy"' + (ME.onlyCore?" checked":"") + '> Tik būtiniausi</label>' +
-    '<span class="saved">išsaugota</span></div>';
+  const show = tierShow();
+  const rows = buyRows();
+  const perTier = { core:0, nice:0, later:0 };
+  rows.forEach(r=> perTier[r.tier] = (perTier[r.tier] || 0) + 1);
+
+  let h = '<div class="toolbar"><label class="switch"><input type="checkbox" id="hd-buy"' +
+    (ME.hideDone?" checked":"") + '> Slėpti tai, kas nupirkta</label><span class="saved">išsaugota</span></div>';
+
+  h += '<div class="tierbar">' + TIERS.map(t=>
+      '<button class="tchip t-' + t[0] + (show[t[0]] ? " on" : "") + '" data-tier-toggle="' + t[0] + '">' +
+      esc(t[1]) + '<span>' + (perTier[t[0]] || 0) + "</span></button>").join("") +
+    (Object.keys(show).every(k=> show[k]) ? "" :
+      '<button class="tchip reset" data-tier-toggle="all">Rodyti viską</button>') +
+    "</div>";
+
   h += '<div class="sum" id="sumbox"></div>';
-  h += '<div class="' + (ME.hideDone?"hide-done":"") + (ME.onlyCore?" only-core":"") + '" id="buy-list">';
+  h += '<div class="' + (ME.hideDone?"hide-done":"") + '" id="buy-list">';
+
   BUY.forEach(c=>{
-    h += '<section class="section"><header><h2>' + c.title + "</h2>" +
+    const mine = rows.filter(r=> r.cat === c.id && show[r.tier]);
+    const folded = (ME.folded || {})[c.id];
+    if(!mine.length){
+      const gone0 = c.items.filter((it,i)=> (S.hidden || {})["buy-"+c.id+"-"+i]).length;
+      if(!gone0) return;
+    }
+    const doneN = mine.filter(r=> S.done[r.id]).length;
+    h += '<section class="section' + (folded ? " folded" : "") + '"><header data-fold="' + c.id + '">' +
+         '<h2>' + esc(c.title) + "</h2>" +
          "<span class='catsum' data-catsum='" + c.id + "'></span>" +
-         "<span class='count' data-countfor='buy-" + c.id + "-'></span></header><ul class='items'>";
-    c.items.forEach((it,i)=>{
-      const id = "buy-"+c.id+"-"+i;
-      if((S.hidden || {})[id]) return;
-      const tier = it[1]==="core" ? '<span class="tier core">būtina</span>'
-                 : it[1]==="nice" ? '<span class="tier">praverstų</span>'
-                 : '<span class="tier">palaukti</span>';
-      h += itemRow(id, label(id, it[0]), it[2], tier, true, it[1]);
-    });
-    ((S.extra && S.extra[c.id]) || []).forEach(x=>{
-      if((S.hidden || {})[x.id]) return;
-      h += itemRow(x.id, label(x.id, x.text), "", '<span class="tier">savas</span>', true, "own");
+         "<span class='count'>" + doneN + " / " + mine.length + "</span>" +
+         '<span class="foldx">' + (folded ? "▸" : "▾") + "</span></header>";
+    h += "<div class='secbody'><ul class='items'>";
+    mine.forEach(r=>{
+      const badge = '<span class="tier ' + r.tier + '" data-tier-set="' + r.id + '" title="Spustelėkite, kad pakeistumėte">' +
+        esc(tierName(r.tier)) + (r.own ? " •" : "") + "</span>";
+      h += itemRow(r.id, r.text, r.why, badge, true, r.tier);
     });
     h += "</ul>";
     const gone = c.items.filter((it,i)=> (S.hidden || {})["buy-"+c.id+"-"+i]).length;
     if(gone) h += "<div class='gonerow'><span>" + gone + (gone === 1 ? " pašalinta prekė" : " pašalintos prekės") +
       "</span><button class='btn ghost small' data-unhide='" + c.id + "'>Grąžinti</button></div>";
-    h += "<div class='row addrow'><input type='text' data-newitem='" + c.id + "' placeholder='Pridėti savo prekę' style='flex:1;min-width:170px'>" +
-         "<button class='btn ghost' data-additem='" + c.id + "'>Pridėti</button></div>";
     if(c.skip) h += '<div class="skip"><span class="k">nepirkti</span><p>' + esc(c.skip) + "</p></div>";
-    h += "</section>";
+    h += "<div class='row addrow'><input type='text' data-newitem='" + c.id + "' placeholder='Pridėti savo prekę' style='flex:1;min-width:170px'>" +
+         "<button class='btn ghost' data-additem='" + c.id + "'>Pridėti</button></div></div></section>";
   });
   h += "</div>";
   document.getElementById("p-buy").innerHTML = h;
 }
+
 function renderKb(){
   let h = '<p class="note-strip">Parašyta tam, kad greičiau atpažintumėte ir tiksliau paklaustumėte. Tai nėra medicininė konsultacija — jūsų akušerė, gydytojas ir vaikų gydytojas pažįsta jus ir šį nėštumą. Kilus abejonei, skambinkite jiems.</p>';
   KB.forEach((k,i)=>{
@@ -2704,13 +2778,6 @@ document.addEventListener("change", e=>{
       S.dueDate = cb.value; queueSave();
       renderHeader(); renderDo(); calCursor = null; calSel = null; renderCal(); updateCounts();
     }
-    return;
-  }
-  if(cb.id === "oc-buy"){
-    ME.onlyCore = cb.checked; queueSaveMe();
-    const list = document.getElementById("buy-list");
-    if(list) list.classList.toggle("only-core", ME.onlyCore);
-    renderSums();
     return;
   }
   if(cb.id === "hd-do" || cb.id === "hd-buy"){
@@ -2901,8 +2968,10 @@ document.addEventListener("click", e=>{
   if(idel){
     const btn = idel, id = idel.dataset.itemdel;
     if(!btn.dataset.armed){
-      btn.dataset.armed = "1"; btn.textContent = "dar kartą";
-      setTimeout(()=>{ if(btn.isConnected){ delete btn.dataset.armed; btn.textContent = "Šalinti"; } }, 4000);
+      btn.dataset.armed = "1";
+      btn.classList.add("arm");
+      btn.title = "Spustelėkite dar kartą, kad pašalintumėte";
+      setTimeout(()=>{ if(btn.isConnected){ delete btn.dataset.armed; btn.classList.remove("arm"); btn.title = "Pašalinti iš sąrašo"; } }, 4000);
       return;
     }
     const custom = String(id).indexOf("-x") > 0;
@@ -2919,6 +2988,42 @@ document.addEventListener("click", e=>{
     delete S.done[id]; delete S.notes[id];
     if(S.buyer) delete S.buyer[id];
     queueSave(); renderBuy(); updateCounts();
+    return;
+  }
+  const tt = e.target.closest("[data-tier-toggle]");
+  if(tt){
+    const k = tt.dataset.tierToggle;
+    ME.tierShow = ME.tierShow || {};
+    if(k === "all"){ ME.tierShow = { core:1, nice:1, later:1 }; }
+    else {
+      const cur = tierShow();
+      const on = Object.keys(cur).filter(x=> cur[x]);
+      if(cur[k] && on.length === 1){ ME.tierShow = { core:1, nice:1, later:1 }; }
+      else ME.tierShow[k] = cur[k] ? 0 : 1;
+    }
+    queueSaveMe(); renderBuy(); updateCounts();
+    return;
+  }
+  const ts = e.target.closest("[data-tier-set]");
+  if(ts){
+    const id = ts.dataset.tierSet;
+    const order = ["core","nice","later"];
+    const cur = order.indexOf(tierOf(id));
+    S.tiers = S.tiers || {};
+    S.tiers[id] = order[(cur + 1) % 3];
+    queueSave(); renderBuy(); updateCounts();
+    return;
+  }
+  const fd = e.target.closest("[data-fold]");
+  if(fd && !e.target.closest("[data-catsum]")){
+    const cid = fd.dataset.fold;
+    ME.folded = ME.folded || {};
+    if(ME.folded[cid]) delete ME.folded[cid]; else ME.folded[cid] = 1;
+    queueSaveMe();
+    const sec = fd.closest(".section");
+    sec.classList.toggle("folded", !!ME.folded[cid]);
+    const fx = sec.querySelector(".foldx");
+    if(fx) fx.textContent = ME.folded[cid] ? "▸" : "▾";
     return;
   }
   const un = e.target.closest("[data-unhide]");
@@ -2999,16 +3104,6 @@ document.addEventListener("click", e=>{
   if(ndel){
     S.names = (S.names || []).filter(x=> x.id !== ndel.dataset.namedel);
     queueSave(); renderNames();
-    return;
-  }
-  if(e.target.id === "price-clear"){
-    const btn = e.target;
-    if(btn.dataset.armed){
-      S.prices = {}; queueSave(); renderBuy(); updateCounts();
-    } else {
-      btn.dataset.armed = "1"; btn.textContent = "dar kartą — išvalysiu";
-      setTimeout(()=>{ if(btn.isConnected){ delete btn.dataset.armed; btn.textContent = "Išvalyti visas kainas"; } }, 4000);
-    }
     return;
   }
   if(e.target.id === "cfg-gen"){
@@ -3174,6 +3269,8 @@ document.addEventListener("input", e=>{
       figs[2].parentElement.classList.toggle("over", budget > 0 && b.planned > budget);
     }
     queueSave();
+    clearTimeout(window.__pt);
+    window.__pt = setTimeout(()=>{ if(document.activeElement !== ta) renderSums(); }, 700);
   }
   if(ta.dataset.person){
     const i = Number(ta.dataset.person);
