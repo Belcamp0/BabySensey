@@ -398,6 +398,28 @@ html.dark .mark{background:rgba(27,35,39,.7)}
 .objshape{cursor:pointer;fill:currentColor;stroke:rgba(21,34,41,.35);stroke-width:2.2;stroke-linejoin:round}
 html.dark .objshape{stroke:rgba(230,237,240,.3)}
 .babyhint{font-family:var(--data);font-size:11px;fill:var(--slate);opacity:.9}
+.buyer{
+  flex:0 0 auto;width:24px;height:24px;margin-top:1px;border-radius:50%;cursor:pointer;
+  border:1px dashed var(--line);background:transparent;color:var(--slate);
+  font-family:var(--data);font-size:.7rem;line-height:1;padding:0
+}
+.buyer:hover{border-style:solid;color:var(--ink)}
+.buyer.set{border-style:solid;color:#F4F8F7;font-weight:500}
+.buyer.set.p0{background:var(--spruce);border-color:var(--spruce)}
+.buyer.set.p1{background:#8A5A9B;border-color:#8A5A9B}
+html.dark .buyer.set{color:#0E1614}
+.whorow{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 10px}
+.wtag{
+  display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:99px;
+  padding:5px 12px 5px 5px;font-size:.9rem
+}
+.wtag i{
+  width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  font-style:normal;font-family:var(--data);font-size:.7rem;color:#F4F8F7
+}
+.wtag.p0 i{background:var(--spruce)}
+.wtag.p1 i{background:#8A5A9B}
+.wtag b{font-family:var(--data);font-size:.85rem;font-weight:500}
 .editline{flex-basis:100%;display:flex;gap:8px;flex-wrap:wrap;padding:4px 0 8px 28px}
 .editline[hidden]{display:none}
 .editline input{
@@ -668,9 +690,9 @@ footer.foot{margin-top:40px;font-size:.85rem;color:var(--slate);border-top:1px s
 </div>
 
 <script>
-const VERSION = "v13";
+const VERSION = "v14";
 const BUILT = "2026-08-11";
-const CHANGES = "anatominis vaisiaus vaizdas gimdoje, didesnis smulkus tekstas, pritaikymas telefonui; skiltis „Kūdikis“ po gimimo — maitinimai, sauskelnės, miegas, svoris; pradinis nustatymas, skambutis iš skaitiklio, kalendoriaus perkėlimas, spausdinimas, savaitinės kopijos";
+const CHANGES = "pirkinių sąraše matyti, kas ką nupirko, ir kiek išleido kiekvienas; anatominis vaisiaus vaizdas gimdoje, didesnis smulkus tekstas, pritaikymas telefonui; skiltis „Kūdikis“ po gimimo — maitinimai, sauskelnės, miegas, svoris; pradinis nustatymas, skambutis iš skaitiklio, kalendoriaus perkėlimas, spausdinimas, savaitinės kopijos";
 
 /* ============================ turinys ============================ */
 const PHASES = [
@@ -925,7 +947,7 @@ const MILESTONES = [
 /* ============================ būsena ir sinchronizavimas ============================ */
 /* S  — bendras planas, laikomas duomenų bazėje ir šios naršyklės atmintyje.
    ME — tik šis įrenginys: jūsų vardas ir rodymo nustatymai.               */
-const DEFAULTS = { dueDate:"2027-01-25", done:{}, notes:{}, pad:{names:"",questions:"",general:""}, events:{}, prices:{}, budget:0, contractions:[], contacts:[], names:[], fin:{}, snooze:{}, labels:{}, links:{}, extra:{}, born:"", log:[], weights:[] };
+const DEFAULTS = { dueDate:"2027-01-25", done:{}, notes:{}, pad:{names:"",questions:"",general:""}, events:{}, prices:{}, budget:0, contractions:[], contacts:[], names:[], fin:{}, snooze:{}, labels:{}, links:{}, extra:{}, born:"", log:[], weights:[], buyer:{}, people:["Saulius","Dagnė"] };
 let S = JSON.parse(JSON.stringify(DEFAULTS));
 let ME = { who:"", hideDone:false };
 let COMMENTS = [];
@@ -1248,6 +1270,18 @@ function linkChip(id){
   const u = safeUrl((S.links && S.links[id]) || "");
   return u ? ' <a class="lchip" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer" title="Atidaryti parduotuvėje">↗</a>' : "";
 }
+function people(){
+  const p = (S.people && S.people.length) ? S.people : ["Saulius", "Dagnė"];
+  return p.slice(0, 2);
+}
+function initials(n){ return String(n || "").trim().charAt(0).toUpperCase() || "?"; }
+function buyerChip(id){
+  const b = (S.buyer || {})[id];
+  const cls = b ? " set p" + Math.max(0, people().indexOf(b)) : "";
+  return '<button class="buyer' + cls + '" data-buyer="' + id + '" title="' +
+    (b ? esc(b) + " — spustelėkite, kad pakeistumėte" : "Kas pirko?") + '">' +
+    (b ? esc(initials(b)) : "+") + "</button>";
+}
 function priceBox(id){
   const v = S.prices[id];
   return '<span class="price"><input type="text" inputmode="decimal" maxlength="9" ' +
@@ -1263,6 +1297,7 @@ function itemRow(id, text, why, extra, price){
       '<label for="cb-' + id + '">' + esc(text) + (price ? linkChip(id) : "") +
         (why ? '<span class="why">' + esc(why) + "</span>" : "") + "</label>" +
       (price ? priceBox(id) : "") +
+      (price ? buyerChip(id) : "") +
       (price ? '<button class="notebtn" data-edit="' + id + '">keisti</button>' : "") +
       '<button class="notebtn' + (note?" has":"") + '" data-note="' + id + '">' + (note?"užrašas ●":"užrašas") + "</button>" +
       '<div class="noteline" ' + (note?"":"hidden") + '><textarea rows="2" data-noteid="' + id + '" placeholder="Ką verta atsiminti apie šį punktą">' + esc(note) + "</textarea></div>" +
@@ -1292,7 +1327,13 @@ function budgetSums(){
     c.items.forEach((it,i)=> walk("buy-"+c.id+"-"+i));
     ((S.extra && S.extra[c.id]) || []).forEach(x=> walk(x.id));
   });
-  return { planned, spent, left: planned - spent, filled, missing };
+  const byWho = {};
+  people().forEach(n=> byWho[n] = 0);
+  Object.keys(S.buyer || {}).forEach(id=>{
+    const v = Number(S.prices[id]) || 0;
+    if(v > 0 && S.done[id] && byWho[S.buyer[id]] !== undefined) byWho[S.buyer[id]] += v;
+  });
+  return { planned, spent, left: planned - spent, filled, missing, byWho };
 }
 function catSum(cid){
   let planned = 0, spent = 0;
@@ -1323,6 +1364,13 @@ function renderSums(){
     h += "<div class='bar'><i class='done' style='width:" + sp.toFixed(1) + "%'></i>" +
          "<i class='plan' style='width:" + pl.toFixed(1) + "%'></i>" +
          (ov ? "<i class='over' style='width:" + ov.toFixed(1) + "%'></i>" : "") + "</div>";
+  }
+  const ps = people();
+  const anyWho = ps.some(n=> (b.byWho || {})[n] > 0);
+  if(anyWho){
+    h += "<div class='whorow'>" + ps.map((n,i)=>
+      "<span class='wtag p" + i + "'><i>" + esc(initials(n)) + "</i>" + esc(n) +
+      "<b>" + money((b.byWho || {})[n] || 0) + " €</b></span>").join("") + "</div>";
   }
   h += "<p class='sumnote'>" +
     (budget > 0
@@ -2530,6 +2578,10 @@ function renderPad(){
          '<textarea data-pad="' + p[0] + '" placeholder="Rašykite — išsisaugo automatiškai">' + esc(S.pad[p[0]]||"") + "</textarea></div>";
   });
   h = '<div class="pad"><h2>Vardai</h2><div id="namebox"></div></div>' + h;
+  h += '<div class="pad"><h2>Kas naudojasi</h2><p class="hint">Šie vardai naudojami pirkinių sąraše, kad matytųsi, kas ką nupirko.</p>' +
+       '<div class="row"><input type="text" data-person="0" value="' + esc(people()[0]) + '" placeholder="Pirmas vardas" style="flex:1;min-width:130px">' +
+       '<input type="text" data-person="1" value="' + esc(people()[1] || "") + '" placeholder="Antras vardas" style="flex:1;min-width:130px">' +
+       '<span class="saved">išsaugota</span></div></div>';
   h += '<div class="pad"><h2>Sinchronizavimas</h2>' +
        '<p class="hint">' + (online()
          ? 'Įjungta. Kambarys: <b>' + esc(cfg.room) + '</b>. Nuoroda žmonai turi būti su nustatymais — pasiimkite ją mygtuku žemiau.'
@@ -2596,6 +2648,21 @@ document.addEventListener("change", e=>{
     const li = cb.closest(".item");
     const id = li.dataset.id;
     if(cb.checked) S.done[id] = 1; else delete S.done[id];
+    if(String(id).indexOf("buy-") === 0){
+      S.buyer = S.buyer || {};
+      if(cb.checked && !S.buyer[id]){
+        const me = (ME.who || "").trim();
+        const match = people().find(x=> x.toLowerCase() === me.toLowerCase());
+        if(match) S.buyer[id] = match;
+      }
+      if(!cb.checked) delete S.buyer[id];
+      const chip = li.querySelector("[data-buyer]");
+      if(chip){
+        const b = S.buyer[id];
+        chip.textContent = b ? initials(b) : "+";
+        chip.className = "buyer" + (b ? " set p" + Math.max(0, people().indexOf(b)) : "");
+      }
+    }
     li.classList.toggle("done", cb.checked);
     updateCounts(); queueSave();
   }
@@ -2750,6 +2817,18 @@ document.addEventListener("click", e=>{
       svg.replaceWith(tmp.firstChild);
     } else if(card) card.innerHTML = babyPanel();
     else renderToday();
+    return;
+  }
+  const bc = e.target.closest("[data-buyer]");
+  if(bc){
+    const id = bc.dataset.buyer, ps = people();
+    S.buyer = S.buyer || {};
+    const cur = S.buyer[id];
+    const next = !cur ? ps[0] : (cur === ps[0] ? ps[1] : null);
+    if(next) S.buyer[id] = next; else delete S.buyer[id];
+    bc.textContent = next ? initials(next) : "+";
+    bc.className = "buyer" + (next ? " set p" + ps.indexOf(next) : "");
+    queueSave(); renderSums();
     return;
   }
   const ed = e.target.closest("[data-edit]");
@@ -3040,6 +3119,18 @@ document.addEventListener("input", e=>{
       figs[2].parentElement.classList.toggle("over", budget > 0 && b.planned > budget);
     }
     queueSave();
+  }
+  if(ta.dataset.person){
+    const i = Number(ta.dataset.person);
+    const ps = people().slice();
+    const old = ps[i];
+    ps[i] = (ta.value || "").trim() || old;
+    S.people = ps;
+    if(old && ps[i] !== old){
+      Object.keys(S.buyer || {}).forEach(k=>{ if(S.buyer[k] === old) S.buyer[k] = ps[i]; });
+    }
+    queueSave();
+    return;
   }
   if(ta.dataset.fin){
     fin()[ta.dataset.fin] = ta.value;
