@@ -437,6 +437,19 @@ html.dark .editline input{background:#141A1D}
   border-radius:2px;font-size:.7rem;line-height:1;padding:2px 4px;vertical-align:middle;margin-left:2px
 }
 .lchip:hover{background:rgba(30,74,69,.1)}
+.only-core .item[data-tier="nice"],.only-core .item[data-tier="later"]{display:none}
+.fig.core b{color:var(--amber)}
+.corenote{
+  font-family:var(--data);font-size:.68rem;letter-spacing:.05em;color:var(--slate);
+  margin:0 0 10px;padding:8px 11px;background:rgba(227,155,46,.1);border-radius:3px
+}
+.corenote b{color:var(--ink)}
+.gonerow{
+  display:flex;align-items:center;gap:10px;padding:8px 18px;
+  font-family:var(--data);font-size:.68rem;letter-spacing:.06em;color:var(--slate);
+  border-top:1px solid rgba(214,222,226,.6)
+}
+.gonerow button{margin-left:auto}
 .addrow{padding:10px 18px 14px;margin:0;border-top:1px solid rgba(214,222,226,.6)}
 .finlist{list-style:none;margin:12px 0 0;padding:0}
 .finrow{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid var(--line)}
@@ -690,9 +703,9 @@ footer.foot{margin-top:40px;font-size:.85rem;color:var(--slate);border-top:1px s
 </div>
 
 <script>
-const VERSION = "v14";
+const VERSION = "v16";
 const BUILT = "2026-08-11";
-const CHANGES = "pirkinių sąraše matyti, kas ką nupirko, ir kiek išleido kiekvienas; anatominis vaisiaus vaizdas gimdoje, didesnis smulkus tekstas, pritaikymas telefonui; skiltis „Kūdikis“ po gimimo — maitinimai, sauskelnės, miegas, svoris; pradinis nustatymas, skambutis iš skaitiklio, kalendoriaus perkėlimas, spausdinimas, savaitinės kopijos";
+const CHANGES = "filtras „tik būtiniausi“ ir atskira jų suma; prekių šalinimas su galimybe grąžinti; matyti, kas ką nupirko, ir kiek išleido kiekvienas; anatominis vaisiaus vaizdas gimdoje, didesnis smulkus tekstas, pritaikymas telefonui; skiltis „Kūdikis“ po gimimo — maitinimai, sauskelnės, miegas, svoris; pradinis nustatymas, skambutis iš skaitiklio, kalendoriaus perkėlimas, spausdinimas, savaitinės kopijos";
 
 /* ============================ turinys ============================ */
 const PHASES = [
@@ -947,7 +960,7 @@ const MILESTONES = [
 /* ============================ būsena ir sinchronizavimas ============================ */
 /* S  — bendras planas, laikomas duomenų bazėje ir šios naršyklės atmintyje.
    ME — tik šis įrenginys: jūsų vardas ir rodymo nustatymai.               */
-const DEFAULTS = { dueDate:"2027-01-25", done:{}, notes:{}, pad:{names:"",questions:"",general:""}, events:{}, prices:{}, budget:0, contractions:[], contacts:[], names:[], fin:{}, snooze:{}, labels:{}, links:{}, extra:{}, born:"", log:[], weights:[], buyer:{}, people:["Saulius","Dagnė"] };
+const DEFAULTS = { dueDate:"2027-01-25", done:{}, notes:{}, pad:{names:"",questions:"",general:""}, events:{}, prices:{}, budget:0, contractions:[], contacts:[], names:[], fin:{}, snooze:{}, labels:{}, links:{}, extra:{}, born:"", log:[], weights:[], buyer:{}, people:["Saulius","Dagnė"], hidden:{} };
 let S = JSON.parse(JSON.stringify(DEFAULTS));
 let ME = { who:"", hideDone:false };
 let COMMENTS = [];
@@ -1263,7 +1276,7 @@ function editLine(id, custom){
     '<input type="text" class="ename" data-label="' + id + '" placeholder="Prekės pavadinimas">' +
     '<input type="text" class="elink" inputmode="url" data-link="' + id + '" value="' + esc(url) + '" placeholder="https://parduotuve.lt/preke">' +
     '<button class="btn ghost small" data-editdone="' + id + '">Gerai</button>' +
-    (custom ? '<button class="btn ghost small danger" data-itemdel="' + id + '">Šalinti</button>' : "") +
+    '<button class="btn ghost small danger" data-itemdel="' + id + '">Šalinti</button>' +
     "</div>";
 }
 function linkChip(id){
@@ -1288,10 +1301,10 @@ function priceBox(id){
          'data-price="' + id + '" placeholder="—" aria-label="Kaina" ' +
          'value="' + (v ? v : "") + '" class="' + (v ? "set" : "") + '"><span class="eur">€</span></span>';
 }
-function itemRow(id, text, why, extra, price){
+function itemRow(id, text, why, extra, price, tier){
   const done = !!S.done[id];
   const note = S.notes[id] || "";
-  return '<li class="item' + (done?" done":"") + '" data-id="' + id + '">' +
+  return '<li class="item' + (done?" done":"") + '" data-id="' + id + '"' + (tier ? ' data-tier="' + tier + '"' : "") + ">" +
       '<input type="checkbox" id="cb-' + id + '"' + (done?" checked":"") + '>' +
       (extra || "") +
       '<label for="cb-' + id + '">' + esc(text) + (price ? linkChip(id) : "") +
@@ -1307,8 +1320,8 @@ function itemRow(id, text, why, extra, price){
 function allIds(){
   const ids = [];
   PHASES.forEach(p => p.items.forEach((it,i)=> ids.push("do-"+p.id+"-"+i)));
-  BUY.forEach(c => c.items.forEach((it,i)=> ids.push("buy-"+c.id+"-"+i)));
-  BUY.forEach(c => ((S.extra && S.extra[c.id]) || []).forEach(x=> ids.push(x.id)));
+  BUY.forEach(c => c.items.forEach((it,i)=>{ const id = "buy-"+c.id+"-"+i; if(!(S.hidden||{})[id]) ids.push(id); }));
+  BUY.forEach(c => ((S.extra && S.extra[c.id]) || []).forEach(x=>{ if(!(S.hidden||{})[x.id]) ids.push(x.id); }));
   BAGS.forEach(b => b.items.forEach((it,i)=> ids.push("bag-"+b.id+"-"+i)));
   BENEFITS.forEach((x,i)=> ids.push("fin-"+i));
   return ids;
@@ -1319,6 +1332,7 @@ function money(n){
 function budgetSums(){
   let planned = 0, spent = 0, filled = 0, missing = 0;
   const walk = id=>{
+    if((S.hidden || {})[id]) return;
     const v = Number(S.prices[id]) || 0;
     if(v > 0){ planned += v; filled++; if(S.done[id]) spent += v; }
     else if(!S.done[id]) missing++;
@@ -1327,18 +1341,27 @@ function budgetSums(){
     c.items.forEach((it,i)=> walk("buy-"+c.id+"-"+i));
     ((S.extra && S.extra[c.id]) || []).forEach(x=> walk(x.id));
   });
+  let coreP = 0, coreLeft = 0, coreN = 0;
+  BUY.forEach(c=> c.items.forEach((it,i)=>{
+    const id = "buy-"+c.id+"-"+i;
+    if((S.hidden || {})[id] || it[1] !== "core") return;
+    coreN++;
+    const v = Number(S.prices[id]) || 0;
+    if(v > 0){ coreP += v; if(!S.done[id]) coreLeft += v; }
+  }));
   const byWho = {};
   people().forEach(n=> byWho[n] = 0);
   Object.keys(S.buyer || {}).forEach(id=>{
     const v = Number(S.prices[id]) || 0;
     if(v > 0 && S.done[id] && byWho[S.buyer[id]] !== undefined) byWho[S.buyer[id]] += v;
   });
-  return { planned, spent, left: planned - spent, filled, missing, byWho };
+  return { planned, spent, left: planned - spent, filled, missing, byWho, coreP, coreLeft, coreN };
 }
 function catSum(cid){
   let planned = 0, spent = 0;
   const c = BUY.find(x=> x.id === cid);
   const walk = id=>{
+    if((S.hidden || {})[id]) return;
     const v = Number(S.prices[id]) || 0;
     if(v > 0){ planned += v; if(S.done[id]) spent += v; }
   };
@@ -1356,7 +1379,9 @@ function renderSums(){
     "<span class='fig spent'><b>" + money(b.spent) + " €</b><span>jau išleista</span></span>" +
     "<span class='fig'><b>" + money(b.left) + " €</b><span>dar laukia</span></span>" +
     "<span class='fig" + (over?" over":"") + "'><b>" + money(b.planned) + " €</b><span>iš viso suplanuota</span></span>" +
-    "</div>";
+    (b.coreP ? "<span class='fig core'><b>" + money(b.coreLeft) + " €</b><span>būtiniausiems dar reikia</span></span>" : "") +
+    "</div>" +
+    (ME.onlyCore ? "<p class='corenote'>Rodomi tik būtiniausi — <b>" + b.coreN + "</b> prekės. Kitos paslėptos, bet sumos skaičiuojamos nuo visų.</p>" : "");
   if(budget > 0){
     const sp = Math.min(100, b.spent / budget * 100);
     const pl = Math.min(100 - sp, Math.max(0, (b.planned - b.spent) / budget * 100));
@@ -2477,6 +2502,7 @@ function searchAll(q){
   BUY.forEach(c=>{
     c.items.forEach((it,i)=>{
       const id = "buy-"+c.id+"-"+i, lb = label(id, it[0]);
+      if((S.hidden || {})[id]) return;
       if((lb + " " + (it[2]||"")).toLowerCase().includes(q))
         out.push({ id, text: lb, where: "Pirkiniai · " + c.title, go: "shop|buy" });
     });
@@ -2526,24 +2552,31 @@ function renderDo(){
   document.getElementById("p-do").innerHTML = h;
 }
 function renderBuy(){
-  let h = '<div class="toolbar"><label class="switch"><input type="checkbox" id="hd-buy"' + (ME.hideDone?" checked":"") + '> Slėpti tai, kas nupirkta</label><span class="saved">išsaugota</span></div>';
+  let h = '<div class="toolbar"><label class="switch"><input type="checkbox" id="hd-buy"' + (ME.hideDone?" checked":"") + '> Slėpti tai, kas nupirkta</label>' +
+    '<label class="switch"><input type="checkbox" id="oc-buy"' + (ME.onlyCore?" checked":"") + '> Tik būtiniausi</label>' +
+    '<span class="saved">išsaugota</span></div>';
   h += '<div class="sum" id="sumbox"></div>';
-  h += '<div class="' + (ME.hideDone?"hide-done":"") + '" id="buy-list">';
+  h += '<div class="' + (ME.hideDone?"hide-done":"") + (ME.onlyCore?" only-core":"") + '" id="buy-list">';
   BUY.forEach(c=>{
     h += '<section class="section"><header><h2>' + c.title + "</h2>" +
          "<span class='catsum' data-catsum='" + c.id + "'></span>" +
          "<span class='count' data-countfor='buy-" + c.id + "-'></span></header><ul class='items'>";
     c.items.forEach((it,i)=>{
+      const id = "buy-"+c.id+"-"+i;
+      if((S.hidden || {})[id]) return;
       const tier = it[1]==="core" ? '<span class="tier core">būtina</span>'
                  : it[1]==="nice" ? '<span class="tier">praverstų</span>'
                  : '<span class="tier">palaukti</span>';
-      const id = "buy-"+c.id+"-"+i;
-      h += itemRow(id, label(id, it[0]), it[2], tier, true);
+      h += itemRow(id, label(id, it[0]), it[2], tier, true, it[1]);
     });
     ((S.extra && S.extra[c.id]) || []).forEach(x=>{
-      h += itemRow(x.id, label(x.id, x.text), "", '<span class="tier">savas</span>', true);
+      if((S.hidden || {})[x.id]) return;
+      h += itemRow(x.id, label(x.id, x.text), "", '<span class="tier">savas</span>', true, "own");
     });
     h += "</ul>";
+    const gone = c.items.filter((it,i)=> (S.hidden || {})["buy-"+c.id+"-"+i]).length;
+    if(gone) h += "<div class='gonerow'><span>" + gone + (gone === 1 ? " pašalinta prekė" : " pašalintos prekės") +
+      "</span><button class='btn ghost small' data-unhide='" + c.id + "'>Grąžinti</button></div>";
     h += "<div class='row addrow'><input type='text' data-newitem='" + c.id + "' placeholder='Pridėti savo prekę' style='flex:1;min-width:170px'>" +
          "<button class='btn ghost' data-additem='" + c.id + "'>Pridėti</button></div>";
     if(c.skip) h += '<div class="skip"><span class="k">nepirkti</span><p>' + esc(c.skip) + "</p></div>";
@@ -2671,6 +2704,13 @@ document.addEventListener("change", e=>{
       S.dueDate = cb.value; queueSave();
       renderHeader(); renderDo(); calCursor = null; calSel = null; renderCal(); updateCounts();
     }
+    return;
+  }
+  if(cb.id === "oc-buy"){
+    ME.onlyCore = cb.checked; queueSaveMe();
+    const list = document.getElementById("buy-list");
+    if(list) list.classList.toggle("only-core", ME.onlyCore);
+    renderSums();
     return;
   }
   if(cb.id === "hd-do" || cb.id === "hd-buy"){
@@ -2865,11 +2905,26 @@ document.addEventListener("click", e=>{
       setTimeout(()=>{ if(btn.isConnected){ delete btn.dataset.armed; btn.textContent = "Šalinti"; } }, 4000);
       return;
     }
-    Object.keys(S.extra || {}).forEach(cid=>{
-      S.extra[cid] = (S.extra[cid] || []).filter(x=> x.id !== id);
-      if(!S.extra[cid].length) delete S.extra[cid];
-    });
-    delete S.prices[id]; delete S.labels[id]; delete S.links[id]; delete S.done[id]; delete S.notes[id];
+    const custom = String(id).indexOf("-x") > 0;
+    if(custom){
+      Object.keys(S.extra || {}).forEach(cid=>{
+        S.extra[cid] = (S.extra[cid] || []).filter(x=> x.id !== id);
+        if(!S.extra[cid].length) delete S.extra[cid];
+      });
+    } else {
+      S.hidden = S.hidden || {};
+      S.hidden[id] = 1;
+    }
+    delete S.prices[id]; delete S.labels[id]; delete S.links[id];
+    delete S.done[id]; delete S.notes[id];
+    if(S.buyer) delete S.buyer[id];
+    queueSave(); renderBuy(); updateCounts();
+    return;
+  }
+  const un = e.target.closest("[data-unhide]");
+  if(un){
+    const cid = un.dataset.unhide;
+    Object.keys(S.hidden || {}).forEach(k=>{ if(k.indexOf("buy-" + cid + "-") === 0) delete S.hidden[k]; });
     queueSave(); renderBuy(); updateCounts();
     return;
   }
